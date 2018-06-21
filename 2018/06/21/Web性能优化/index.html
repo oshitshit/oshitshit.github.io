@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2018/6 | 哦谢特谢特</title>
+    <title>web性能优化 | 哦谢特谢特</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="哦谢特谢特">
-<meta property="og:url" content="http://yoursite.com/archives/2018/06/index.html">
+    <meta name="description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
+<meta name="keywords" content="前端,优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web性能优化">
+<meta property="og:url" content="http://yoursite.com/2018/06/21/Web性能优化/index.html">
 <meta property="og:site_name" content="哦谢特谢特">
+<meta property="og:description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta property="og:updated_time" content="2018-06-21T12:24:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="哦谢特谢特">
+<meta name="twitter:title" content="web性能优化">
+<meta name="twitter:description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
+<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
     
 
     
@@ -198,25 +205,21 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fas fa-calendar-alt"></i></span>
-                <h1 class="title">2018</h1>
-            </div>
+            <section id="main"><article id="post-Web性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/06/21/Web性能优化/">web性能优化</a>
+        <h1 class="article-title" itemprop="name">
+            web性能优化
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
         <a href="/2018/06/21/Web性能优化/">
@@ -225,85 +228,145 @@
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fas fa-folder"></i>
         <a class="article-category-link" href="/categories/前端/">前端</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fas fa-tag"></i>
         <a class="tag-link" href="/tags/优化/">优化</a>, <a class="tag-link" href="/tags/前端/">前端</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/">linux中常见的指令</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h3 id="Web性能优化"><a href="#Web性能优化" class="headerlink" title="Web性能优化"></a>Web性能优化</h3><h5 id="1、-减少http请求"><a href="#1、-减少http请求" class="headerlink" title="1、 减少http请求"></a>1、 减少http请求</h5><p>a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间<br>b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快<br>c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片</p>
+<a id="more"></a>
+<h5 id="2、-使用浏览器缓存"><a href="#2、-使用浏览器缓存" class="headerlink" title="2、 使用浏览器缓存"></a>2、 使用浏览器缓存</h5><p>a)    一个网站中 css js logo 图标这些静态资源文件更新的频率都比较低 如果将这些文件缓存在浏览器中可以极好地改善型性能<br>b)    通过设置http头中的cache-control和expires属性 可以设定浏览器缓存<br>c)    在某些时候 静态资源文件变化需要及时应用到客户端浏览器 这种情况 可以通过改变文件名称实现 即更新js文件不是更新js文件内容<br>d)    使用留恋其缓存策略的网站在更新静态资源时 应采用分批次更新的方法 比如需要更新10个图标文件 不宜把10个文件一次全部更新 应该一个文件一个文件逐步更新 并有一定的间隔时间 以免浏览器突然大量缓存失效</p>
+<h5 id="3、-服务端启用压缩"><a href="#3、-服务端启用压缩" class="headerlink" title="3、 服务端启用压缩"></a>3、 服务端启用压缩</h5><h5 id="4、-css放在页面最上面-js放在页面最下面"><a href="#4、-css放在页面最上面-js放在页面最下面" class="headerlink" title="4、 css放在页面最上面 js放在页面最下面"></a>4、 css放在页面最上面 js放在页面最下面</h5><p>a)    浏览器会在下载完全部css之后才对整个页面进行渲染 因此最好的做法是将css放在页面最上面 让浏览器尽快下载css<br>b)    Js则相反 浏览器在加载js后立即执行 有可能会阻塞整个页面 造成页面显示缓慢 因此js最好放在页面最下面 但如果解析页面的时候就需要用到js 这里就不适合放在底部了</p>
+<h5 id="5、-精简css和js文件"><a href="#5、-精简css和js文件" class="headerlink" title="5、 精简css和js文件"></a>5、 精简css和js文件</h5><p>a)    css和js压缩 减少下载的文件体积 常用的方式是使用 yui compressor 它的特点是：移除注释 移除额外的空格 细微的优化 标识符替换<br>b)     压缩js</p>
+<pre><code>java -jar yuicompressor-2.4.2.jar api.js&gt;api.min.js
+</code></pre><p>   压缩css</p>
+<pre><code>java -jar yuicompressor-2.4.2.jar style.css&gt;style.min.css
+</code></pre><h5 id="6、-减少对dom的操作"><a href="#6、-减少对dom的操作" class="headerlink" title="6、 减少对dom的操作"></a>6、 减少对dom的操作</h5><p>a)    对dom操作的代价是高昂的<br>b)    修改和访问dom元素会造成页面的重绘和重排 造成重绘重排的原因<br>i.    修改dom<br>ii.    修改样式表<br>iii.    用户事件<br>c)    网页生成的过程大致可以分为五个步骤<br>i.    html转换成dom<br>ii.    css代码转换成cssom<br>iii.    结合dom和cssom 生成一棵渲染树<br>iv.    生成布局 即将所有渲染树的所有节点进行平面合成<br>v.    将布局绘制在屏幕上</p>
+<h5 id="7、-使用json格式进行数据交换"><a href="#7、-使用json格式进行数据交换" class="headerlink" title="7、 使用json格式进行数据交换"></a>7、 使用json格式进行数据交换</h5><h5 id="8、-减少cookie传输"><a href="#8、-减少cookie传输" class="headerlink" title="8、 减少cookie传输"></a>8、 减少cookie传输</h5><p>a)    因为cookie是本地的磁盘文件 每次浏览器都会去读取相应的cookie所以建议去除不必要的cookie 使cookie体积尽量小</p>
+<h5 id="9、-使用cdn加速"><a href="#9、-使用cdn加速" class="headerlink" title="9、 使用cdn加速"></a>9、 使用cdn加速</h5><p>a)    cdn全称是content delivery network 即内容分发网络<br>b)    cdn本质仍然是一个缓存 而且将数据缓存在离用户最近的地方 使用户最快的获取数据<br>c)    cdn能够缓存的一般般是静态资源 如图片 文件 css script脚本 静态网页<br>d)    实时性不好使cdn的缺陷</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/user-me"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Authentication <span class="title">principal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();</span><br><span class="line">		log.debug(<span class="string">"user-me:&#123;&#125;"</span>, authentication.getName());</span><br><span class="line">		<span class="keyword">return</span> authentication;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/">
-            <time datetime="2018-06-21T12:47:44.000Z" itemprop="datePublished">2018-06-21</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>, <a class="tag-link" href="/tags/面试/">面试</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/06/21/hello-world/">欢迎来到我的尬乐底master</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/21/hello-world/">
-            <time datetime="2018-06-21T02:21:30.000Z" itemprop="datePublished">2018-06-21</time>
-        </a>
-    </div>
+        <footer class="article-footer">
+            <div class="share-container">
 
 
-                    
-                    
-                </div>
-            </div>
-        </div>
-    
+
 </div>
+
+    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjioiw8pj0002sci3rmtrd5nc" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2018/06/21/Web性能优化/#comments" id="sourceId::2018/06/21/Web性能优化/" class="article-comment-link cy_cmt_count">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">linux中常见的指令</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2018/06/21/Web性能优化/"></div>
+</section>
+    
+
 </section>
             
                 
