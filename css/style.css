@@ -627,7 +627,7 @@ code {
 .blog-header-image {
   display: inline-block;
   height: auto;
-  max-width: 100%;
+  width: 100%;
 }
 .bio {
   text-align: center;
