@@ -3,22 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>linux中常见的指令 | 哦谢特谢特</title>
+    <title>Javascript闭包初步了解 | 哦谢特谢特</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？  查看当前进程：ps  查看负载情况：free 查看内存的使用情况 top 动态显示cpu的负载情况  执行退出：exit  查看当前路径：pwd">
-<meta name="keywords" content="linux,面试">
+    <meta name="description" content="没错，在下就是这么勤劳 ，这里来总结一下js闭包，搬运自阮大佬的日志  闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。1.变量的作用域要理解闭包，首先必须理解Javascript特殊的变量作用域。 变量的作用域无非就是两种：全局变量和局部变量。 Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。">
+<meta name="keywords" content="前端,Javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux中常见的指令">
-<meta property="og:url" content="http://yoursite.com/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/index.html">
+<meta property="og:title" content="Javascript闭包初步了解">
+<meta property="og:url" content="http://yoursite.com/2018/06/22/20180622-js闭包/index.html">
 <meta property="og:site_name" content="哦谢特谢特">
-<meta property="og:description" content="1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？  查看当前进程：ps  查看负载情况：free 查看内存的使用情况 top 动态显示cpu的负载情况  执行退出：exit  查看当前路径：pwd">
+<meta property="og:description" content="没错，在下就是这么勤劳 ，这里来总结一下js闭包，搬运自阮大佬的日志  闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。1.变量的作用域要理解闭包，首先必须理解Javascript特殊的变量作用域。 变量的作用域无非就是两种：全局变量和局部变量。 Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
-<meta property="og:updated_time" content="2018-06-21T14:31:14.000Z">
+<meta property="og:image" content="http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG">
+<meta property="og:updated_time" content="2018-06-22T10:30:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux中常见的指令">
-<meta name="twitter:description" content="1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？  查看当前进程：ps  查看负载情况：free 查看内存的使用情况 top 动态显示cpu的负载情况  执行退出：exit  查看当前路径：pwd">
-<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta name="twitter:title" content="Javascript闭包初步了解">
+<meta name="twitter:description" content="没错，在下就是这么勤劳 ，这里来总结一下js闭包，搬运自阮大佬的日志  闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。1.变量的作用域要理解闭包，首先必须理解Javascript特殊的变量作用域。 变量的作用域无非就是两种：全局变量和局部变量。 Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。">
+<meta name="twitter:image" content="http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG">
     
 
     
@@ -213,15 +213,23 @@
 </aside>
 
             
-            <section id="main"><article id="post-1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-20180622-js闭包" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
+        
+            
+	
+		<img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/IMG_1797.JPG" class="article-banner" />
+	
+
+
+
         
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-            linux中常见的指令
+            Javascript闭包初步了解
         </h1>
     
 
@@ -230,8 +238,8 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/">
-            <time datetime="2018-06-21T12:47:44.000Z" itemprop="datePublished">2018-06-21</time>
+        <a href="/2018/06/22/20180622-js闭包/">
+            <time datetime="2018-06-22T09:47:44.000Z" itemprop="datePublished">2018-06-22</time>
         </a>
     </div>
 
@@ -239,13 +247,13 @@
                         
     <div class="article-category">
     	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
+        <a class="article-category-link" href="/categories/前端/">前端</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>, <a class="tag-link" href="/tags/面试/">面试</a>
+        <a class="tag-link" href="/tags/Javascript/">Javascript</a>, <a class="tag-link" href="/tags/前端/">前端</a>
     </div>
 
                     </div>
@@ -256,23 +264,38 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h5 id="1-怎么查看当前进程-负载情况？怎么执行退出？怎么查看当前路径？"><a href="#1-怎么查看当前进程-负载情况？怎么执行退出？怎么查看当前路径？" class="headerlink" title="1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？"></a>1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？</h5><p>  查看当前进程：ps<br>  查看负载情况：free 查看内存的使用情况 top 动态显示cpu的负载情况<br>  执行退出：exit<br>  查看当前路径：pwd<br>    <a id="more"></a></p>
-<h5 id="2-如何清屏？怎么退出当前命令？怎么执行s会面？"><a href="#2-如何清屏？怎么退出当前命令？怎么执行s会面？" class="headerlink" title="2.如何清屏？怎么退出当前命令？怎么执行s会面？"></a>2.如何清屏？怎么退出当前命令？怎么执行s会面？</h5><p> 清屏：clear<br> 退出当前：ctrl+c<br> 执行睡眠：ctrl+z fg恢复后台</p>
-<h5 id="3-ls命令执行什么功能？可以带哪些参数？"><a href="#3-ls命令执行什么功能？可以带哪些参数？" class="headerlink" title="3.ls命令执行什么功能？可以带哪些参数？"></a>3.ls命令执行什么功能？可以带哪些参数？</h5><p> ls执行的功能：列出指定目录中的目录，以及文件<br> 有哪些参数：a所有文件 l详细信息，包括大小写字节数，可读可写，可执行的权限等</p>
-<h5 id="4-目录创建用什么命令？创建文件用什么命令？复制文件用什么命令？"><a href="#4-目录创建用什么命令？创建文件用什么命令？复制文件用什么命令？" class="headerlink" title="4.目录创建用什么命令？创建文件用什么命令？复制文件用什么命令？"></a>4.目录创建用什么命令？创建文件用什么命令？复制文件用什么命令？</h5><p>创建目录：mkdir<br>创建文件：典型的如touch vi<br>复制文件：cp</p>
-<h5 id="5-查看文件内容的命令有哪些？"><a href="#5-查看文件内容的命令有哪些？" class="headerlink" title="5.查看文件内容的命令有哪些？"></a>5.查看文件内容的命令有哪些？</h5><p>vi 文件名 编辑方式查看，可以修改<br>cat 文件名 显示全部文件内容<br>more 文件名 分页显示文件内容<br>less 文件名 与more相似 可以往前翻页<br>tail 文件名 仅查看尾部 可以指定行数<br>head 文件名 仅查看头部 可以指定行数</p>
-<h5 id="6-移动文件-改名-用哪个命令？"><a href="#6-移动文件-改名-用哪个命令？" class="headerlink" title="6.移动文件 改名 用哪个命令？"></a>6.移动文件 改名 用哪个命令？</h5><p>mv改名 将文件test改为new</p>
-<pre><code>mv test new1
-</code></pre><p>mv将目录 /usr/men中的所有文件移到当前目录</p>
-<pre><code>mv /usr/men/*.
-</code></pre><h5 id="7-复制-删除文件"><a href="#7-复制-删除文件" class="headerlink" title="7.复制 删除文件"></a>7.复制 删除文件</h5><p>复制</p>
-<pre><code>cp [-adfilprsu] 源文件(source) 目标文件(destination)
-</code></pre><p>删除</p>
-<pre><code>rm [fir] 文件或目录
-</code></pre><h5 id="8-常用的通配符和含义"><a href="#8-常用的通配符和含义" class="headerlink" title="8.常用的通配符和含义"></a>8.常用的通配符和含义</h5><p>“？”可替代单个字符。 ·“*”可替代任意多个字符。 ·方括号“[charset]”可替代 charset 集中的任何单个字符，如[a-z]，[abABC] 15. 用什么命令对一个文件的内容进行统计？(行号、单词数、字节数)<br>wc 命令 - c 统计字节数。<br> – l 统计行数。 - w 统计字数。</p>
-<h5 id="9-终止进程"><a href="#9-终止进程" class="headerlink" title="9.终止进程"></a>9.终止进程</h5><pre><code>kill -9 pid
-</code></pre><h5 id="10-查找自己所在终端的信息"><a href="#10-查找自己所在终端的信息" class="headerlink" title="10.查找自己所在终端的信息"></a>10.查找自己所在终端的信息</h5><pre><code>who am i
-</code></pre>
+            <blockquote>
+<p>没错，在下就是这么勤劳 ，这里来总结一下js闭包，搬运自<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">阮大佬的日志</a></p>
+</blockquote>
+<h4 id="闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。"><a href="#闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。" class="headerlink" title="闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。"></a>闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。</h4><h4 id="1-变量的作用域"><a href="#1-变量的作用域" class="headerlink" title="1.变量的作用域"></a>1.变量的作用域</h4><p>要理解闭包，首先必须理解Javascript特殊的变量作用域。</p>
+<p>变量的作用域无非就是两种：全局变量和局部变量。</p>
+<p>Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n=<span class="number">999</span>;</span><br><span class="line"></span><br><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　alert(n);</span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　f1(); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure>
+<p>另一方面，在函数外部自然无法读取函数内的局部变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　<span class="keyword">var</span> n=<span class="number">999</span>;</span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　alert(n); <span class="comment">// error</span></span><br></pre></td></tr></table></figure>
+<p>这里有一个地方需要注意，函数内部声明变量的时候，一定要使用var命令。如果不用的话，你实际上声明了一个全局变量！<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　n=<span class="number">999</span>;</span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　f1();</span><br><span class="line"></span><br><span class="line">　　alert(n); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2-如何从外部读取局部变量"><a href="#2-如何从外部读取局部变量" class="headerlink" title="2.如何从外部读取局部变量"></a>2.如何从外部读取局部变量</h4><p>出于种种原因，我们有时候需要得到函数内的局部变量。但是，前面已经说过了，正常情况下，这是办不到的，只有通过变通方法才能实现。</p>
+<p>那就是在函数的内部，再定义一个函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">　　　　<span class="keyword">var</span> n=<span class="number">999</span>;</span><br><span class="line"></span><br><span class="line">　　　　<span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　alert(n); <span class="comment">// 999</span></span><br><span class="line">　　　　&#125;</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在上面的代码中，函数f2就被包括在函数f1内部，这时f1内部的所有局部变量，对f2都是可见的。但是反过来就不行，f2内部的局部变量，对f1就是不可见的。这就是Javascript语言特有的”链式作用域”结构（chain scope），子对象会一级一级地向上寻找所有父对象的变量。所以，父对象的所有变量，对子对象都是可见的，反之则不成立。</p>
+<p>既然f2可以读取f1中的局部变量，那么只要把f2作为返回值，我们不就可以在f1外部读取它的内部变量了吗！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">　　　　<span class="keyword">var</span> n=<span class="number">999</span>;</span><br><span class="line"></span><br><span class="line">　　　　<span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　alert(n);</span><br><span class="line">　　　　&#125;</span><br><span class="line"></span><br><span class="line">　　　　<span class="keyword">return</span> f2;</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">var</span> result=f1();</span><br><span class="line"></span><br><span class="line">　　result(); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-闭包的概念"><a href="#3-闭包的概念" class="headerlink" title="3.闭包的概念"></a>3.闭包的概念</h4><p>上面代码中的f2函数，就是闭包。</p>
+<p>各种专业文献上的”闭包”（closure）定义非常抽象，很难看懂。我(阮大佬)的理解是，<strong>闭包就是能够读取其他函数内部变量的函数</strong>。</p>
+<p>由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成”定义在一个函数内部的函数”。</p>
+<p>所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。</p>
+<h4 id="4-闭包的用途"><a href="#4-闭包的用途" class="headerlink" title="4.闭包的用途"></a>4.闭包的用途</h4><p>闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。</p>
+<p>怎么来理解这句话呢？请看下面的代码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">　<span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">　　　　<span class="keyword">var</span> n=<span class="number">999</span>;</span><br><span class="line"></span><br><span class="line">　　　　nAdd=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;n+=<span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line">　　　　<span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　alert(n);</span><br><span class="line">　　　　&#125;</span><br><span class="line"></span><br><span class="line">　　　　<span class="keyword">return</span> f2;</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">var</span> result=f1();</span><br><span class="line"></span><br><span class="line">　　result(); <span class="comment">// 999</span></span><br><span class="line"></span><br><span class="line">　　nAdd();</span><br><span class="line"></span><br><span class="line">　　result(); <span class="comment">// 1000</span></span><br></pre></td></tr></table></figure></p>
+<p>在这段代码中，result实际上就是闭包f2函数。它一共运行了两次，第一次的值是999，第二次的值是1000。这证明了，函数f1中的局部变量n一直保存在内存中，并没有在f1调用后被自动清除。</p>
+<p>为什么会这样呢？原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。</p>
+<p>这段代码中另一个值得注意的地方，就是”nAdd=function(){n+=1}”这一行，首先在nAdd前面没有使用var关键字，因此nAdd是一个全局变量，而不是局部变量。其次，nAdd的值是一个匿名函数（anonymous function），而这个匿名函数本身也是一个闭包，所以nAdd相当于是一个setter，可以在函数外部对函数内部的局部变量进行操作。</p>
+<h4 id="5-使用闭包的注意点"><a href="#5-使用闭包的注意点" class="headerlink" title="5.使用闭包的注意点"></a>5.使用闭包的注意点</h4><p>1）由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。</p>
+<p>2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</p>
+<h4 id="常见陷阱"><a href="#常见陷阱" class="headerlink" title="常见陷阱"></a>常见陷阱</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFunctions</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">    result[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> funcs = createFunctions();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; funcs.length; i++)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(funcs[i]());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>乍一看，以为输出 0~9 ，万万没想到输出10个10？</p>
+<p>这里的陷阱就是：函数带()才是执行函数， 单纯的一句 var f = function() { alert(‘Hi’); }; 是不会弹窗的，后面接一句 f(); 才会执行函数内部的代码。上面代码翻译一下就是：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>(), i;</span><br><span class="line">result[<span class="number">0</span>] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> i; &#125;; <span class="comment">//没执行函数，函数内部不变，不能将函数内的i替换！</span></span><br><span class="line">result[<span class="number">1</span>] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> i; &#125;; <span class="comment">//没执行函数，函数内部不变，不能将函数内的i替换！</span></span><br><span class="line">...</span><br><span class="line">result[<span class="number">9</span>] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> i; &#125;; <span class="comment">//没执行函数，函数内部不变，不能将函数内的i替换！</span></span><br><span class="line">i = <span class="number">10</span>;</span><br><span class="line">funcs = result;</span><br><span class="line">result = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(i); <span class="comment">// funcs[0]()就是执行 return i 语句，就是返回10</span></span><br><span class="line"><span class="built_in">console</span>.log(i); <span class="comment">// funcs[1]()就是执行 return i 语句，就是返回10</span></span><br><span class="line">...</span><br><span class="line"><span class="built_in">console</span>.log(i); <span class="comment">// funcs[9]()就是执行 return i 语句，就是返回10</span></span><br></pre></td></tr></table></figure></p>
+<p>为什么只垃圾回收了 result，但却不收了 i 呢？ 因为 i 还在被 function 引用着啊。好比一个餐厅，盘子总是有限的，所以服务员会去巡台回收空盘子，但还装着菜的盘子他怎么敢收？ 当然，你自己手动倒掉了盘子里面的菜（=null），那盘子就会被收走了，这就是所谓的内存回收机制。</p>
+
         
         <!--添加的打赏功能 -->
           
@@ -311,7 +334,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/" data-id="cjipu69vv00009pi35pno1dp9" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180622-js闭包/" data-id="cjipu69w400029pi3r76cynhj" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -379,7 +402,7 @@
 
             
     
-        <a href="http://yoursite.com/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/#comments" id="sourceId::2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/" class="article-comment-link cy_cmt_count">评论</a>
+        <a href="http://yoursite.com/2018/06/22/20180622-js闭包/#comments" id="sourceId::2018/06/22/20180622-js闭包/" class="article-comment-link cy_cmt_count">评论</a>
     
 
         </footer>
@@ -388,19 +411,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/06/21/Web性能优化/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    web性能优化
-                
-            </div>
-        </a>
     
-    
-        <a href="/2018/06/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/06/22/前端跨域问题的解决方法/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">欢迎来到我的尬乐底master</div>
+            <div class="article-nav-title">前端跨域问题的解决方案</div>
         </a>
     
 </nav>
@@ -413,7 +427,7 @@
     
     
         <section id="comments">
-    <div id="SOHUCS" sid="2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/"></div>
+    <div id="SOHUCS" sid="2018/06/22/20180622-js闭包/"></div>
 </section>
     
 
