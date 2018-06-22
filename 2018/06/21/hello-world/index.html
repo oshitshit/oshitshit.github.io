@@ -240,7 +240,36 @@
             <p>庆祝今天博客刚刚搭建成功！！！</p>
 
         
+        <!--添加的打赏功能 -->
+          
+  	           <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   大佬给点吃的吧！
+        </span>
+        <br>
+      </div>
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
+    <!-- 微信打赏图案 -->
+
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			$('#donate_board').addClass('hidden');
+			$('#donate_guide').removeClass('hidden');
+		}
+	</script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
         </div>
+
         <footer class="article-footer">
             <div class="share-container">
 
@@ -248,7 +277,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/21/hello-world/" data-id="cjioo7a850005fhi3wa6wf91u" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/21/hello-world/" data-id="cjipc9any0005b4i301uwgz8d" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -348,6 +377,7 @@
     <div id="SOHUCS" sid="2018/06/21/hello-world/"></div>
 </section>
     
+
 
 </section>
             

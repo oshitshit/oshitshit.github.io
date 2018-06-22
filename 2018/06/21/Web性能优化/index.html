@@ -14,7 +14,7 @@
 <meta property="og:description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
-<meta property="og:updated_time" content="2018-06-21T14:31:24.000Z">
+<meta property="og:updated_time" content="2018-06-22T02:09:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web性能优化">
 <meta name="twitter:description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
@@ -267,10 +267,38 @@
 </code></pre><h5 id="6、-减少对dom的操作"><a href="#6、-减少对dom的操作" class="headerlink" title="6、 减少对dom的操作"></a>6、 减少对dom的操作</h5><p>a)    对dom操作的代价是高昂的<br>b)    修改和访问dom元素会造成页面的重绘和重排 造成重绘重排的原因<br>i.    修改dom<br>ii.    修改样式表<br>iii.    用户事件<br>c)    网页生成的过程大致可以分为五个步骤<br>i.    html转换成dom<br>ii.    css代码转换成cssom<br>iii.    结合dom和cssom 生成一棵渲染树<br>iv.    生成布局 即将所有渲染树的所有节点进行平面合成<br>v.    将布局绘制在屏幕上</p>
 <h5 id="7、-使用json格式进行数据交换"><a href="#7、-使用json格式进行数据交换" class="headerlink" title="7、 使用json格式进行数据交换"></a>7、 使用json格式进行数据交换</h5><h5 id="8、-减少cookie传输"><a href="#8、-减少cookie传输" class="headerlink" title="8、 减少cookie传输"></a>8、 减少cookie传输</h5><p>a)    因为cookie是本地的磁盘文件 每次浏览器都会去读取相应的cookie所以建议去除不必要的cookie 使cookie体积尽量小</p>
 <h5 id="9、-使用cdn加速"><a href="#9、-使用cdn加速" class="headerlink" title="9、 使用cdn加速"></a>9、 使用cdn加速</h5><p>a)    cdn全称是content delivery network 即内容分发网络<br>b)    cdn本质仍然是一个缓存 而且将数据缓存在离用户最近的地方 使用户最快的获取数据<br>c)    cdn能够缓存的一般般是静态资源 如图片 文件 css script脚本 静态网页<br>d)    实时性不好使cdn的缺陷</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/user-me"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Authentication <span class="title">principal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();</span><br><span class="line">		log.debug(<span class="string">"user-me:&#123;&#125;"</span>, authentication.getName());</span><br><span class="line">		<span class="keyword">return</span> authentication;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
         
+        <!--添加的打赏功能 -->
+          
+  	           <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   大佬给点吃的吧！
+        </span>
+        <br>
+      </div>
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
+    <!-- 微信打赏图案 -->
+
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			$('#donate_board').addClass('hidden');
+			$('#donate_guide').removeClass('hidden');
+		}
+	</script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
         </div>
+
         <footer class="article-footer">
             <div class="share-container">
 
@@ -278,7 +306,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjioo7a7w0002fhi3bljstm8x" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjipc9anr0002b4i3v1ap18p9" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -374,6 +402,7 @@
     <div id="SOHUCS" sid="2018/06/21/Web性能优化/"></div>
 </section>
     
+
 
 </section>
             
