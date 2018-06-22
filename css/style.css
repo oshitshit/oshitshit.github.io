@@ -624,6 +624,14 @@ code {
 #main-nav-mobile .menu .search-form-input::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
+.blog-header-image {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 18rem;
+}
 .bio {
   text-align: center;
 }
