@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Spring Security实现登录功能和原理 | 哦谢特谢特</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jjwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。  spring security的配置">
+<meta name="keywords" content="Spring,Spring Security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Security实现登录功能和原理">
+<meta property="og:url" content="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/index.html">
+<meta property="og:site_name" content="哦谢特谢特">
+<meta property="og:description" content="写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jjwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。  spring security的配置">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta property="og:updated_time" content="2018-06-23T13:02:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Security实现登录功能和原理">
+<meta name="twitter:description" content="写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jjwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。  spring security的配置">
+<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+    
+
+    
+        <link rel="alternate" href="/" title="哦谢特谢特" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-brands.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-solid.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        
+<header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">哦谢特谢特</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/favorite">程序猿的日常</a>
+                
+                    <a class="main-nav-link" href="/.">还在施工中。。。</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_6884%2820180528-071229%29.jpg" />
+                            <i class="fas fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fas fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/favorite">程序猿的日常</a></td>
+                
+                    <td><a class="main-nav-link" href="/.">还在施工中。。。</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+<img class="blog-header-image" src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/huibuhui.png">
+
+</img>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_6884%2820180528-071229%29.jpg" />
+            <h2 id="name">哦谢特谢特</h2>
+            <h3 id="title">已被逐出月籍的地球人，喜欢学习新技术，然后搭完环境弃坑。擅长让微服务进入无服务状态，不百度和Google就解决不了问题。梦想成为一名PPT架构师，迎娶富萝莉！</h3>
+            <span id="location"><i class="fas fa-map-marker-alt" style="padding-right: 5px"></i>济南, 山东</span>
+            <a id="follow" target="_blank" href="https://weibo.com/5646945304/profile?topnav=1&amp;wvr=6&amp;is_all=1">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                8
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                8
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oshitshit" target="_blank" title="github" class=tooltip>
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://space.bilibili.com/7174608/#/" target="_blank" title="bilibili" class=tooltip>
+                            <i class="fab fa-bilibili"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://weibo.com/5646945304/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="weibo" class=tooltip>
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fab fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-20180623-spring security登录及实现原理" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://papzj8a9t.bkt.clouddn.com/20180622_header.JPG" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Spring Security实现登录功能和原理
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/06/23/20180623-spring security登录及实现原理/">
+            <time datetime="2018-06-23T12:47:44.000Z" itemprop="datePublished">2018-06-23</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/Spring-Security/">Spring Security</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Spring/">Spring</a>, <a class="tag-link" href="/tags/Spring-Security/">Spring Security</a>
+    </div>
+
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <blockquote>
+<p>写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jjwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。<br>ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。</p>
+</blockquote>
+<h3 id="spring-security的配置"><a href="#spring-security的配置" class="headerlink" title="spring security的配置"></a>spring security的配置</h3><a id="more"></a>
+<h5 id="SecurityConfig-配置文件"><a href="#SecurityConfig-配置文件" class="headerlink" title="SecurityConfig 配置文件"></a>SecurityConfig 配置文件</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">   <span class="comment">//跨站请求伪造禁用</span></span><br><span class="line">   http.csrf().disable();</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 基于token，所以不需要session</span></span><br><span class="line">   http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);</span><br><span class="line">   <span class="comment">//不需要校验的文件</span></span><br><span class="line">   http.authorizeRequests()</span><br><span class="line">         .antMatchers(<span class="string">"/"</span>, <span class="string">"/*.html"</span>, <span class="string">"/favicon.ico"</span>, <span class="string">"/css/**"</span>, <span class="string">"/js/**"</span>, <span class="string">"/fonts/**"</span>, <span class="string">"/layui/**"</span>, <span class="string">"/img/**"</span>,</span><br><span class="line">               <span class="string">"/v2/api-docs/**"</span>, <span class="string">"/swagger-resources/**"</span>, <span class="string">"/webjars/**"</span>, <span class="string">"/pages/**"</span>, <span class="string">"/druid/**"</span>,</span><br><span class="line">               <span class="string">"/statics/**"</span>)</span><br><span class="line">         .permitAll().anyRequest().authenticated();</span><br><span class="line">   http.formLogin().loginPage(<span class="string">"/login.html"</span>).loginProcessingUrl(<span class="string">"/login"</span>)</span><br><span class="line">         .successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).and()</span><br><span class="line">         .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);</span><br><span class="line">   http.logout().logoutUrl(<span class="string">"/logout"</span>).logoutSuccessHandler(logoutSuccessHandler);</span><br><span class="line">   <span class="comment">// 解决不允许显示在iframe的问题</span></span><br><span class="line">   http.headers().frameOptions().disable();</span><br><span class="line">   http.headers().cacheControl();</span><br><span class="line"></span><br><span class="line">   http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">   auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="SecurityHandlerConfig（spring-security处理器）"><a href="#SecurityHandlerConfig（spring-security处理器）" class="headerlink" title="SecurityHandlerConfig（spring security处理器）"></a>SecurityHandlerConfig（spring security处理器）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 登陆成功，返回token</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@Bean</span><br><span class="line">public AuthenticationSuccessHandler loginSuccessHandler() &#123;</span><br><span class="line">    return new AuthenticationSuccessHandler() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException &#123;</span><br><span class="line">            LoginUser loginUser = (LoginUser) authentication.getPrincipal();</span><br><span class="line"></span><br><span class="line">            Token token = tokenService.saveToken(loginUser);</span><br><span class="line">            ResponseUtil.responseJson(httpServletResponse, HttpStatus.OK.value(),token);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 登录失败</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public AuthenticationFailureHandler loginFailureHandler() &#123;</span><br><span class="line">    return new AuthenticationFailureHandler() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException &#123;</span><br><span class="line">            String msg = null;</span><br><span class="line">            if (e instanceof BadCredentialsException) &#123;</span><br><span class="line">                msg = &quot;密码错误&quot;;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                msg = e.getMessage();</span><br><span class="line">            &#125;</span><br><span class="line">            ResponseInfo info = new ResponseInfo(HttpStatus.UNAUTHORIZED.value() + &quot;&quot;, msg);</span><br><span class="line">            ResponseUtil.responseJson(httpServletResponse, HttpStatus.UNAUTHORIZED.value(), info);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 未登录</span><br><span class="line"> */</span><br><span class="line">@Bean</span><br><span class="line">public AuthenticationEntryPoint authenticationEntryPoint() &#123;</span><br><span class="line">    return new AuthenticationEntryPoint() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException &#123;</span><br><span class="line">            ResponseInfo info = new ResponseInfo(HttpStatus.UNAUTHORIZED.value() + &quot;&quot;, &quot;请先登录&quot;);</span><br><span class="line">            ResponseUtil.responseJson(httpServletResponse, HttpStatus.UNAUTHORIZED.value(), info);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 退出处理</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public LogoutSuccessHandler logoutSuccessHandler() &#123;</span><br><span class="line">    return new LogoutSuccessHandler() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException &#123;</span><br><span class="line">            ResponseInfo info = new ResponseInfo(HttpStatus.OK.value() + &quot;&quot;, &quot;退出成功&quot;);</span><br><span class="line"></span><br><span class="line">            String token = TokenFilter.getToken(httpServletRequest);</span><br><span class="line">            tokenService.deleteToken(token);</span><br><span class="line">            ResponseUtil.responseJson(httpServletResponse,HttpStatus.OK.value(),info);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Token拦截器"><a href="#Token拦截器" class="headerlink" title="Token拦截器"></a>Token拦截器</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class TokenFilter extends OncePerRequestFilter &#123;</span><br><span class="line">    private static final String TOKEN_KEY = &quot;token&quot;;</span><br><span class="line">    private static final Long MINUTES_10 = 10 * 60 * 1000L;</span><br><span class="line">    @Autowired</span><br><span class="line">    private TokenService tokenService;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private UserDetailsService userDetailsService;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException &#123;</span><br><span class="line"></span><br><span class="line">        String token = getToken(request);</span><br><span class="line">        if (StringUtils.isBlank(token)) &#123;</span><br><span class="line">            LoginUser loginUser = tokenService.getLoginUser(token);</span><br><span class="line">            if (loginUser != null) &#123;</span><br><span class="line">                loginUser = checkLoginTime(loginUser);</span><br><span class="line">                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, loginUser.getAuthorities());</span><br><span class="line">                SecurityContextHolder.getContext().setAuthentication(authenticationToken);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        filterChain.doFilter(request,response);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 校验过期时间</span><br><span class="line">     * 过期时间与当前时间对比，临近过期10分钟的话，自动刷新缓存</span><br><span class="line">     *</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    private LoginUser checkLoginTime(LoginUser loginUser) &#123;</span><br><span class="line">        long expireTime = loginUser.getExpireTime();</span><br><span class="line">        long currentTime = System.currentTimeMillis();</span><br><span class="line">        if (expireTime - currentTime &lt;= MINUTES_10) &#123;</span><br><span class="line">            String token = loginUser.getToken();</span><br><span class="line">            loginUser = (LoginUser) userDetailsService.loadUserByUsername(loginUser.getUsername());</span><br><span class="line">            loginUser.setToken(token);</span><br><span class="line">            tokenService.refresh(loginUser);</span><br><span class="line">        &#125;</span><br><span class="line">        return loginUser;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 根据参数或者header获得token</span><br><span class="line">     * @param request</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    public static String getToken(HttpServletRequest request) &#123;</span><br><span class="line">        String token = request.getParameter(TOKEN_KEY);</span><br><span class="line">        if (StringUtils.isBlank(token)) &#123;</span><br><span class="line">            token = request.getHeader(TOKEN_KEY);</span><br><span class="line">        &#125;</span><br><span class="line">        return token;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h5 id="1、前端调用登录方法"><a href="#1、前端调用登录方法" class="headerlink" title="1、前端调用登录方法"></a>1、前端调用登录方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function login(obj) &#123;</span><br><span class="line">   $(obj).attr(&quot;disabled&quot;, true);</span><br><span class="line"></span><br><span class="line">   var username = $.trim($(&apos;#username&apos;).val());</span><br><span class="line">   var password = $.trim($(&apos;#password&apos;).val());</span><br><span class="line">   if (username == &quot;&quot; || password == &quot;&quot;) &#123;</span><br><span class="line">      $(&quot;#info&quot;).html(&apos;用户名或者密码不能为空&apos;);</span><br><span class="line">      $(obj).attr(&quot;disabled&quot;, false);</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">      $.ajax(&#123;</span><br><span class="line">         type : &apos;post&apos;,</span><br><span class="line">         url : &apos;/login&apos;,</span><br><span class="line">         data : $(&quot;#login-form&quot;).serialize(),</span><br><span class="line">         success : function(data) &#123;</span><br><span class="line">            localStorage.setItem(&quot;token&quot;, data.token);</span><br><span class="line">            location.href = &apos;/index.html&apos;;</span><br><span class="line">         &#125;,</span><br><span class="line">         error : function(xhr, textStatus, errorThrown) &#123;</span><br><span class="line">            var msg = xhr.responseText;</span><br><span class="line">            var response = JSON.parse(msg);</span><br><span class="line">            $(&quot;#info&quot;).html(response.message);</span><br><span class="line">            $(obj).attr(&quot;disabled&quot;, false);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2、我们在SecurityConfig-配置文件中的这段代码设置了对登录的处理。"><a href="#2、我们在SecurityConfig-配置文件中的这段代码设置了对登录的处理。" class="headerlink" title="2、我们在SecurityConfig 配置文件中的这段代码设置了对登录的处理。"></a>2、我们在SecurityConfig 配置文件中的这段代码设置了对登录的处理。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http.formLogin().loginPage(<span class="string">"/login.html"</span>).loginProcessingUrl(<span class="string">"/login"</span>)</span><br><span class="line">      .successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).and()</span><br><span class="line">      .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);</span><br></pre></td></tr></table></figure>
+<h5 id="3、后经过org-springframework-security-web-authentication-UsernamePasswordAuthenticationFilter这个拦截器的attemptAuthentication方法获取到前端的用户名和密码，具体的代码如下"><a href="#3、后经过org-springframework-security-web-authentication-UsernamePasswordAuthenticationFilter这个拦截器的attemptAuthentication方法获取到前端的用户名和密码，具体的代码如下" class="headerlink" title="3、后经过org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter这个拦截器的attemptAuthentication方法获取到前端的用户名和密码，具体的代码如下"></a>3、后经过<code>org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter</code>这个拦截器的attemptAuthentication方法获取到前端的用户名和密码，具体的代码如下</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">UsernamePasswordAuthenticationFilter</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">       <span class="keyword">super</span>(<span class="keyword">new</span> AntPathRequestMatcher(<span class="string">"/login"</span>, <span class="string">"POST"</span>));  </span><br><span class="line">   &#125;  </span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Authentication <span class="title">attemptAuthentication</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;  </span><br><span class="line">       <span class="keyword">if</span> (<span class="keyword">this</span>.postOnly &amp;&amp; !request.getMethod().equals(<span class="string">"POST"</span>)) &#123;  </span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> AuthenticationServiceException(<span class="string">"Authentication method not supported: "</span> + request.getMethod());  </span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">           String username = <span class="keyword">this</span>.obtainUsername(request);  </span><br><span class="line">           String password = <span class="keyword">this</span>.obtainPassword(request);  </span><br><span class="line">           <span class="keyword">if</span> (username == <span class="keyword">null</span>) &#123;  </span><br><span class="line">               username = <span class="string">""</span>;  </span><br><span class="line">           &#125;  </span><br><span class="line"></span><br><span class="line">           <span class="keyword">if</span> (password == <span class="keyword">null</span>) &#123;  </span><br><span class="line">               password = <span class="string">""</span>;  </span><br><span class="line">           &#125;  </span><br><span class="line"></span><br><span class="line">           username = username.trim();  </span><br><span class="line">           UsernamePasswordAuthenticationToken authRequest = <span class="keyword">new</span> UsernamePasswordAuthenticationToken(username, password);  </span><br><span class="line">           <span class="keyword">this</span>.setDetails(request, authRequest);  </span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">this</span>.getAuthenticationManager().authenticate(authRequest);  </span><br><span class="line">       &#125;  </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="4、上面的方法只支持post请求，获取到用户名密码后构造未认证的UsernamePasswordAuthentication-后设置details然后通过AuthenticationManager（实际上为ProviderManager的authenticate方法）完成验证，该方法先循环遍历provider-找到具体执行该认证的provider-然后复制details-然后由具体的provider来完成认证，具体代码如下"><a href="#4、上面的方法只支持post请求，获取到用户名密码后构造未认证的UsernamePasswordAuthentication-后设置details然后通过AuthenticationManager（实际上为ProviderManager的authenticate方法）完成验证，该方法先循环遍历provider-找到具体执行该认证的provider-然后复制details-然后由具体的provider来完成认证，具体代码如下" class="headerlink" title="4、上面的方法只支持post请求，获取到用户名密码后构造未认证的UsernamePasswordAuthentication 后设置details然后通过AuthenticationManager（实际上为ProviderManager的authenticate方法）完成验证，该方法先循环遍历provider 找到具体执行该认证的provider 然后复制details 然后由具体的provider来完成认证，具体代码如下"></a>4、上面的方法只支持post请求，获取到用户名密码后构造未认证的<code>UsernamePasswordAuthentication</code> 后设置details然后通过<code>AuthenticationManager</code>（实际上为<code>ProviderManager的authenticate</code>方法）完成验证，该方法先循环遍历provider 找到具体执行该认证的provider 然后复制details 然后由具体的provider来完成认证，具体代码如下</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Authentication <span class="title">authenticate</span><span class="params">(Authentication authentication)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;  </span><br><span class="line">       Class&lt;? extends Authentication&gt; toTest = authentication.getClass();  </span><br><span class="line">       AuthenticationException lastException = <span class="keyword">null</span>;  </span><br><span class="line">       Authentication result = <span class="keyword">null</span>;  </span><br><span class="line">       <span class="keyword">boolean</span> debug = logger.isDebugEnabled();  </span><br><span class="line">       Iterator var6 = <span class="keyword">this</span>.getProviders().iterator();  </span><br><span class="line"></span><br><span class="line">       <span class="keyword">while</span>(var6.hasNext()) &#123;  </span><br><span class="line">           AuthenticationProvider provider = (AuthenticationProvider)var6.next();  </span><br><span class="line">           <span class="keyword">if</span> (provider.supports(toTest)) &#123;  </span><br><span class="line">               <span class="keyword">if</span> (debug) &#123;  </span><br><span class="line">                   logger.debug(<span class="string">"Authentication attempt using "</span> + provider.getClass().getName());  </span><br><span class="line">               &#125;  </span><br><span class="line"></span><br><span class="line">               <span class="keyword">try</span> &#123;  </span><br><span class="line">                   result = provider.authenticate(authentication);  </span><br><span class="line">                   <span class="keyword">if</span> (result != <span class="keyword">null</span>) &#123;  </span><br><span class="line">                       <span class="keyword">this</span>.copyDetails(authentication, result);  </span><br><span class="line">                       <span class="keyword">break</span>;  </span><br><span class="line">                   &#125;  </span><br><span class="line">               &#125; <span class="keyword">catch</span> (AccountStatusException var11) &#123;  </span><br><span class="line">                   <span class="keyword">this</span>.prepareException(var11, authentication);  </span><br><span class="line">                   <span class="keyword">throw</span> var11;  </span><br><span class="line">               &#125; <span class="keyword">catch</span> (InternalAuthenticationServiceException var12) &#123;  </span><br><span class="line">                   <span class="keyword">this</span>.prepareException(var12, authentication);  </span><br><span class="line">                   <span class="keyword">throw</span> var12;  </span><br><span class="line">               &#125; <span class="keyword">catch</span> (AuthenticationException var13) &#123;  </span><br><span class="line">                   lastException = var13;  </span><br><span class="line">               &#125;  </span><br><span class="line">           &#125;  </span><br><span class="line">       &#125;  </span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (result == <span class="keyword">null</span> &amp;&amp; <span class="keyword">this</span>.parent != <span class="keyword">null</span>) &#123;  </span><br><span class="line">           <span class="keyword">try</span> &#123;  </span><br><span class="line">               result = <span class="keyword">this</span>.parent.authenticate(authentication);  </span><br><span class="line">           &#125; <span class="keyword">catch</span> (ProviderNotFoundException var9) &#123;  </span><br><span class="line">               ;  </span><br><span class="line">           &#125; <span class="keyword">catch</span> (AuthenticationException var10) &#123;  </span><br><span class="line">               lastException = var10;  </span><br><span class="line">           &#125;  </span><br><span class="line">       &#125;  </span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (result != <span class="keyword">null</span>) &#123;  </span><br><span class="line">           <span class="keyword">if</span> (<span class="keyword">this</span>.eraseCredentialsAfterAuthentication &amp;&amp; result <span class="keyword">instanceof</span> CredentialsContainer) &#123;  </span><br><span class="line">               ((CredentialsContainer)result).eraseCredentials();  </span><br><span class="line">           &#125;  </span><br><span class="line"></span><br><span class="line">           <span class="keyword">this</span>.eventPublisher.publishAuthenticationSuccess(result);  </span><br><span class="line">           <span class="keyword">return</span> result;  </span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">           <span class="keyword">if</span> (lastException == <span class="keyword">null</span>) &#123;  </span><br><span class="line">               lastException = <span class="keyword">new</span> ProviderNotFoundException(<span class="keyword">this</span>.messages.getMessage(<span class="string">"ProviderManager.providerNotFound"</span>, <span class="keyword">new</span> Object[]&#123;toTest.getName()&#125;, <span class="string">"No AuthenticationProvider found for &#123;0&#125;"</span>));  </span><br><span class="line">           &#125;  </span><br><span class="line"></span><br><span class="line">           <span class="keyword">this</span>.prepareException((AuthenticationException)lastException, authentication);  </span><br><span class="line">           <span class="keyword">throw</span> lastException;  </span><br><span class="line">       &#125;  </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="5、-具体的验证处理由DaoAuthenticationProvider的父类AbstractUserDetailsAuthenticationProvider的authenticate方法来完成，该方法先获取到登录的用户名，如果缓存中有UserDetails则从缓存中获取UserDetails如果没有则根据用户名和authentication获取UserDetails-后进行一系列验证成功后返回Authentication，具体代码如下"><a href="#5、-具体的验证处理由DaoAuthenticationProvider的父类AbstractUserDetailsAuthenticationProvider的authenticate方法来完成，该方法先获取到登录的用户名，如果缓存中有UserDetails则从缓存中获取UserDetails如果没有则根据用户名和authentication获取UserDetails-后进行一系列验证成功后返回Authentication，具体代码如下" class="headerlink" title="5、 具体的验证处理由DaoAuthenticationProvider的父类AbstractUserDetailsAuthenticationProvider的authenticate方法来完成，该方法先获取到登录的用户名，如果缓存中有UserDetails则从缓存中获取UserDetails如果没有则根据用户名和authentication获取UserDetails 后进行一系列验证成功后返回Authentication，具体代码如下"></a>5、 具体的验证处理由<code>DaoAuthenticationProvider</code>的父类<code>AbstractUserDetailsAuthenticationProvider</code>的<code>authenticate</code>方法来完成，该方法先获取到登录的用户名，如果缓存中有<code>UserDetails</code>则从缓存中获取<code>UserDetails</code>如果没有则根据用户名和<code>authentication</code>获取<code>UserDetails</code> 后进行一系列验证成功后返回<code>Authentication</code>，具体代码如下</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Authentication <span class="title">authenticate</span><span class="params">(Authentication authentication)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;  </span><br><span class="line">        Assert.isInstanceOf(UsernamePasswordAuthenticationToken.class, authentication, <span class="keyword">this</span>.messages.getMessage(<span class="string">"AbstractUserDetailsAuthenticationProvider.onlySupports"</span>, <span class="string">"Only UsernamePasswordAuthenticationToken is supported"</span>));  </span><br><span class="line">        String username = authentication.getPrincipal() == <span class="keyword">null</span> ? <span class="string">"NONE_PROVIDED"</span> : authentication.getName();  </span><br><span class="line">        <span class="keyword">boolean</span> cacheWasUsed = <span class="keyword">true</span>;  </span><br><span class="line">        UserDetails user = <span class="keyword">this</span>.userCache.getUserFromCache(username);  </span><br><span class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;  </span><br><span class="line">            cacheWasUsed = <span class="keyword">false</span>;  </span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;  </span><br><span class="line">                user = <span class="keyword">this</span>.retrieveUser(username, (UsernamePasswordAuthenticationToken)authentication);  </span><br><span class="line">            &#125; <span class="keyword">catch</span> (UsernameNotFoundException var6) &#123;  </span><br><span class="line">                <span class="keyword">this</span>.logger.debug(<span class="string">"User '"</span> + username + <span class="string">"' not found"</span>);  </span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.hideUserNotFoundExceptions) &#123;  </span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> BadCredentialsException(<span class="keyword">this</span>.messages.getMessage(<span class="string">"AbstractUserDetailsAuthenticationProvider.badCredentials"</span>, <span class="string">"Bad credentials"</span>));  </span><br><span class="line">                &#125;  </span><br><span class="line"></span><br><span class="line">                <span class="keyword">throw</span> var6;  </span><br><span class="line">            &#125;  </span><br><span class="line"></span><br><span class="line">            Assert.notNull(user, <span class="string">"retrieveUser returned null - a violation of the interface contract"</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            <span class="keyword">this</span>.preAuthenticationChecks.check(user);  </span><br><span class="line">            <span class="keyword">this</span>.additionalAuthenticationChecks(user, (UsernamePasswordAuthenticationToken)authentication);  </span><br><span class="line">        &#125; <span class="keyword">catch</span> (AuthenticationException var7) &#123;  </span><br><span class="line">            <span class="keyword">if</span> (!cacheWasUsed) &#123;  </span><br><span class="line">                <span class="keyword">throw</span> var7;  </span><br><span class="line">            &#125;  </span><br><span class="line"></span><br><span class="line">            cacheWasUsed = <span class="keyword">false</span>;  </span><br><span class="line">            user = <span class="keyword">this</span>.retrieveUser(username, (UsernamePasswordAuthenticationToken)authentication);  </span><br><span class="line">            <span class="keyword">this</span>.preAuthenticationChecks.check(user);  </span><br><span class="line">            <span class="keyword">this</span>.additionalAuthenticationChecks(user, (UsernamePasswordAuthenticationToken)authentication);  </span><br><span class="line">        &#125;  </span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.postAuthenticationChecks.check(user);  </span><br><span class="line">        <span class="keyword">if</span> (!cacheWasUsed) &#123;  </span><br><span class="line">            <span class="keyword">this</span>.userCache.putUserInCache(user);  </span><br><span class="line">        &#125;  </span><br><span class="line"></span><br><span class="line">        Object principalToReturn = user;  </span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.forcePrincipalAsString) &#123;  </span><br><span class="line">            principalToReturn = user.getUsername();  </span><br><span class="line">        &#125;  </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.createSuccessAuthentication(principalToReturn, authentication, user);  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="6、验证过程由DaoAuthenticationProvider的retrieveUser和additionalAuthenticationChecks方法来实现，具体代码如下"><a href="#6、验证过程由DaoAuthenticationProvider的retrieveUser和additionalAuthenticationChecks方法来实现，具体代码如下" class="headerlink" title="6、验证过程由DaoAuthenticationProvider的retrieveUser和additionalAuthenticationChecks方法来实现，具体代码如下"></a>6、验证过程由<code>DaoAuthenticationProvider</code>的<code>retrieveUser</code>和<code>additionalAuthenticationChecks</code>方法来实现，具体代码如下</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> UserDetails <span class="title">retrieveUser</span><span class="params">(String username, UsernamePasswordAuthenticationToken authentication)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;  </span><br><span class="line">       <span class="keyword">this</span>.prepareTimingAttackProtection();  </span><br><span class="line"></span><br><span class="line">       <span class="keyword">try</span> &#123;  </span><br><span class="line">           UserDetails loadedUser = <span class="keyword">this</span>.getUserDetailsService().loadUserByUsername(username);  </span><br><span class="line">           <span class="keyword">if</span> (loadedUser == <span class="keyword">null</span>) &#123;  </span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> InternalAuthenticationServiceException(<span class="string">"UserDetailsService returned null, which is an interface contract violation"</span>);  </span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">               <span class="keyword">return</span> loadedUser;  </span><br><span class="line">           &#125;  </span><br><span class="line">       &#125; <span class="keyword">catch</span> (UsernameNotFoundException var4) &#123;  </span><br><span class="line">           <span class="keyword">this</span>.mitigateAgainstTimingAttack(authentication);  </span><br><span class="line">           <span class="keyword">throw</span> var4;  </span><br><span class="line">       &#125; <span class="keyword">catch</span> (InternalAuthenticationServiceException var5) &#123;  </span><br><span class="line">           <span class="keyword">throw</span> var5;  </span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception var6) &#123;  </span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> InternalAuthenticationServiceException(var6.getMessage(), var6);  </span><br><span class="line">       &#125;  </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">additionalAuthenticationChecks</span><span class="params">(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;  </span><br><span class="line">       <span class="keyword">if</span> (authentication.getCredentials() == <span class="keyword">null</span>) &#123;  </span><br><span class="line">           <span class="keyword">this</span>.logger.debug(<span class="string">"Authentication failed: no credentials provided"</span>);  </span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> BadCredentialsException(<span class="keyword">this</span>.messages.getMessage(<span class="string">"AbstractUserDetailsAuthenticationProvider.badCredentials"</span>, <span class="string">"Bad credentials"</span>));  </span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">           String presentedPassword = authentication.getCredentials().toString();  </span><br><span class="line">           <span class="keyword">if</span> (!<span class="keyword">this</span>.passwordEncoder.matches(presentedPassword, userDetails.getPassword())) &#123;  </span><br><span class="line">               <span class="keyword">this</span>.logger.debug(<span class="string">"Authentication failed: password does not match stored value"</span>);  </span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> BadCredentialsException(<span class="keyword">this</span>.messages.getMessage(<span class="string">"AbstractUserDetailsAuthenticationProvider.badCredentials"</span>, <span class="string">"Bad credentials"</span>));  </span><br><span class="line">           &#125;  </span><br><span class="line">       &#125;  </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="这个方法通过loadUserByUsername来获取到数据库中的用户信息，所以我们要自己重写实现UserDetailsService接口的loadUserByUsername方法，实现如下"><a href="#这个方法通过loadUserByUsername来获取到数据库中的用户信息，所以我们要自己重写实现UserDetailsService接口的loadUserByUsername方法，实现如下" class="headerlink" title="这个方法通过loadUserByUsername来获取到数据库中的用户信息，所以我们要自己重写实现UserDetailsService接口的loadUserByUsername方法，实现如下"></a>这个方法通过loadUserByUsername来获取到数据库中的用户信息，所以我们要自己重写实现UserDetailsService接口的loadUserByUsername方法，实现如下</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDetailsServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserDetailsService</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> PermissionDao permissionDao;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserDetails <span class="title">loadUserByUsername</span><span class="params">(String username)</span> <span class="keyword">throws</span> UsernameNotFoundException </span>&#123;</span><br><span class="line"></span><br><span class="line">        SysUser user = userService.getUser(username);</span><br><span class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> AuthenticationCredentialsNotFoundException(<span class="string">"用户名不存在"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (user.getStatus() == Status.LOCKED) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> LockedException(<span class="string">"用户被锁定，请联系管理员"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (user.getStatus() == Status.DISABLED) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> DisabledException(<span class="string">"用户已被封禁"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LoginUser loginUser = <span class="keyword">new</span> LoginUser();</span><br><span class="line">        BeanUtils.copyProperties(user, loginUser);</span><br><span class="line"></span><br><span class="line">        List&lt;Permission&gt; permissions = permissionDao.listByUserId(user.getId());</span><br><span class="line">        loginUser.setPermissions(permissions);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> loginUser;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="通过loadUserByUsername获取到数据库的用户信息在通过上面的两个方法和前端传过来的用户信息进行比对就完成了登录认证。-认证完成后成功失败等一系列处理在SecurityHandlerConfig进行处理，成功后将token储存到redis中。"><a href="#通过loadUserByUsername获取到数据库的用户信息在通过上面的两个方法和前端传过来的用户信息进行比对就完成了登录认证。-认证完成后成功失败等一系列处理在SecurityHandlerConfig进行处理，成功后将token储存到redis中。" class="headerlink" title="通过loadUserByUsername获取到数据库的用户信息在通过上面的两个方法和前端传过来的用户信息进行比对就完成了登录认证。 认证完成后成功失败等一系列处理在SecurityHandlerConfig进行处理，成功后将token储存到redis中。"></a>通过loadUserByUsername获取到数据库的用户信息在通过上面的两个方法和前端传过来的用户信息进行比对就完成了登录认证。 认证完成后成功失败等一系列处理在SecurityHandlerConfig进行处理，成功后将token储存到redis中。</h5><blockquote>
+<p>可能说的不是很清楚，如果有搞不明白的小伙伴可以来找我一起讨论。最近一直在和老王研究微服务，等上线后我会写一些spring cloud相关的东西。</p>
+</blockquote>
+
+        
+        <!--添加的打赏功能 -->
+          
+  	           <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   大佬给点吃的吧！
+        </span>
+        <br>
+      </div>
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
+    <!-- 微信打赏图案 -->
+
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			$('#donate_board').addClass('hidden');
+			$('#donate_guide').removeClass('hidden');
+		}
+	</script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
+          
+              <div style="display:inline-block;float:right;margin-right:2rem"><span id="busuanzi_value_page_pv" style="color:blue;"></span>人阅读</div>
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/" data-id="cjiriuumm00070mi3y15jdy5z" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2022/11/06/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    欢迎来到我的Lab，助手呦！
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/06/23/网络工程期末考试/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">网络工程期末考试 （答案整理：胡立阳老哥）</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2018/06/23/20180623-spring security登录及实现原理/"></div>
+</section>
+    
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2022/11/06/hello-world/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg)" alt="欢迎来到我的Lab，助手呦！" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2022/11/06/hello-world/" class="title">欢迎来到我的Lab，助手呦！</a></p>
+                            <p class="item-date"><time datetime="2022-11-06T07:47:44.000Z" itemprop="datePublished">2022-11-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/06/23/20180623-spring security登录及实现原理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="Spring Security实现登录功能和原理" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Spring-Security/">Spring Security</a></p>
+                            <p class="item-title"><a href="/2018/06/23/20180623-spring security登录及实现原理/" class="title">Spring Security实现登录功能和原理</a></p>
+                            <p class="item-date"><time datetime="2018-06-23T12:47:44.000Z" itemprop="datePublished">2018-06-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/06/23/网络工程期末考试/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="网络工程期末考试 （答案整理：胡立阳老哥）" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/06/23/网络工程期末考试/" class="title">网络工程期末考试 （答案整理：胡立阳老哥）</a></p>
+                            <p class="item-date"><time datetime="2018-06-23T07:47:44.000Z" itemprop="datePublished">2018-06-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/06/22/20180622-js原型链/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG)" alt="DOM事件流 事件代理  JS作用域和作用域链" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2018/06/22/20180622-js原型链/" class="title">DOM事件流 事件代理  JS作用域和作用域链</a></p>
+                            <p class="item-date"><time datetime="2018-06-22T14:00:44.000Z" itemprop="datePublished">2018-06-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/06/22/20180622-js闭包/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG)" alt="Javascript闭包初步了解" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
+                            <p class="item-title"><a href="/2018/06/22/20180622-js闭包/" class="title">Javascript闭包初步了解</a></p>
+                            <p class="item-date"><time datetime="2018-06-22T09:47:44.000Z" itemprop="datePublished">2018-06-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Spring-Security/" style="font-size: 10px;">Spring Security</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://space.bilibili.com/7174608/#/">哦谢特谢特的b站主页</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fas fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            &copy; 2018 哦谢特谢特<br>
+           本站访客数<span id="busuanzi_value_site_pv" style="color:blue"></span>人次
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytAmj4KR"></script>
+    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    <script type="text/javascript">
+    window.changyan.api.config({
+    appid: 'cytAmj4KR',
+    conf: 'prod_24bdeb3bcd4899254a2c5ccb6e2c9338'
+    });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
