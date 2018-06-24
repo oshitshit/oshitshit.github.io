@@ -5,19 +5,19 @@
     
     <title>Spring Security实现登录功能和原理 | 哦谢特谢特</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jjwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。  spring security的配置">
+    <meta name="description" content="写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。  spring security的配置">
 <meta name="keywords" content="Spring,Spring Security">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Security实现登录功能和原理">
 <meta property="og:url" content="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/index.html">
 <meta property="og:site_name" content="哦谢特谢特">
-<meta property="og:description" content="写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jjwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。  spring security的配置">
+<meta property="og:description" content="写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。  spring security的配置">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
-<meta property="og:updated_time" content="2018-06-24T01:57:52.000Z">
+<meta property="og:updated_time" content="2018-06-24T03:57:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Security实现登录功能和原理">
-<meta name="twitter:description" content="写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jjwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。  spring security的配置">
+<meta name="twitter:description" content="写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。  spring security的配置">
 <meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
     
 
@@ -271,7 +271,7 @@
         
             
             <blockquote>
-<p>写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jjwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。<br>ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。</p>
+<p>写了几篇前端的东西差点忘了我是个写后台的。。这次我们来讲一下Spring Security实现登录功能和原理（基于springboot+jwt），之前一直会用Spring Security但是对它的认证机制很是懵逼，最近看了源码才豁然开朗。如果需要源码可以留下邮箱。<br>ps：篇幅较长，建议找个舒适的姿势看，不然就会像老夫一样歪着脖子看世界杯到现在还脖子痛。</p>
 </blockquote>
 <h3 id="spring-security的配置"><a href="#spring-security的配置" class="headerlink" title="spring security的配置"></a>spring security的配置</h3><a id="more"></a>
 <h5 id="SecurityConfig-配置文件"><a href="#SecurityConfig-配置文件" class="headerlink" title="SecurityConfig 配置文件"></a>SecurityConfig 配置文件</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">   <span class="comment">//跨站请求伪造禁用</span></span><br><span class="line">   http.csrf().disable();</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 基于token，所以不需要session</span></span><br><span class="line">   http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);</span><br><span class="line">   <span class="comment">//不需要校验的文件</span></span><br><span class="line">   http.authorizeRequests()</span><br><span class="line">         .antMatchers(<span class="string">"/"</span>, <span class="string">"/*.html"</span>, <span class="string">"/favicon.ico"</span>, <span class="string">"/css/**"</span>, <span class="string">"/js/**"</span>, <span class="string">"/fonts/**"</span>, <span class="string">"/layui/**"</span>, <span class="string">"/img/**"</span>,</span><br><span class="line">               <span class="string">"/v2/api-docs/**"</span>, <span class="string">"/swagger-resources/**"</span>, <span class="string">"/webjars/**"</span>, <span class="string">"/pages/**"</span>, <span class="string">"/druid/**"</span>,</span><br><span class="line">               <span class="string">"/statics/**"</span>)</span><br><span class="line">         .permitAll().anyRequest().authenticated();</span><br><span class="line">   http.formLogin().loginPage(<span class="string">"/login.html"</span>).loginProcessingUrl(<span class="string">"/login"</span>)</span><br><span class="line">         .successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).and()</span><br><span class="line">         .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);</span><br><span class="line">   http.logout().logoutUrl(<span class="string">"/logout"</span>).logoutSuccessHandler(logoutSuccessHandler);</span><br><span class="line">   <span class="comment">// 解决不允许显示在iframe的问题</span></span><br><span class="line">   http.headers().frameOptions().disable();</span><br><span class="line">   http.headers().cacheControl();</span><br><span class="line"></span><br><span class="line">   http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">   auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -332,7 +332,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/" data-id="cjis7wjc60007sbi338roq5ry" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/" data-id="cjisaybvm000733i3nj7vb97w" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
