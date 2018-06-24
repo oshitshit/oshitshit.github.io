@@ -159,11 +159,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                8
+                9
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                8
+                9
                 <span>标签</span>
             </div>
         </div>
@@ -245,11 +245,11 @@
         
 <div class="article-gallery">
     
-    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjisaybvr000c33i3cwwqcoyt">
+    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjit04olg000ek9i3tib1v4f1">
         <img src="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" itemprop="image" />
     </a>
     
-    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjisaybvr000c33i3cwwqcoyt">
+    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjit04olg000ek9i3tib1v4f1">
         <img src="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" itemprop="image" />
     </a>
     
@@ -258,7 +258,7 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>最近刚刚搭建了我的个人博客，准备把之前博客的文章慢慢迁移过来，我会看心情发一些学习和日常，还有推荐一些好看的动漫，有时会发一些小福利，做一些彩蛋什么的，希望大家常来玩！<img src="http://papzj8a9t.bkt.clouddn.com/20180622_blog1_em.gif" alt=""></p>
+            <script src="/assets/js/APlayer.min.js"> </script><p>最近刚刚搭建了我的个人博客，准备把之前博客的文章慢慢迁移过来，我会看心情发一些学习和日常，还有推荐一些好看的动漫，有时会发一些小福利，做一些彩蛋什么的，希望大家常来玩！<img src="http://papzj8a9t.bkt.clouddn.com/20180622_blog1_em.gif" alt=""></p>
 <p>el psy congroo</p>
 
         
@@ -276,7 +276,156 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2022/11/06/hello-world/" data-id="cjisaybvr000c33i3cwwqcoyt" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2022/11/06/hello-world/" data-id="cjit04olg000ek9i3tib1v4f1" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-20180624-看番感悟" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2018/06/24/20180624-看番感悟/" itemprop="url">
+            <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/IMG_1797.JPG" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/06/24/20180624-看番感悟/">看番感想以及做博客的契机</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/06/24/20180624-看番感悟/">
+            <time datetime="2018-06-24T15:47:44.000Z" itemprop="datePublished">2018-06-24</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/日常/">日常</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/日常/">日常</a>
+    </div>
+
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><blockquote>
+<p>最近喜欢的四月狗粮新番完结了，看完这部番感触也是蛮多。这部番就是宅男腐女恋爱真难。</p>
+</blockquote></p>
+            <p class="article-more-link">
+                <a href="/2018/06/24/20180624-看番感悟/#more">查看更多</a>
+            </p>
+        
+        <!--添加的打赏功能 -->
+          
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/06/24/20180624-看番感悟/" data-id="cjit04olb0009k9i3b9iywifb" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -426,7 +575,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/" data-id="cjisaybvm000733i3nj7vb97w" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/" data-id="cjit04ol80005k9i3j62zu73p" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -557,7 +706,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/23/网络工程期末考试/" data-id="cjisaybvw000g33i3a1td5q49" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/23/网络工程期末考试/" data-id="cjit04oli000gk9i30z0f1wmo" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -709,7 +858,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/22/20180622-js原型链/" data-id="cjisaybv7000133i3ql2619sg" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180622-js原型链/" data-id="cjit04ol10001k9i3tyvauinv" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -861,7 +1010,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/22/20180622-js闭包/" data-id="cjisaybvk000633i3gnquvk8y" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180622-js闭包/" data-id="cjit04ol60004k9i3q42ksehe" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1057,7 +1206,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/22/20180623-前端跨域问题的解决方法/" data-id="cjisaybvp000b33i3ugh988zz" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180623-前端跨域问题的解决方法/" data-id="cjit04ol90006k9i36tmsmk8u" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1204,7 +1353,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjisaybvn000833i37iamfyyh" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjit04olc000ak9i3ylvmb5p9" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1341,7 +1490,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/" data-id="cjisaybvd000333i3sqpziguv" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/" data-id="cjit04okv0000k9i3d979vt2c" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1448,6 +1597,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2018/06/24/20180624-看番感悟/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG)" alt="看番感想以及做博客的契机" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/日常/">日常</a></p>
+                            <p class="item-title"><a href="/2018/06/24/20180624-看番感悟/" class="title">看番感想以及做博客的契机</a></p>
+                            <p class="item-date"><time datetime="2018-06-24T15:47:44.000Z" itemprop="datePublished">2018-06-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2018/06/23/20180623-spring security登录及实现原理/" class="thumbnail">
     
     
@@ -1502,25 +1670,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/06/22/20180622-js闭包/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG)" alt="Javascript闭包初步了解" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/前端/">前端</a></p>
-                            <p class="item-title"><a href="/2018/06/22/20180622-js闭包/" class="title">Javascript闭包初步了解</a></p>
-                            <p class="item-date"><time datetime="2018-06-22T09:47:44.000Z" itemprop="datePublished">2018-06-22</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1530,7 +1679,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">4</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1539,7 +1688,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">7</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">8</span></li></ul>
         </div>
     </div>
 
@@ -1548,7 +1697,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1557,7 +1706,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Spring-Security/" style="font-size: 10px;">Spring Security</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+            <a href="/tags/Javascript/" style="font-size: 15px;">Javascript</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Spring-Security/" style="font-size: 10px;">Spring Security</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
         </div>
     </div>
 
