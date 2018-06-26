@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Spring Boot jwt redis方式实现登录存储 | 哦谢特谢特</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Spring Boot jwt redis方式实现登录存储  JWT Redis方式实现1、Token dto">
+<meta name="keywords" content="Spring,Spring Security,Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot jwt redis方式实现登录存储">
+<meta property="og:url" content="http://yoursite.com/2018/06/25/20180625-Spring Boot JWT Redis方式实现/index.html">
+<meta property="og:site_name" content="哦谢特谢特">
+<meta property="og:description" content="Spring Boot jwt redis方式实现登录存储  JWT Redis方式实现1、Token dto">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta property="og:updated_time" content="2018-06-26T13:07:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot jwt redis方式实现登录存储">
+<meta name="twitter:description" content="Spring Boot jwt redis方式实现登录存储  JWT Redis方式实现1、Token dto">
+<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+    
+
+    
+
+    
+        <link rel="icon" href="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-brands.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-solid.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        
+<header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">哦谢特谢特</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/favorite">程序猿的日常</a>
+                
+                    <a class="main-nav-link" href="/.">还在施工中。。。</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_6884%2820180528-071229%29.jpg" />
+                            <i class="fas fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fas fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/favorite">程序猿的日常</a></td>
+                
+                    <td><a class="main-nav-link" href="/.">还在施工中。。。</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+<img class="blog-header-image" src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/huibuhui.png">
+
+</img>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_6884%2820180528-071229%29.jpg" />
+            <h2 id="name">哦谢特谢特</h2>
+            <h3 id="title">已被逐出月籍的地球人，喜欢学习新技术，然后搭完环境弃坑。擅长让微服务进入无服务状态，Docker只会用Kitematic，Git只会用SourceTree，不百度和Google就解决不了问题。梦想成为一名PPT架构师！</h3>
+            <span id="location"><i class="fas fa-map-marker-alt" style="padding-right: 5px"></i>济南, 山东</span>
+            <a id="follow" target="_blank" href="https://weibo.com/5646945304/profile?topnav=1&amp;wvr=6&amp;is_all=1">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                11
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                11
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oshitshit" target="_blank" title="github" class=tooltip>
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://weibo.com/5646945304/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="weibo" class=tooltip>
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-20180625-Spring Boot JWT Redis方式实现" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://papzj8a9t.bkt.clouddn.com/20180622_header.JPG" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Spring Boot jwt redis方式实现登录存储
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/06/25/20180625-Spring Boot JWT Redis方式实现/">
+            <time datetime="2018-06-25T12:47:44.000Z" itemprop="datePublished">2018-06-25</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/Spring-Security/">Spring Security</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Spring/">Spring</a>, <a class="tag-link" href="/tags/Spring-Boot/">Spring Boot</a>, <a class="tag-link" href="/tags/Spring-Security/">Spring Security</a>
+    </div>
+
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>Spring Boot jwt redis方式实现登录存储</p>
+</blockquote>
+<h3 id="JWT-Redis方式实现"><a href="#JWT-Redis方式实现" class="headerlink" title="JWT Redis方式实现"></a>JWT Redis方式实现</h3><h4 id="1、Token-dto"><a href="#1、Token-dto" class="headerlink" title="1、Token dto"></a>1、Token dto</h4><a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Token</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">6314027741784310221L</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String token;  </span><br><span class="line">    <span class="comment">//登录时间戳  </span></span><br><span class="line">    <span class="keyword">private</span> Long loginTime;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getToken</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> token;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setToken</span><span class="params">(String token)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.token = token;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getLoginTime</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> loginTime;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLoginTime</span><span class="params">(Long loginTime)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.loginTime = loginTime;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Token</span><span class="params">(String token, Long loginTime)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">super</span>();  </span><br><span class="line">        <span class="keyword">this</span>.token = token;  </span><br><span class="line">        <span class="keyword">this</span>.loginTime = loginTime;  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2、LoginUser-Dto"><a href="#2、LoginUser-Dto" class="headerlink" title="2、LoginUser Dto"></a>2、LoginUser Dto</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginUser</span> <span class="keyword">extends</span> <span class="title">SysUser</span> <span class="keyword">implements</span> <span class="title">UserDetails</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">1379274258881257107L</span>;  </span><br><span class="line">    <span class="keyword">private</span> List&lt;Permission&gt; permissions;  </span><br><span class="line">    <span class="keyword">private</span> String token;  </span><br><span class="line">    <span class="comment">//登录时间戳（毫秒）  </span></span><br><span class="line">    <span class="keyword">private</span> Long LoginTime;  </span><br><span class="line">    <span class="comment">//过期时间戳  </span></span><br><span class="line">    <span class="keyword">private</span> Long expireTime;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Permission&gt; <span class="title">getPermissions</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> permissions;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPermissions</span><span class="params">(List&lt;Permission&gt; permissions)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.permissions = permissions;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getToken</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> token;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setToken</span><span class="params">(String token)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.token = token;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getLoginTime</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> LoginTime;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLoginTime</span><span class="params">(Long loginTime)</span> </span>&#123;  </span><br><span class="line">        LoginTime = loginTime;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getExpireTime</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> expireTime;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExpireTime</span><span class="params">(Long expireTime)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.expireTime = expireTime;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="meta">@JsonIgnore</span> <span class="comment">//返回的json数据即不包含该属性  </span></span><br><span class="line">    <span class="keyword">public</span> Collection&lt;? extends GrantedAuthority&gt; getAuthorities() &#123;  </span><br><span class="line">        <span class="keyword">return</span> permissions.parallelStream().filter(p -&gt; !StringUtils.isEmpty(p.getPermission()))  </span><br><span class="line">                .map(p -&gt; <span class="keyword">new</span> SimpleGrantedAuthority(p.getPermission())).collect(Collectors.toSet());  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAuthorities</span><span class="params">(Collection&lt;? extends GrantedAuthority&gt; authorities)</span> </span>&#123;  </span><br><span class="line">        <span class="comment">// do nothing  </span></span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断账号是否过期</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="meta">@JsonIgnore</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isAccountNonExpired</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断账号是否锁定</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="meta">@JsonIgnore</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isAccountNonLocked</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> getStatus() != Status.LOCKED;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断密码是否过期</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="meta">@JsonIgnore</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isCredentialsNonExpired</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断账号是否激活</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEnabled</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3、TokenServiceJwtImpl"><a href="#3、TokenServiceJwtImpl" class="headerlink" title="3、TokenServiceJwtImpl"></a>3、TokenServiceJwtImpl</h4><p>这里主要是逻辑实现 详细说明一下</p>
+<p>jwt的构成【转】<a href="https://blog.csdn.net/u011277123/article/details/78918390" target="_blank" rel="noopener">原文地址</a><br>第一部分我们称它为头部（header),第二部分我们称其为载荷（payload)，第三部分是签证（signature)。</p>
+<p>header</p>
+<p>jwt的头部承载两部分信息：</p>
+<p>声明类型，这里是jwt</p>
+<p>声明加密的算法 通常直接使用 HMAC SHA256</p>
+<p>完整的头部就像下面这样的JSON：</p>
+<p>{</p>
+<p>“typ”: “JWT”,</p>
+<p>“alg”: “HS256”</p>
+<p>}</p>
+<p>然后将头部进行base64加密（该加密是可以对称解密的),构成了第一部分：</p>
+<p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</p>
+<p>playload</p>
+<p>载荷就是存放有效信息的地方。这个名字像是特指飞机上承载的货品，这些有效信息包含三个部分</p>
+<p>标准中注册的声明</p>
+<p>公共的声明</p>
+<p>私有的声明</p>
+<p>标准中注册的声明 (建议但不强制使用) ：</p>
+<p>iss: jwt签发者</p>
+<p>sub: jwt所面向的用户</p>
+<p>aud: 接收jwt的一方</p>
+<p>exp: jwt的过期时间，这个过期时间必须要大于签发时间</p>
+<p>nbf: 定义在什么时间之前，该jwt都是不可用的.</p>
+<p>iat: jwt的签发时间</p>
+<p>jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。</p>
+<p>公共的声明 ：</p>
+<p>公共的声明可以添加任何的信息，一般添加用户的相关信息或其他业务需要的必要信息.但不建议添加敏感信息，因为该部分在客户端可解密.</p>
+<p>私有的声明 ：</p>
+<p>私有声明是提供者和消费者所共同定义的声明，一般不建议存放敏感信息，因为base64是对称解密的，意味着该部分信息可以归类为明文信息。</p>
+<p>定义一个payload：</p>
+<p>{</p>
+<p>“name”:”Free码农”,</p>
+<p>“age”:”28”,</p>
+<p>“org”:”今日头条”</p>
+<p>}</p>
+<p>然后将其进行base64加密，得到Jwt的第二部分：</p>
+<p>eyJvcmciOiLku4rml6XlpLTmnaEiLCJuYW1lIjoiRnJlZeeggeWGnCIsImV4cCI6MTUxNDM1NjEwMywiaWF0IjoxNTE0MzU2MDQzLCJhZ2UiOiIyOCJ9</p>
+<p>signature</p>
+<p>jwt的第三部分是一个签证信息，这个签证信息由三部分组成：</p>
+<p>header (base64后的)</p>
+<p>payload (base64后的)</p>
+<p>secret</p>
+<p>这个部分需要base64加密后的header和base64加密后的payload使用.连接组成的字符串，然后通过header中声明的加密方式进行加盐secret组合加密，然后就构成了jwt的第三部分：</p>
+<p>49UF72vSkj-sA4aHHiYN5eoZ9Nb4w5Vb45PsLF7x_NY</p>
+<p>密钥secret是保存在服务端的，服务端会根据这个密钥进行生成token和验证，所以需要保护好。</p>
+<h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><p>这里我们从配置文件中获取token的过期秒数和私钥。设置一个字符串LOGIN_USER_KEY作为找到登录用户的凭证<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//token过期秒数</span></span><br><span class="line"><span class="meta">@Value</span>(<span class="string">"$&#123;token.expire.seconds&#125;"</span>)</span><br><span class="line"><span class="keyword">private</span> Integer expireSeconds;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> RedisTemplate&lt;String, LoginUser&gt; redisTemplate;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> SysLogService logService;</span><br><span class="line"></span><br><span class="line"><span class="comment">//私钥</span></span><br><span class="line"><span class="meta">@Value</span>(<span class="string">"$&#123;token.jwtSecret&#125;"</span>)</span><br><span class="line"><span class="keyword">private</span> String jwtSecret;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Key KEY = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String LOGIN_USER_KEY = <span class="string">"LOGIN_USER_KEY"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>按照上文所说的加密方式进行加密生成token<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">createJWTToken</span><span class="params">(LoginUser loginUser)</span></span>&#123;</span><br><span class="line">    Map&lt;String, Object&gt; claims = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    claims.put(LOGIN_USER_KEY, loginUser.getToken());<span class="comment">// 放入一个随机字符串，通过该串可找到登录用户</span></span><br><span class="line"></span><br><span class="line">    String jwtToken = Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS256, getKeyInstance())</span><br><span class="line">            .compact();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> jwtToken;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Key <span class="title">getKeyInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (KEY == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (TokenServiceJwtImpl.class) &#123;</span><br><span class="line">            <span class="keyword">if</span> (KEY == <span class="keyword">null</span>) &#123;<span class="comment">//双重锁</span></span><br><span class="line">                <span class="keyword">byte</span>[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(jwtSecret);</span><br><span class="line">                KEY = <span class="keyword">new</span> SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS256.getJcaName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> KEY;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将登录用户信息储存到redis中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">cacheLoginUser</span><span class="params">(LoginUser loginUser)</span> </span>&#123;</span><br><span class="line">    loginUser.setLoginTime(System.currentTimeMillis());</span><br><span class="line">    loginUser.setExpireTime(loginUser.getLoginTime() + expireSeconds * <span class="number">1000</span>);</span><br><span class="line">    <span class="comment">//根据uuid将loginUser缓存</span></span><br><span class="line">    redisTemplate.boundValueOps(getTokenKey(loginUser.getToken())).set(loginUser,expireSeconds, TimeUnit.SECONDS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>之后我们可以根据token从redis获取登录用户的信息，进行判断用户登录是否过期等操作。</p>
+
+        
+        <!--添加的打赏功能 -->
+          
+  	           <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   大佬给点吃的吧！
+        </span>
+        <br>
+      </div>
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
+    <!-- 微信打赏图案 -->
+
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			$('#donate_board').addClass('hidden');
+			$('#donate_guide').removeClass('hidden');
+		}
+	</script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
+          
+              <div style="display:inline-block;float:right;margin-right:2rem"><span id="busuanzi_value_page_pv" style="color:blue;"></span>人阅读</div>
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" data-id="cjivpines000fyfi3b77iab44" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2022/11/06/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    欢迎来到我的Lab，助手呦！
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/06/24/20180624-omaye/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">宅男腐女，或许该脱宅了？</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2018/06/25/20180625-Spring Boot JWT Redis方式实现/"></div>
+</section>
+    
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2022/11/06/hello-world/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg)" alt="欢迎来到我的Lab，助手呦！" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2022/11/06/hello-world/" class="title">欢迎来到我的Lab，助手呦！</a></p>
+                            <p class="item-date"><time datetime="2022-11-06T07:47:44.000Z" itemprop="datePublished">2022-11-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="Spring Boot jwt redis方式实现登录存储" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Spring-Security/">Spring Security</a></p>
+                            <p class="item-title"><a href="/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" class="title">Spring Boot jwt redis方式实现登录存储</a></p>
+                            <p class="item-date"><time datetime="2018-06-25T12:47:44.000Z" itemprop="datePublished">2018-06-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/06/24/20180624-omaye/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG)" alt="宅男腐女，或许该脱宅了？" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/日常/">日常</a></p>
+                            <p class="item-title"><a href="/2018/06/24/20180624-omaye/" class="title">宅男腐女，或许该脱宅了？</a></p>
+                            <p class="item-date"><time datetime="2018-06-24T15:47:44.000Z" itemprop="datePublished">2018-06-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/06/23/20180623-spring security登录及实现原理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="Spring Security实现登录功能和原理" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Spring-Security/">Spring Security</a></p>
+                            <p class="item-title"><a href="/2018/06/23/20180623-spring security登录及实现原理/" class="title">Spring Security实现登录功能和原理</a></p>
+                            <p class="item-date"><time datetime="2018-06-23T12:47:44.000Z" itemprop="datePublished">2018-06-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/06/23/网络工程期末考试/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="网络工程期末考试 （答案整理：胡立阳老哥）" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/06/23/网络工程期末考试/" class="title">网络工程期末考试 （答案整理：胡立阳老哥）</a></p>
+                            <p class="item-date"><time datetime="2018-06-23T07:47:44.000Z" itemprop="datePublished">2018-06-23</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Spring/" style="font-size: 13.33px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 13.33px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://space.bilibili.com/7174608/#/">哦谢特谢特的b站主页</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fas fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            &copy; 2018 哦谢特谢特<br>
+           本站访客数<span id="busuanzi_value_site_pv" style="color:blue"></span>人次
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytAmj4KR"></script>
+    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    <script type="text/javascript">
+    window.changyan.api.config({
+    appid: 'cytAmj4KR',
+    conf: 'prod_24bdeb3bcd4899254a2c5ccb6e2c9338'
+    });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
