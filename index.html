@@ -157,11 +157,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                13
+                14
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                11
+                12
                 <span>标签</span>
             </div>
         </div>
@@ -231,11 +231,11 @@
         
 <div class="article-gallery">
     
-    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjj9na0ad000qk8i3fh7mv4zt">
+    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjj9vafaq000sgti3chai8ze9">
         <img src="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" itemprop="image" />
     </a>
     
-    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjj9na0ad000qk8i3fh7mv4zt">
+    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjj9vafaq000sgti3chai8ze9">
         <img src="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" itemprop="image" />
     </a>
     
@@ -262,7 +262,161 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2022/11/06/hello-world/" data-id="cjj9na0ad000qk8i3fh7mv4zt" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2022/11/06/hello-world/" data-id="cjj9vafaq000sgti3chai8ze9" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-20180703-redis哨兵模式" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2018/07/06/20180703-redis哨兵模式/" itemprop="url">
+            <img src="http://papzj8a9t.bkt.clouddn.com/20180706.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/07/06/20180703-redis哨兵模式/">redis高可用</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/07/06/20180703-redis哨兵模式/">
+            <time datetime="2018-07-06T15:47:44.000Z" itemprop="datePublished">2018-07-06</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/redis/">redis</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/redis/">redis</a>, <a class="tag-link" href="/tags/优化/">优化</a>
+    </div>
+
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><blockquote>
+<p>redis高可用 哨兵模式 封面id=69531858</p>
+</blockquote>
+<h3 id="一-简介"><a href="#一-简介" class="headerlink" title="一.简介"></a>一.简介</h3><p>Redis Sentinel是Redis官方提供的集群管理工具，可以部署在其他与redis集群可通讯的机器中监控redis集群。</p>
+<h3 id="二-特性"><a href="#二-特性" class="headerlink" title="二.特性"></a>二.特性</h3><ul>
+<li><p>监控（Monitoring）： Sentinel 会不断地检查你的主服务器和从服务器是否运作正常。</p>
+</li>
+<li><p>提醒（Notification）： 当被监控的某个 Redis 服务器出现问题时， Sentinel 可以通过 API 向管理员或者其他应用程序发送通知。</p></p>
+            <p class="article-more-link">
+                <a href="/2018/07/06/20180703-redis哨兵模式/#more">查看更多</a>
+            </p>
+        
+        <!--添加的打赏功能 -->
+          
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/07/06/20180703-redis哨兵模式/" data-id="cjj9vafan000ngti37bn81rye" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -391,7 +545,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/07/01/20180701-游戏开发技术/" data-id="cjj9na0a8000lk8i3xhgjun4p" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/07/01/20180701-游戏开发技术/" data-id="cjj9vafal000igti33bvgxk0s" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -541,7 +695,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/27/20180627-TransactionDefinition接口特性/" data-id="cjj9na0a0000gk8i3854utc6k" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/27/20180627-TransactionDefinition接口特性/" data-id="cjj9vafae000cgti3diqhjf9t" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -691,7 +845,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" data-id="cjj9na09s000ak8i3vyjuze9n" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" data-id="cjj9vafai000ggti3jhfrx7dd" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -840,7 +994,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/24/20180624-omaye/" data-id="cjj9na09q0009k8i31j8kgkiy" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/24/20180624-omaye/" data-id="cjj9vafac000bgti315swms4y" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -990,7 +1144,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/" data-id="cjj9na09g0005k8i3hpy93ztm" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/" data-id="cjj9vafa80007gti30vqgv5uv" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1121,7 +1275,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/23/网络工程期末考试/" data-id="cjj9na0ae000tk8i3wyh6t4ow" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/23/网络工程期末考试/" data-id="cjj9vafar000ugti36d3dzu74" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1273,7 +1427,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/22/20180622-js原型链/" data-id="cjj9na0960001k8i3qlt1l2fm" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180622-js原型链/" data-id="cjj9vafa00003gti30yqa7ayr" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1425,203 +1579,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/22/20180622-js闭包/" data-id="cjj9na09e0004k8i31o6dvsah" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-          
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-20180623-前端跨域问题的解决方法" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/06/22/20180623-前端跨域问题的解决方法/" itemprop="url">
-            <img src="http://papzj8a9t.bkt.clouddn.com/68283142_p0_master1200.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/06/22/20180623-前端跨域问题的解决方法/">前端跨域问题的解决方案</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/22/20180623-前端跨域问题的解决方法/">
-            <time datetime="2018-06-22T07:47:44.000Z" itemprop="datePublished">2018-06-22</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/前端/">前端</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/跨域/">跨域</a>
-    </div>
-
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><blockquote>
-<p>近期在复习一些前端的知识，所以准备做一些前端问题知识总结，先来总结下跨域的问题吧</p>
-</blockquote>
-<h3 id="1-什么是跨域"><a href="#1-什么是跨域" class="headerlink" title="1.什么是跨域"></a>1.什么是跨域</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">域名</th>
-<th style="text-align:right">说明</th>
-<th style="text-align:center">是否跨域</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a> <a href="http://www.a.com/b.js" target="_blank" rel="noopener">http://www.a.com/b.js</a></td>
-<td style="text-align:right">同一域名</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="http://www.a.com/lab/a.js" target="_blank" rel="noopener">http://www.a.com/lab/a.js</a> <a href="http://www.a.com/script/b.js" target="_blank" rel="noopener">http://www.a.com/script/b.js</a></td>
-<td style="text-align:right">同一域名文件夹不同</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="http://www.a.com:8000/a.js" target="_blank" rel="noopener">http://www.a.com:8000/a.js</a> <a href="http://www.a.com/b.js" target="_blank" rel="noopener">http://www.a.com/b.js</a></td>
-<td style="text-align:right">同一域名端口不同</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a> <a href="https://www.a.com/b.js" target="_blank" rel="noopener">https://www.a.com/b.js</a></td>
-<td style="text-align:right">同一域名协议不同</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a> <a href="http://70.32.92.74/b.js" target="_blank" rel="noopener">http://70.32.92.74/b.js</a></td>
-<td style="text-align:right">对应ip相同</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a> <a href="http://script.a.com/b.js" target="_blank" rel="noopener">http://script.a.com/b.js</a></td>
-<td style="text-align:right">子域名不同</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="http://www.bilibili.com/a.js" target="_blank" rel="noopener">http://www.bilibili.com/a.js</a> <a href="http://www.a.com/b.js" target="_blank" rel="noopener">http://www.a.com/b.js</a></td>
-<td style="text-align:right">不同域名</td>
-<td style="text-align:center">是</td>
-</tr>
-</tbody>
-</table>
-<h3 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2.解决方法"></a>2.解决方法</h3><h5 id="1-JSONP实现跨域"><a href="#1-JSONP实现跨域" class="headerlink" title="1.JSONP实现跨域"></a>1.JSONP实现跨域</h5><p>JSONP是json with padding（填充式json或参数式json）的简称<br></p>
-            <p class="article-more-link">
-                <a href="/2018/06/22/20180623-前端跨域问题的解决方法/#more">查看更多</a>
-            </p>
-        
-        <!--添加的打赏功能 -->
-          
-          
-
-        </div>
-
-
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2018/06/22/20180623-前端跨域问题的解决方法/" data-id="cjj9na09h0006k8i3wh6zbfen" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180622-js闭包/" data-id="cjj9vafa60006gti342w845vc" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1732,6 +1690,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2018/07/06/20180703-redis哨兵模式/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="redis高可用" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/redis/">redis</a></p>
+                            <p class="item-title"><a href="/2018/07/06/20180703-redis哨兵模式/" class="title">redis高可用</a></p>
+                            <p class="item-date"><time datetime="2018-07-06T15:47:44.000Z" itemprop="datePublished">2018-07-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2018/07/01/20180701-游戏开发技术/" class="thumbnail">
     
     
@@ -1786,25 +1763,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/06/24/20180624-omaye/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG)" alt="宅男腐女，或许该脱宅了？" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/日常/">日常</a></p>
-                            <p class="item-title"><a href="/2018/06/24/20180624-omaye/" class="title">宅男腐女，或许该脱宅了？</a></p>
-                            <p class="item-date"><time datetime="2018-06-24T15:47:44.000Z" itemprop="datePublished">2018-06-24</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1814,7 +1772,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1823,7 +1781,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">11</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">11</span></li></ul>
         </div>
     </div>
 
@@ -1832,7 +1790,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1841,7 +1799,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/优化/" style="font-size: 13.33px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
         </div>
     </div>
 
