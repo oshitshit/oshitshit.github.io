@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>分类: redis | 哦谢特谢特</title>
+    <title>Nginx常见用法 | 哦谢特谢特</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="哦谢特谢特">
-<meta property="og:url" content="http://yoursite.com/categories/redis/index.html">
+    <meta name="description" content="Nginx常见用法介绍以及简单配置  1、静态HTTP服务器Nginx是一个HTTP服务器，可以将服务器上的静态文件（如HTML、图片）通过HTTP协议展现给客户端。配置：">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx常见用法">
+<meta property="og:url" content="http://yoursite.com/2018/07/09/20180709-Nginx常用方法/index.html">
 <meta property="og:site_name" content="哦谢特谢特">
+<meta property="og:description" content="Nginx常见用法介绍以及简单配置  1、静态HTTP服务器Nginx是一个HTTP服务器，可以将服务器上的静态文件（如HTML、图片）通过HTTP协议展现给客户端。配置：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta property="og:updated_time" content="2018-07-10T06:18:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="哦谢特谢特">
+<meta name="twitter:title" content="Nginx常见用法">
+<meta name="twitter:description" content="Nginx常见用法介绍以及简单配置  1、静态HTTP服务器Nginx是一个HTTP服务器，可以将服务器上的静态文件（如HTML、图片）通过HTTP协议展现给客户端。配置：">
+<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
     
 
     
@@ -197,50 +204,224 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fas fa-folder"></i></span>
-        <h1 class="title">redis</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-20180709-Nginx常用方法" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://papzj8a9t.bkt.clouddn.com/20180709-Nginx.JPG" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/07/06/20180703-redis哨兵模式/">redis高可用</a>
+        <h1 class="article-title" itemprop="name">
+            Nginx常见用法
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/07/06/20180703-redis哨兵模式/">
-            <time datetime="2018-07-06T15:47:44.000Z" itemprop="datePublished">2018-07-06</time>
+        <a href="/2018/07/09/20180709-Nginx常用方法/">
+            <time datetime="2018-07-09T15:47:44.000Z" itemprop="datePublished">2018-07-09</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/redis/">redis</a>
+        <a class="article-category-link" href="/categories/Nginx/">Nginx</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/redis/">redis</a>, <a class="tag-link" href="/tags/优化/">优化</a>
+        <a class="tag-link" href="/tags/Nginx/">Nginx</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>Nginx常见用法介绍以及简单配置</p>
+</blockquote>
+<h2 id="1、静态HTTP服务器"><a href="#1、静态HTTP服务器" class="headerlink" title="1、静态HTTP服务器"></a>1、静态HTTP服务器</h2><p>Nginx是一个HTTP服务器，可以将服务器上的静态文件（如HTML、图片）通过HTTP协议展现给客户端。<br>配置：<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">	listen <span class="number">80</span>; <span class="comment">//端口号</span></span><br><span class="line">	location / &#123;</span><br><span class="line">			root /usr/share/nginx/html; <span class="comment">//静态文件路径</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2、反向代理服务器"><a href="#2、反向代理服务器" class="headerlink" title="2、反向代理服务器"></a>2、反向代理服务器</h2><p>反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。  </p>
+<p>反向代理方式实际上就是一台负责转发的代理服务器，貌似充当了真正服务器的功能，但实际上并不是，代理服务器只是充当了转发的作用，并且从真正的服务器那里取得返回的数据。这样说，其实nginx 完成的就是这样的工作。我们让nginx监听一个端口，譬如80端口，但实际上我们转发给在8080端口的tomcat，由它来处理真正的请求，当请求完 成后，tomcat返回，但数据此时没直接返回，而是直接给nginx，由nginx进行返回，这里，我们会以为是nginx进行了处理，但实际上进行处 理的是tomcat。</p>
+<p><img src="http://7xidft.com1.z0.glb.clouddn.com/blog/20150517220513170.png" alt=""></p>
+<p>配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">		listen <span class="number">80</span>;</span><br><span class="line">		location / &#123;</span><br><span class="line">				proxy_pass <span class="string">`http://192.168.20.1:8080`</span>; <span class="comment">//应用服务器地址</span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>既然服务器可以直接HTTP访问，为什么要在中间加上一个反向代理，不是多此一举吗？反向代理有什么作用？继续往下看，下面的负载均衡、虚拟主机，都基于反向代理实现，当然反向代理的功能也不仅仅是这些。</p>
+<h2 id="3、负载均衡"><a href="#3、负载均衡" class="headerlink" title="3、负载均衡"></a>3、负载均衡</h2><p>当网站访问量非常大，网站站长开心赚钱的同时，也摊上事儿了。因为网站也来越慢，一台服务器已经不够用了。于是将相同的应用部署在多台服务器上，将大量用户的请求分配给多台机器处理。同时带来的好处是，其中一台服务器万一挂了，只要还有其他服务器正常运行，就不会影响用户使用。</p>
+<p>Nginx可以通过反向代理来实现负载均衡<br><img src="http://7xidft.com1.z0.glb.clouddn.com/blog/20150517221003659.jpg" alt=""></p>
+<p>配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">upstream myapp &#123;</span><br><span class="line">		server <span class="number">192.168</span><span class="number">.20</span><span class="number">.1</span>:<span class="number">8080</span>; <span class="comment">//应用服务器1</span></span><br><span class="line">		server <span class="number">192.168</span><span class="number">.20</span><span class="number">.2</span>:<span class="number">8080</span>; <span class="comment">//应用服务器2</span></span><br><span class="line">&#125;</span><br><span class="line">sever &#123;</span><br><span class="line">		listen <span class="number">80</span>;</span><br><span class="line">		location / &#123;</span><br><span class="line">				proxy_pass <span class="string">`http://myapp`</span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4、虚拟主机"><a href="#4、虚拟主机" class="headerlink" title="4、虚拟主机"></a>4、虚拟主机</h2><p>有的网站访问量大，需要负载均衡。然而并不是所有网站都如此出色，有的网站由于访问量太小，需要节省成本，将多个网站部署在同一台服务器上。</p>
+<p>例如将<a href="http://www.aaa.com和www.bbb.com两个网站部署在同一台服务器上，两个域名解析到同一个IP地址，当时用户通过两个域名却可以打开两个完全不同的网站，互相不影响，就像访问两个服务器一样，所以叫虚拟主机。" target="_blank" rel="noopener">www.aaa.com和www.bbb.com两个网站部署在同一台服务器上，两个域名解析到同一个IP地址，当时用户通过两个域名却可以打开两个完全不同的网站，互相不影响，就像访问两个服务器一样，所以叫虚拟主机。</a></p>
+<p>配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">		listen <span class="number">80</span> default_server;</span><br><span class="line">		server_name _;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">444</span>;<span class="comment">//过滤其他域名的请求，返回444状态码</span></span><br><span class="line">		&#125;</span><br><span class="line">server &#123;</span><br><span class="line">		listen <span class="number">80</span>;</span><br><span class="line">		server_name www.aaa.com; <span class="comment">//www.aaa.com域名</span></span><br><span class="line">		location / &#123;</span><br><span class="line">				proxy_pass <span class="string">`http://location:8080`</span>; <span class="comment">//对应端口8080</span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;		</span><br><span class="line">server &#123;</span><br><span class="line">		listen <span class="number">80</span>;</span><br><span class="line">		server_name www.bbb.com; <span class="comment">//www.bbb.com</span></span><br><span class="line">		location / &#123;</span><br><span class="line">				proxy_pass <span class="string">`http://localhost:8081`</span>;<span class="comment">//对应端口号8081</span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5、FastCGI"><a href="#5、FastCGI" class="headerlink" title="5、FastCGI"></a>5、FastCGI</h2><p>Nginx本身不支持PHP等语言，但是它可以通过FastCGI来将请求扔给某些语言或框架处理（例如PHP、Python、Perl）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen <span class="number">80</span>;</span><br><span class="line">	location ~ \.php$ &#123;</span><br><span class="line">		include fastcgi_params;</span><br><span class="line">		fastcgi_param SCRIPT_FILENAME /PHP文件路径$fastcgi_script_name; <span class="comment">// PHP文件路径</span></span><br><span class="line">		fastcgi_pass <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span>; <span class="comment">// PHP-FPM地址和端口号</span></span><br><span class="line">		<span class="comment">// 另一种方式：fastcgi_pass unix:/var/run/php5-fpm.sock;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配置中将.php结尾的请求通过FashCGI交给PHP-FPM处理，PHP-FPM是PHP的一个FastCGI管理器。有关FashCGI可以查阅其他资料，本文不再介绍。</p>
+<p>fastcgi_pass和proxy_pass有什么区别？下面一张图带你看明白：<br><img src="http://7xidft.com1.z0.glb.clouddn.com/blog/20150517221800380.jpg" alt=""></p>
+<p><a href="http://xxgblog.com/2015/05/17/nginx-start/" target="_blank" rel="noopener">参考文献：叉叉哥的BLOG</a></p>
+
+        
+        <!--添加的打赏功能 -->
+          
+  	           <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   大佬给点吃的吧！
+        </span>
+        <br>
+      </div>
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
+    <!-- 微信打赏图案 -->
+
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			$('#donate_board').addClass('hidden');
+			$('#donate_guide').removeClass('hidden');
+		}
+	</script>
 </div>
+<! -- 添加捐赠图标 -->
+
+          
+          
+              <div style="display:inline-block;float:right;margin-right:2rem"><span id="busuanzi_value_page_pv" style="color:blue;"></span>人阅读</div>
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/07/09/20180709-Nginx常用方法/" data-id="cjjfb8iqu000nnai3t9xuyo2e" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2022/11/06/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    欢迎来到我的Lab，助手呦！
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/07/06/20180703-redis哨兵模式/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">redis高可用</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2018/07/09/20180709-Nginx常用方法/"></div>
+</section>
+    
+
+
 </section>
             
                 
