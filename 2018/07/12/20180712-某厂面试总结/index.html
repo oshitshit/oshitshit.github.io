@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>某厂前端面试 | 哦谢特谢特</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="面试完毕，经验+120%，level 2 ，多了两点sp点，准备点到vue上 封面id=69689727  1. jquery ready原理、onload区别原理：在jquery脚本加载的时候,会设置一个isReady的标记,监听DOMContentLoaded事件(这个不是什么浏览器都有的,不同浏览器,jquery运作方式不一样).当然遇到调用ready函数的时候,如果isReady未被设置">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="某厂前端面试">
+<meta property="og:url" content="http://yoursite.com/2018/07/12/20180712-某厂面试总结/index.html">
+<meta property="og:site_name" content="哦谢特谢特">
+<meta property="og:description" content="面试完毕，经验+120%，level 2 ，多了两点sp点，准备点到vue上 封面id=69689727  1. jquery ready原理、onload区别原理：在jquery脚本加载的时候,会设置一个isReady的标记,监听DOMContentLoaded事件(这个不是什么浏览器都有的,不同浏览器,jquery运作方式不一样).当然遇到调用ready函数的时候,如果isReady未被设置">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta property="og:updated_time" content="2018-07-17T13:46:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="某厂前端面试">
+<meta name="twitter:description" content="面试完毕，经验+120%，level 2 ，多了两点sp点，准备点到vue上 封面id=69689727  1. jquery ready原理、onload区别原理：在jquery脚本加载的时候,会设置一个isReady的标记,监听DOMContentLoaded事件(这个不是什么浏览器都有的,不同浏览器,jquery运作方式不一样).当然遇到调用ready函数的时候,如果isReady未被设置">
+<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+    
+
+    
+
+    
+        <link rel="icon" href="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-brands.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-solid.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        
+<header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">哦谢特谢特</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/favorite">程序猿的日常</a>
+                
+                    <a class="main-nav-link" href="/.">还在施工中。。。</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_6884%2820180528-071229%29.jpg" />
+                            <i class="fas fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fas fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/favorite">程序猿的日常</a></td>
+                
+                    <td><a class="main-nav-link" href="/.">还在施工中。。。</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+<img class="blog-header-image" src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/huibuhui.png">
+
+</img>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_6884%2820180528-071229%29.jpg" />
+            <h2 id="name">哦谢特谢特</h2>
+            <h3 id="title">已被逐出月籍的地球人，喜欢学习新技术，然后搭完环境弃坑。擅长让微服务进入无服务状态，Docker只会用Kitematic，Git只会用SourceTree，不百度和Google就解决不了问题。梦想成为一名PPT架构师！</h3>
+            <span id="location"><i class="fas fa-map-marker-alt" style="padding-right: 5px"></i>济南, 山东</span>
+            <a id="follow" target="_blank" href="https://weibo.com/5646945304/profile?topnav=1&amp;wvr=6&amp;is_all=1">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                16
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                13
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/oshitshit" target="_blank" title="github" class=tooltip>
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://weibo.com/5646945304/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="weibo" class=tooltip>
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-20180712-某厂面试总结" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://papzj8a9t.bkt.clouddn.com/mianshi.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            某厂前端面试
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/07/12/20180712-某厂面试总结/">
+            <time datetime="2018-07-12T13:47:44.000Z" itemprop="datePublished">2018-07-12</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/面试/">面试</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/面试/">面试</a>
+    </div>
+
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>面试完毕，经验+120%，level 2 ，多了两点sp点，准备点到vue上 封面id=69689727</p>
+</blockquote>
+<h3 id="1-jquery-ready原理、onload区别"><a href="#1-jquery-ready原理、onload区别" class="headerlink" title="1. jquery ready原理、onload区别"></a>1. jquery ready原理、onload区别</h3><h5 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h5><p>在jquery脚本加载的时候,会设置一个<code>isReady</code>的标记,监听<code>DOMContentLoaded</code>事件(这个不是什么浏览器都有的,不同浏览器,jquery运作方式不一样).当然遇到调用<code>ready</code>函数的时候,如果<code>isReady</code>未被设置,那就是说页面未加载完,就会把要执行的函数用一个数组缓存起来,当页面加载完后,再把缓存的函数一一执行。<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DOMContentLoaded = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">  <span class="comment">//取消事件监听，执行ready方法</span></span><br><span class="line"> <span class="keyword">if</span> ( <span class="built_in">document</span>.addEventListener )</span><br><span class="line"> &#123;   </span><br><span class="line">  <span class="built_in">document</span>.removeEventListener( <span class="string">"DOMContentLoaded"</span>, DOMContentLoaded, <span class="literal">false</span> );</span><br><span class="line">  jQuery.ready();</span><br><span class="line"> &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ( <span class="built_in">document</span>.readyState === <span class="string">"complete"</span> )</span><br><span class="line"> &#123;</span><br><span class="line">  <span class="built_in">document</span>.detachEvent( <span class="string">"onreadystatechange"</span>, DOMContentLoaded );</span><br><span class="line">  jQuery.ready();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ready.promise = <span class="function"><span class="keyword">function</span>(<span class="params"> obj </span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> ( !readyList ) &#123;</span><br><span class="line"></span><br><span class="line">  readyList = jQuery.Deferred();</span><br><span class="line">   <span class="comment">//表示页面已经加载完成，直接调用 ready方法</span></span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">document</span>.readyState === <span class="string">"complete"</span> ) &#123;</span><br><span class="line">   <span class="comment">//将 jQuery.ready压入异步消息队列，设置延迟时间1毫秒（注意，有些浏览器延迟不能小于4毫秒）</span></span><br><span class="line">   setTimeout( jQuery.ready);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ( <span class="built_in">document</span>.addEventListener ) <span class="comment">//</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">//监听DOM加载完成</span></span><br><span class="line">   <span class="built_in">document</span>.addEventListener( <span class="string">"DOMContentLoaded"</span>, DOMContentLoaded, <span class="literal">false</span> );</span><br><span class="line">    <span class="comment">//这里是为了确保所有ready执行结束，如果DOMContentLoaded方法执行了，将有一个状态值 isReady被设置为true,因此，</span></span><br><span class="line">    <span class="comment">//ready方法一旦执行，那么将只执行一次，window.addEventListener中的ready 将被 return 中断</span></span><br><span class="line">   <span class="built_in">window</span>.addEventListener( <span class="string">"load"</span>, jQuery.ready, <span class="literal">false</span> );</span><br><span class="line"></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="comment">//低版本的IE浏览器</span></span><br><span class="line">   <span class="built_in">document</span>.attachEvent( <span class="string">"onreadystatechange"</span>, DOMContentLoaded );</span><br><span class="line">   <span class="built_in">window</span>.attachEvent( <span class="string">"onload"</span>, jQuery.ready );</span><br><span class="line"></span><br><span class="line">   <span class="keyword">var</span> top = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">    top = <span class="built_in">window</span>.frameElement == <span class="literal">null</span> &amp;&amp; <span class="built_in">document</span>.documentElement;</span><br><span class="line">   &#125; <span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> ( top &amp;&amp; top.doScroll ) <span class="comment">//剔除iframe的成分</span></span><br><span class="line">   &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span> <span class="title">doScrollCheck</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> ( !jQuery.isReady ) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">       <span class="comment">//根据bug来兼容低版本的IE http://javascript.nwbox.com/IEContentLoaded/</span></span><br><span class="line">       top.doScroll(<span class="string">"left"</span>);</span><br><span class="line">      &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">       <span class="comment">//由于低版本的IE 浏览器，onreadystatechange事件不可靠，因此需要根据各个bug来判断页面是否已加载完成</span></span><br><span class="line">       <span class="keyword">return</span> setTimeout( doScrollCheck, <span class="number">50</span> );</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      jQuery.ready();</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> readyList.promise( obj );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">ready: <span class="function"><span class="keyword">function</span>(<span class="params"> wait </span>)</span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> ( wait === <span class="literal">true</span> ? --jQuery.readyWait : jQuery.isReady ) &#123;</span><br><span class="line">  <span class="comment">//判断页面是否已完成加载并且是否已经执行ready方法</span></span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> ( !<span class="built_in">document</span>.body ) &#123;</span><br><span class="line">  <span class="keyword">return</span> setTimeout( jQuery.ready );</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> jQuery.isReady = <span class="literal">true</span>; <span class="comment">//指示ready方法已被执行</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> ( wait !== <span class="literal">true</span> &amp;&amp; --jQuery.readyWait &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> readyList.resolveWith( <span class="built_in">document</span>, [ jQuery ] );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> ( jQuery.fn.trigger ) &#123;</span><br><span class="line">  jQuery( <span class="built_in">document</span> ).trigger(<span class="string">"ready"</span>).off(<span class="string">"ready"</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h5 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h5><p>1）执行时间<br><code>window.onload</code>必须等到页面内包括图片的所有元素加载完毕后才能执行。<br><code>$(document).ready()</code>是DOM结构绘制完毕后就执行，不必等到加载完毕。</p>
+<p>2）编写个数不同<br><code>window.onload</code>不能同时编写多个，如果有多个<code>window.onload</code>方法，只会执行一个<br><code>$(document).ready()</code>可以同时编写多个，并且都可以得到执行</p>
+<p>3）简化写法<br>window.onload没有简化写法<br><code>$(document).ready(function(){})</code>可以简写成<code>$(function(){});</code></p>
+<h3 id="2-jsonp-通讯原理"><a href="#2-jsonp-通讯原理" class="headerlink" title="2. jsonp 通讯原理"></a>2. jsonp 通讯原理</h3><h5 id="原理：-1"><a href="#原理：-1" class="headerlink" title="原理："></a>原理：</h5><p>首先在客户端注册一个callback, 然后把callback的名字传给服务器。</p>
+<p>此时，服务器先生成 json 数据。<br>然后以 javascript 语法的方式，生成一个function , function 名字就是传递上来的参数 jsonp.</p>
+<p>最后将 json 数据直接以入参的方式，放置到 function 中，这样就生成了一段 js 语法的文档，返回给客户端。</p>
+<p>客户端浏览器，解析script标签，并执行返回的 javascript 文档，此时数据作为参数，传入到了客户端预先定义好的 callback 函数里.（动态执行回调函数）</p>
+<h5 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h5><p>Html代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta content=<span class="string">"text/html; charset=utf-8"</span> http-equiv=<span class="string">"Content-Type"</span> /&gt;  </span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">jsonpCallback</span>(<span class="params">result</span>) </span>&#123;  </span><br><span class="line">        <span class="comment">//alert(result);  </span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> result) &#123;  </span><br><span class="line">            alert(i+<span class="string">":"</span>+result[i]);<span class="comment">//循环输出a:1,b:2,etc.  </span></span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">var</span> JSONP=<span class="built_in">document</span>.createElement(<span class="string">"script"</span>);  </span><br><span class="line">    JSONP.type=<span class="string">"text/javascript"</span>;  </span><br><span class="line">    JSONP.src=<span class="string">"http://crossdomain.com/services.php?callback=jsonpCallback"</span>;  </span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(JSONP);  </span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>服务器端：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line"><span class="comment">//服务端返回JSON数据  </span></span><br><span class="line">$arr=<span class="keyword">array</span>(<span class="string">'a'</span>=&gt;<span class="number">1</span>,<span class="string">'b'</span>=&gt;<span class="number">2</span>,<span class="string">'c'</span>=&gt;<span class="number">3</span>,<span class="string">'d'</span>=&gt;<span class="number">4</span>,<span class="string">'e'</span>=&gt;<span class="number">5</span>);  </span><br><span class="line">$result=json_encode($arr);  </span><br><span class="line"><span class="comment">//echo $_GET['callback'].'("Hello,World!")';  </span></span><br><span class="line"><span class="comment">//echo $_GET['callback']."($result)";  </span></span><br><span class="line"><span class="comment">//动态执行回调函数  </span></span><br><span class="line">$callback=$_GET[<span class="string">'callback'</span>];  </span><br><span class="line"><span class="keyword">echo</span> $callback.<span class="string">"($result)"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>jQuery中的实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"jquery.js"</span>&gt;&lt;/script&gt;  </span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;  </span><br><span class="line">    $.ajax(&#123;  </span><br><span class="line">        url:<span class="string">"http://crossdomain.com/services.php"</span>,  </span><br><span class="line">        dataType:<span class="string">'jsonp'</span>,  </span><br><span class="line">        data:<span class="string">''</span>,  </span><br><span class="line">        jsonp:<span class="string">'callback'</span>,  </span><br><span class="line">        <span class="comment">//jsonpCallback:"flightHandler",//可选，jQuery把返回放到success里了。默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据  </span></span><br><span class="line">        success:<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;  </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> result) &#123;  </span><br><span class="line">                alert(i+<span class="string">":"</span>+result[i]);<span class="comment">//循环输出a:1,b:2,etc.  </span></span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;,  </span><br><span class="line">        timeout:<span class="number">3000</span>  </span><br><span class="line">    &#125;);  </span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="JSONP的缺陷："><a href="#JSONP的缺陷：" class="headerlink" title="JSONP的缺陷："></a>JSONP的缺陷：</h5><p>1、请求代码存在安全隐患。借助JSONP有可能进行跨站请求伪造(CSRF)攻击。<br>2、无法确定jsonp成功与否<br>3、只能实现get请求</p>
+<h3 id="3-XMLHttpRequest，原理、跨域、带cookie"><a href="#3-XMLHttpRequest，原理、跨域、带cookie" class="headerlink" title="3. XMLHttpRequest，原理、跨域、带cookie"></a>3. XMLHttpRequest，原理、跨域、带cookie</h3><h5 id="原理：-2"><a href="#原理：-2" class="headerlink" title="原理："></a>原理：</h5><p><a href="https://blog.csdn.net/liujiahan629629/article/details/17126727" target="_blank" rel="noopener">XMLHttpRequest对象总结</a></p>
+<h5 id="跨域："><a href="#跨域：" class="headerlink" title="跨域："></a>跨域：</h5><p>服务器端设置header <code>Access-Control-Allow-Origin：http：</code><br>使用jsonp<br>nginx反向代理</p>
+<h5 id="带cookie："><a href="#带cookie：" class="headerlink" title="带cookie："></a>带cookie：</h5><p>服务器端设置header <code>Access-Control-Allow-Credentials：true</code><br>客户端设置<code>xmlhttp.withCredentials = true;</code>支持发送cookies</p>
+<h3 id="4-cookie-概念、原理、存取操作、如何在http中体现"><a href="#4-cookie-概念、原理、存取操作、如何在http中体现" class="headerlink" title="4. cookie 概念、原理、存取操作、如何在http中体现"></a>4. cookie 概念、原理、存取操作、如何在http中体现</h3><h5 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h5><p>Cookies是一种能够让网站服务器把少量数据储存到客户端的硬盘或内存，或是从客户端的硬盘读取数据的一种技术。Cookies是当你浏览某网站时，由Web服务器置于你硬盘上的一个非常小的文本文件，它可以记录你的用户ID、密码、浏览过的网页、停留的时间等信息。</p>
+<h5 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h5><p> Cookie虽然是一个简单实用的对象，但是我们也要注意Cookie的工作原理、大小限制以及安全性等，大致可以归纳为以下几点。</p>
+<ul>
+<li><p>存储的物理位置。客户端的Cookies文件夹内。</p>
+</li>
+<li><p>存储的类型限制。字符串。</p>
+</li>
+<li><p>状态使用的范围。当前请求上下文的上下文都能访问到Cookie，Cookie对每个用户来说都是独立的。</p>
+</li>
+<li><p>存储的大小限制。每个Cookie不超过4K数据。每个网站不超过20个Cookie。所有网站的Cookie总和不超过300个。</p>
+</li>
+<li><p>生命周期。每个Cookie都有自己的过期时间，超过了过期时间后失效。</p>
+</li>
+<li><p>安全与性能。存储在客户端，安全性差。对于敏感数据建议加密后存储。</p>
+</li>
+<li><p>优点缺点与注意事项。可以很方便地关联网站和用户，长久保存用户设置。</p>
+<h5 id="存取操作："><a href="#存取操作：" class="headerlink" title="存取操作："></a>存取操作：</h5><p><a href="https://blog.csdn.net/ZaynahLy/article/details/75514988" target="_blank" rel="noopener">参考博客</a></p>
+</li>
+<li>使用JavaScript操作cookie<br>  创建和存储cookie：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数中的参数分别为 cookie 的名称、值以及过期天数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">c_name,value,expiredays</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> exdate=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    exdate.setDate(exdate.getDate()+expiredays);</span><br><span class="line">    <span class="built_in">document</span>.cookie=c_name+ <span class="string">"="</span> +<span class="built_in">escape</span>(value)+</span><br><span class="line">    ((expiredays==<span class="literal">null</span>) ? <span class="string">""</span> : <span class="string">";expires="</span>+exdate.toGMTString())</span><br><span class="line">&#125;</span><br><span class="line">setCookie(<span class="string">'name'</span>,<span class="string">'zzyn'</span>,<span class="number">1</span>); <span class="comment">// cookie过期时间为1天。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果要设置过期时间以秒为单位</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">c_name,value,expireseconds</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> exdate=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    exdate.setTime(exdate.getTime()+expireseconds * <span class="number">1000</span>);</span><br><span class="line">    <span class="built_in">document</span>.cookie=c_name+ <span class="string">"="</span> +<span class="built_in">escape</span>(value)+</span><br><span class="line">    ((expireseconds==<span class="literal">null</span>) ? <span class="string">""</span> : <span class="string">";expires="</span>+exdate.toGMTString())</span><br><span class="line">&#125;</span><br><span class="line">setCookie(<span class="string">'name'</span>,<span class="string">'zzyn'</span>,<span class="number">3600</span>);  <span class="comment">//cookie过期时间为一个小时</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>读取cookie值：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数中的参数为 要获取的cookie键的名称。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">c_name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.cookie.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        c_start=<span class="built_in">document</span>.cookie.indexOf(c_name + <span class="string">"="</span>);</span><br><span class="line">        <span class="keyword">if</span> (c_start!=<span class="number">-1</span>)&#123;</span><br><span class="line">            c_start=c_start + c_name.length+<span class="number">1</span>;</span><br><span class="line">            c_end=<span class="built_in">document</span>.cookie.indexOf(<span class="string">";"</span>,c_start);</span><br><span class="line">            <span class="keyword">if</span> (c_end==<span class="number">-1</span>)&#123;</span><br><span class="line">                c_end=<span class="built_in">document</span>.cookie.length;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">unescape</span>(<span class="built_in">document</span>.cookie.substring(c_start,c_end));</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> uname= getCookie(<span class="string">'name'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(uname);</span><br></pre></td></tr></table></figure></p>
+<p>判断cookie是否存在：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数中的参数为，要判断的cookie名称</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">checkCookie</span>(<span class="params">c_name</span>)</span>&#123;</span><br><span class="line">    username=getCookie(c_name);</span><br><span class="line">    <span class="keyword">if</span> (username!=<span class="literal">null</span> &amp;&amp; username!=<span class="string">""</span>)&#123;</span><br><span class="line">        <span class="comment">// 如果cookie值存在，执行下面的操作。</span></span><br><span class="line">        alert(<span class="string">'Welcome again '</span>+username+<span class="string">'!'</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        username=prompt(<span class="string">'Please enter your name:'</span>,<span class="string">""</span>);</span><br><span class="line">        <span class="keyword">if</span> (username!=<span class="literal">null</span> &amp;&amp; username!=<span class="string">""</span>)&#123;</span><br><span class="line">            <span class="comment">//如果cookie不存在，执行下面的操作。</span></span><br><span class="line">            setCookie(<span class="string">'username'</span>,username,<span class="number">365</span>)</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>jQuery操作cookie<br>设置cookie<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.cookie(<span class="string">'uid'</span>, <span class="string">'10001'</span>);  <span class="comment">//存储 uid=10001 在cookie中</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注：没有指明 cookie有效时间时，所创建的cookie有效期默认到用户关闭浏览器为止。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.cookie(<span class="string">'uid'</span>, <span class="string">'10001'</span>,&#123; <span class="attr">expires</span>: <span class="number">7</span>,<span class="attr">path</span>:<span class="string">'/'</span>,<span class="attr">secure</span>:<span class="literal">false</span>,<span class="attr">raw</span>:<span class="literal">false</span>&#125;);  <span class="comment">// 存储 uid=10001 在cookie中</span></span><br></pre></td></tr></table></figure></p>
+<p>注：设置cookie有效时间为7天，有效路径为根目录。<br>在默认情况下，只有设置 cookie的网页才能读取该 cookie。如果想让一个页面读取另一个页面设置的cookie，必须设置cookie的路径。cookie的路径用于设置能够读取 cookie的顶级目录。将这个路径设置为网站的根目录，可以让所有网页都能互相读取 cookie （一般不要这样设置，防止出现冲突） 。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">date.setTime(date.getTime()+<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br><span class="line">$.cookie(<span class="string">'uid'</span>, <span class="string">'10001'</span>,&#123;<span class="attr">expires</span>:date,<span class="attr">path</span>:<span class="string">'/'</span>,<span class="attr">secure</span>:<span class="literal">false</span>,<span class="attr">raw</span>:<span class="literal">false</span>&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>注：设置 cookie有效时间为1个小时。</p>
+<p>读取cookie:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$.cookie(<span class="string">'uid'</span>); <span class="comment">// cookie存在 =&gt; '10001'</span></span><br><span class="line">$.cookie(<span class="string">'uname'</span>); <span class="comment">// cookie不存在 =&gt; null</span></span><br></pre></td></tr></table></figure></p>
+<p>删除cookie:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.cookie(<span class="string">'uid'</span>,<span class="literal">null</span>); <span class="comment">// 删除名称为uid的cookie值</span></span><br></pre></td></tr></table></figure></p>
+<p>相关参数的解释：<br>1).expires: 365</p>
+<p>定义cookie的有效时间，值可以是一个数字（从创建cookie时算起，以天为单位）或一个Date 对象。如果省略，那么创建的cookie是会话cookie，将在用户退出浏览器时被删除。</p>
+<p>2).path: ‘/’</p>
+<p>默认情况：只有设置cookie的网页才能读取该cookie。<br>定义cookie的有效路径。默认情况下， 该参数的值为创建 cookie 的网页所在路径（标准浏览器的行为）。如果你想在整个网站中访问这个cookie需要这样设置有效路径：path: ‘/’。如果你想删除一个定义了有效路径的 cookie，你需要在调用函数时包含这个路径:$.cookie(‘the_cookie’, null,<br>{ path: ‘/’ });。 domain: ‘example.com’<br>默认值：创建 cookie的网页所拥有的域名。</p>
+<p>3).secure: true</p>
+<p>默认值：false。如果为true，cookie的传输需要使用安全协议（HTTPS）。</p>
+<p>4).raw: true</p>
+<p>默认值：false。<br>默认情况下，读取和写入 cookie 的时候自动进行编码和解码（使用encodeURIComponent 编码， decodeURIComponent 解码）。要关闭这个功能设置 raw: true 即可。<br>5).Domain<br>Domain：域，表示当前cookie所属于哪个域或子域下面。</p>
+<h5 id="如何在http中体现"><a href="#如何在http中体现" class="headerlink" title="如何在http中体现:"></a>如何在http中体现:</h5><p>Cookie是用于维持服务端会话状态的，通常由服务端写入，在后续请求中，供服务端读取。</p>
+<ol>
+<li>客户端向服务器发送请求</li>
+<li>服务端返回内容以及cookie</li>
+<li>客户端再次发送请求http自动带上cookie</li>
+</ol>
+<p>http请求发送cookies的条件：</p>
+<ul>
+<li>本地已经缓存有cookies</li>
+<li>根据请求的URL来匹配cookies的domain、path属性，如果都符合才会发送。<br>举个例子：访问<a href="http://www.baidu.com时，就不发送www.qq.com的cookies" target="_blank" rel="noopener">www.baidu.com时，就不发送www.qq.com的cookies</a>.</li>
+</ul>
+<h5 id="PS："><a href="#PS：" class="headerlink" title="PS："></a>PS：</h5><p>Session和Cookie区别<br>1、session保存在服务器，客户端不知道其中的信息；cookie保存在客户端，服务器能够知道其中的信息。<br>2、session中保存的是对象，cookie中保存的是字符串。<br>3、session不能区分路径，同一个用户在访问一个网站期间，所有的session在任何一个地方都可以访问到。而cookie中如果设置 了路径参数，那么同一个网站中不同路径下的cookie互相是访问不到的。<br>4、session默认需要借助cookie才能正常工作。如果客户端完全禁止cookie，session，这种方法将失效。但是如果服务器端启用了url编码，也就是用URLEncoder.encode(“index.jsp?id=3”,”UTF-8”);..把所有的url编码了，则会在url后面出现如下类似的东西index.jsp:jsessionid=fdsaffjdlksfd124324lkdjsf?id=3服务器通过这个进行session的判断。<br>5 session在用户会话结束后就会关闭了，但cookie因为保存在客户端，可以长期保存<br>6 cookie:是服务端向客户端写入的小的片段信息。cookie信息保存在服务器缓存区，不会在客户端显现。当你第一次登陆一个网站，服务器向你的机器写得片段信息。你可以在Internet选项中找到存放cookie的文件夹。如果不删除，cookie就一直在这个文件夹中</p>
+<h3 id="5-webstorage概念，原理"><a href="#5-webstorage概念，原理" class="headerlink" title="5. webstorage概念，原理"></a>5. webstorage概念，原理</h3><p><a href="https://segmentfault.com/a/1190000012057010" target="_blank" rel="noopener">参考文章</a></p>
+<h5 id="webstorage是本地存储，存储在客户端，包括localStorage和sessionStorage。"><a href="#webstorage是本地存储，存储在客户端，包括localStorage和sessionStorage。" class="headerlink" title="webstorage是本地存储，存储在客户端，包括localStorage和sessionStorage。"></a>webstorage是本地存储，存储在客户端，包括localStorage和sessionStorage。</h5><h5 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h5><blockquote>
+<p>localStorage生命周期是永久，这意味着除非用户显示在浏览器提供的UI上清除localStorage信息，否则这些信息将永远存在。存放数据大小为一般为5MB,而且它仅在客户端（即浏览器）中保存，不参与和服务器的通信。</p>
+</blockquote>
+<h5 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h5><blockquote>
+<p>sessionStorage仅在当前会话下有效，关闭页面或浏览器后被清除。存放数据大小为一般为5MB,而且它仅在客户端（即浏览器）中保存，不参与和服务器的通信。源生接口可以接受，亦可再次封装来对Object和Array有更好的支持。</p>
+</blockquote>
+<p>ocalStorage和sessionStorage使用时使用相同的API：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">"key"</span>,<span class="string">"value"</span>);<span class="comment">//以“key”为名称存储一个值“value”</span></span><br><span class="line"></span><br><span class="line">   localStorage.getItem(<span class="string">"key"</span>);<span class="comment">//获取名称为“key”的值</span></span><br><span class="line"></span><br><span class="line">   localStorage.removeItem(<span class="string">"key"</span>);<span class="comment">//删除名称为“key”的信息。</span></span><br><span class="line"></span><br><span class="line">   localStorage.clear();​<span class="comment">//清空localStorage中所有信息</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="作用域不同"><a href="#作用域不同" class="headerlink" title="作用域不同"></a>作用域不同</h5><p>不同浏览器无法共享localStorage或sessionStorage中的信息。相同浏览器的不同页面间可以共享相同的 localStorage（页面属于相同域名和端口），但是不同页面或标签页间无法共享sessionStorage的信息。这里需要注意的是，页面及标 签页仅指顶级窗口，如果一个标签页包含多个iframe标签且他们属于同源页面，那么他们之间是可以共享sessionStorage的。</p>
+<h3 id="6-call-apply-bind的作用和区别"><a href="#6-call-apply-bind的作用和区别" class="headerlink" title="6. call apply bind的作用和区别"></a>6. call apply bind的作用和区别</h3><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><p>改变this对象的指向<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'鲸某人'</span>,</span><br><span class="line">    sayName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">    name: <span class="string">'高某人'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果我们想让鲸某人叫一下高某人，咋办呢？</span></span><br><span class="line"><span class="comment">//只要call他一下就可以啦</span></span><br><span class="line">person.sayName.call(person1)</span><br><span class="line"><span class="comment">//同样的，使用apply和bind也可以达到相同的效果：</span></span><br><span class="line">person.sayName.apply(person1)</span><br><span class="line"><span class="comment">//下边会说，为什么bind后边多了个()</span></span><br><span class="line">person.sayName.bind(person1)()</span><br></pre></td></tr></table></figure></p>
+<h5 id="区别：-1"><a href="#区别：-1" class="headerlink" title="区别："></a>区别：</h5><p>call() 、apply()可以看作是某个对象的方法，通过调用方法的形式来间接调用函数。bind() 就是将某个函数绑定到某个对象上。</p>
+<p>①：函数.call(对象,arg1,arg2….)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo.call(obj, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)   <span class="comment">//打印结果： 2;</span></span><br></pre></td></tr></table></figure></p>
+<p>②：函数.apply(对象，[arg1,arg2,…])<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo.apply(obj, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])   打印结果： <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>③：var ss=函数.bind(对象,arg1,arg2,….)</p>
+<p>bind() 方法和前两者不同在于： bind() 方法会返回执行上下文被改变的函数而不会立即执行，而前两者是直接执行该函数。他的参数和call()相同。</p>
+<h3 id="7-什么是事件冒泡，给定一个异步列表，如何点删除自己"><a href="#7-什么是事件冒泡，给定一个异步列表，如何点删除自己" class="headerlink" title="7.什么是事件冒泡，给定一个异步列表，如何点删除自己"></a>7.什么是事件冒泡，给定一个异步列表，如何点删除自己</h3><p>当事件发生后，这个事件就要开始传播(从里到外或者从外向里)。为什么要传播呢？因为事件源本身（可能）并没有处理事件的能力，即处理事件的函数（方法）并未绑定在该事件源上。例如我们点击一个按钮时，就会产生一个click事件，但这个按钮本身可能不能处理这个事件，事件必须从这个按钮传播出去，从而到达能够处理这个事件的代码中（例如我们给按钮的onclick属性赋一个函数的名字，就是让这个函数去处理该按钮的click事件），或者按钮的父级绑定有事件函数，当该点击事件发生在按钮上，按钮本身并无处理事件函数，则传播到父级去处理。<br><a href="https://blog.csdn.net/qq_36092584/article/details/52800321" target="_blank" rel="noopener">代码来源</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre name=<span class="string">"code"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"java"</span>&gt;&lt;c:forEach items="$&#123;files&#125;" var="item" varStatus="i"&gt;</span><br><span class="line">    &lt;input type="hidden" id="fileId" value="$&#123;item.id&#125;" /&gt;</span><br><span class="line">    &lt;a style="display:inline-block;width: 250px;" href="download.htm?fileId=$&#123;item.id&#125;&amp;&amp;assetId=$&#123;item.assetId&#125;"&gt;$&#123;item.fileName&#125;&lt;/a&gt;</span><br><span class="line">       &lt;a style="color: red;background-color:ghostwhite;text-align: center;display:inline-block;width: 25px;"  id="delete$&#123;i.count&#125;"&gt;X&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        $(document).ready(function() &#123;</span><br><span class="line">            $("#delete$&#123;i.count&#125;").click(function () &#123;</span><br><span class="line">                $.ajax(&#123;</span><br><span class="line">                    type:"POST",</span><br><span class="line">                    url:"filedelete.htm",</span><br><span class="line">                    data: &#123;fileId:$("#fileId").val()&#125;,</span><br><span class="line">                    success:function () &#123;</span><br><span class="line">                        window.location.reload();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="8-数组有哪些常用的方法，怎么删除最后一个和第一个，map方法做什么用的"><a href="#8-数组有哪些常用的方法，怎么删除最后一个和第一个，map方法做什么用的" class="headerlink" title="8.数组有哪些常用的方法，怎么删除最后一个和第一个，map方法做什么用的"></a>8.数组有哪些常用的方法，怎么删除最后一个和第一个，map方法做什么用的</h3><p><a href="http://www.runoob.com/jsref/jsref-obj-array.html" target="_blank" rel="noopener">菜鸟教程</a></p>
+<h3 id="9-escape、encodeURI和encodeURIComponent的区别"><a href="#9-escape、encodeURI和encodeURIComponent的区别" class="headerlink" title="9.escape、encodeURI和encodeURIComponent的区别"></a>9.escape、encodeURI和encodeURIComponent的区别</h3><p><a href="https://www.cnblogs.com/season-huang/p/3439277.html" target="_blank" rel="noopener">参考文章</a></p>
+<h5 id="escape："><a href="#escape：" class="headerlink" title="escape："></a>escape：</h5><p>escape是对字符串(string)进行编码(而另外两种是对URL)，作用是让它们在所有电脑上可读。<br>编码之后的效果是%XX或者%uXXXX这种形式。<br>其中 ASCII字母、数字、@*/+ ，这几个字符不会被编码，其余的都会。</p>
+<h5 id="encodeURI和encodeURIComponent："><a href="#encodeURI和encodeURIComponent：" class="headerlink" title="encodeURI和encodeURIComponent："></a>encodeURI和encodeURIComponent：</h5><p>编码URL，唯一区别就是编码的字符范围，其中<br>ncodeURI方法不会对下列字符编码  ASCII字母、数字、~!@#$&amp;<em>()=:/,;?+’<br>encodeURIComponent方法不会对下列字符编码 ASCII字母、数字、~!</em>()’<br>所以encodeURIComponent比encodeURI编码的范围更大。<br>实际例子来说，encodeURIComponent会把 http://  编码成  http%3A%2F%2F 而encodeURI却不会。</p>
+<h5 id="使用场合："><a href="#使用场合：" class="headerlink" title="使用场合："></a>使用场合：</h5><p>1、如果只是编码字符串，不和URL有半毛钱关系，那么用escape。</p>
+<p>2、如果你需要编码整个URL，然后需要使用这个URL，那么用encodeURI。</p>
+<p>比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">encodeURI(&quot;http://www.cnblogs.com/season-huang/some other thing&quot;);</span><br></pre></td></tr></table></figure>
+<p>编码后会变为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;http://www.cnblogs.com/season-huang/some%20other%20thing&quot;;</span><br></pre></td></tr></table></figure>
+<p>其中，空格被编码成了%20。但是如果你用了encodeURIComponent，那么结果变为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;http%3A%2F%2Fwww.cnblogs.com%2Fseason-huang%2Fsome%20other%20thing&quot;</span><br></pre></td></tr></table></figure>
+<p>看到了区别吗，连 “/“ 都被编码了，整个URL已经没法用了。</p>
+<p>3、当你需要编码URL中的参数的时候，那么encodeURIComponent是最好方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> param = <span class="string">"http://www.cnblogs.com/season-huang/"</span>; <span class="comment">//param为参数</span></span><br><span class="line">param = <span class="built_in">encodeURIComponent</span>(param);</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">"http://www.cnblogs.com?next="</span> + param;</span><br><span class="line"><span class="built_in">console</span>.log(url) <span class="comment">//"http://www.cnblogs.com?next=http%3A%2F%2Fwww.cnblogs.com%2Fseason-huang%2F"</span></span><br></pre></td></tr></table></figure>
+<p>看到了把，参数中的 “/“ 可以编码，如果用encodeURI肯定要出问题，因为后面的/是需要编码的。</p>
+<h3 id="10-js如何实现动画、requestAnimationFrame有什么作用"><a href="#10-js如何实现动画、requestAnimationFrame有什么作用" class="headerlink" title="10.js如何实现动画、requestAnimationFrame有什么作用"></a>10.js如何实现动画、requestAnimationFrame有什么作用</h3><p><a href="https://www.jb51.net/article/70678.htm" target="_blank" rel="noopener">参考文献</a></p>
+<h3 id="html-amp-css相关"><a href="#html-amp-css相关" class="headerlink" title="html&amp;css相关"></a>html&amp;css相关</h3><h3 id="1-css-box-sizing-做啥用的"><a href="#1-css-box-sizing-做啥用的" class="headerlink" title="1.css box-sizing 做啥用的"></a>1.css box-sizing 做啥用的</h3><h5 id="作用：-1"><a href="#作用：-1" class="headerlink" title="作用："></a>作用：</h5><p>改变盒模型中宽度和高度的定义范围。<br> <code>border-box: width = content + padding + border</code> ，也就是IE的盒怪异模式。</p>
+<p> <code>content-box:width = content</code> 正常模式</p>
+<h5 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h5><p>使用场景分析：当需要以content + padding + border为整体的时候使用border-box，例如：底部菜单栏等</p>
+<p>以content padding border为一个整体来设置宽高度时。</p>
+<h3 id="2-css纯样式怎么实现一个三角形"><a href="#2-css纯样式怎么实现一个三角形" class="headerlink" title="2.css纯样式怎么实现一个三角形"></a>2.css纯样式怎么实现一个三角形</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-class">.t1</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">border-width</span>: <span class="number">40px</span>;</span><br><span class="line">	<span class="attribute">border-style</span>: solid;</span><br><span class="line">	<span class="attribute">border-color</span>: red transparent transparent transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-css动画怎么做，transition和animation有什么区别，怎么定义一个动画"><a href="#3-css动画怎么做，transition和animation有什么区别，怎么定义一个动画" class="headerlink" title="3.css动画怎么做，transition和animation有什么区别，怎么定义一个动画"></a>3.css动画怎么做，transition和animation有什么区别，怎么定义一个动画</h3><p><a href="https://blog.csdn.net/jdk137/article/details/50474129" target="_blank" rel="noopener">参考文章</a></p>
+<h5 id="区别：-2"><a href="#区别：-2" class="headerlink" title="区别："></a>区别：</h5><ol>
+<li><p>触发条件不同。transition通常和hover等事件配合使用，由事件触发。animation则和gif动态图差不多，立即播放。主要的区别transition不能立即执行，animation不能用事件触发。</p>
+</li>
+<li><p>循环。 animation可以设定循环次数。</p>
+</li>
+<li><p>精确性。 animation可以设定每一帧的样式和时间。tranistion 只能设定头尾。 animation中可以设置每一帧需要单独变化的样式属性， transition中所有样式属性都要一起变化。</p>
+</li>
+<li><p>与javascript的交互。animation与js的交互不是很紧密。tranistion和js的结合更强大。js设定要变化的样式，transition负责动画效果，天作之合，比之前只能用js时爽太多。</p>
+<h5 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h5></li>
+<li><p>如果要灵活定制多个帧以及循环，用animation.</p>
+</li>
+<li><p>如果要简单的from to 效果，用 transition.</p>
+</li>
+<li><p>如果要使用js灵活设定动画属性，用transition.</p>
+</li>
+</ol>
+<h3 id="4-css-position有哪些值可以选，分别是什么意思"><a href="#4-css-position有哪些值可以选，分别是什么意思" class="headerlink" title="4.css position有哪些值可以选，分别是什么意思"></a>4.css position有哪些值可以选，分别是什么意思</h3><h5 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h5><p>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br>元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</p>
+<h5 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h5><p>生成绝对定位的元素，相对于浏览器窗口进行定位。<br>元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</p>
+<h5 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h5><p>生成相对定位的元素，相对于其正常位置进行定位。<br>因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。</p>
+<h5 id="static"><a href="#static" class="headerlink" title="static"></a>static</h5><p>默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。</p>
+<h5 id="inherit"><a href="#inherit" class="headerlink" title="inherit"></a>inherit</h5><p>规定应该从父元素继承 position 属性的值。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h3 id="1-cdn是什么，原理是什么"><a href="#1-cdn是什么，原理是什么" class="headerlink" title="1.cdn是什么，原理是什么"></a>1.cdn是什么，原理是什么</h3><h5 id="CDN的全称是Content-Delivery-Network，即内容分发网络"><a href="#CDN的全称是Content-Delivery-Network，即内容分发网络" class="headerlink" title="CDN的全称是Content Delivery Network，即内容分发网络"></a>CDN的全称是Content Delivery Network，即内容分发网络</h5><p>CDN核心目的就是使用户可就近访问网络，取得所需内容，解决网络拥挤的状况，明显提高用户访问网站的响应速度或者用户下载速度。</p>
+<h5 id="为什么网站开启CDN用户访问会更快呢？"><a href="#为什么网站开启CDN用户访问会更快呢？" class="headerlink" title="为什么网站开启CDN用户访问会更快呢？"></a>为什么网站开启CDN用户访问会更快呢？</h5><p>因为CDN将源站内容分发至全国所有的节点，缩短用户查看对象的延迟，提高用户访问网站的响应速度与网站的可用性，解决网络带宽小、用户访问量大、网点分布不均等问题。</p>
+<p>简单来说，当网站开启CDN，用户访问该网站，并非直接访问该网站的原服务器，而是一个服务器分发的离你最近的一个服务器节点，由于服务器离你近了，所以访问速度或者下载速度会更快。</p>
+<h5 id="作用？"><a href="#作用？" class="headerlink" title="作用？"></a>作用？</h5><p>——对访客用户的好处</p>
+<p>对于用户来说，如果一个网站开启了CDN，用户访问速度或者下载速度会比没有开启时更快。一般目前只要好一些的网站，都会开启CDN功能，主要在于提升用户体验。</p>
+<p>——对网站的好处</p>
+<p>对于网站或者站长来自，开启了CDN不仅可以提升网站打开速度，提升用户体验。更重要的是开启CDN可以减少黑客工具和服务器宽带压力。</p>
+<p>开启CDN后的网站，不同地区用户访问会是不同的服务器，而网站的真实服务器（源服务器）一般只有CDN节点回去访问获取，全国各地的用户访问的CDN节点服务器，并不直接访问源服务器，这样就可以介绍网站服务器宽带资源，降低服务器压力。</p>
+<p>另外，由于有CDN节点中间阻挡防护，可以更好的保护原服务器的安全。也就是说CDN为用户源站服务器在安全云中提供了一个替身，无论是渗透还是DDoS攻击，攻击的目标都将是CDN节点替身，进而保护了网站源站。</p>
+<blockquote>
+<p>关于vue和react等老夫再学学。。。，web性能优化，跨域问题我之前有总结过，有兴趣可以去看一下。</p>
+</blockquote>
+
+        
+        <!--添加的打赏功能 -->
+          
+  	           <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   大佬给点吃的吧！
+        </span>
+        <br>
+      </div>
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
+    <!-- 微信打赏图案 -->
+
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			$('#donate_board').addClass('hidden');
+			$('#donate_guide').removeClass('hidden');
+		}
+	</script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
+          
+              <div style="display:inline-block;float:right;margin-right:2rem"><span id="busuanzi_value_page_pv" style="color:blue;"></span>人阅读</div>
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/07/12/20180712-某厂面试总结/" data-id="cjjpr4yok000vdci3ruzsnsq6" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2022/11/06/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    欢迎来到我的Lab，助手呦！
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/07/09/20180709-Nginx常用方法/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Nginx常见用法</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2018/07/12/20180712-某厂面试总结/"></div>
+</section>
+    
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2022/11/06/hello-world/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg)" alt="欢迎来到我的Lab，助手呦！" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2022/11/06/hello-world/" class="title">欢迎来到我的Lab，助手呦！</a></p>
+                            <p class="item-date"><time datetime="2022-11-06T07:47:44.000Z" itemprop="datePublished">2022-11-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/07/12/20180712-某厂面试总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="某厂前端面试" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/面试/">面试</a></p>
+                            <p class="item-title"><a href="/2018/07/12/20180712-某厂面试总结/" class="title">某厂前端面试</a></p>
+                            <p class="item-date"><time datetime="2018-07-12T13:47:44.000Z" itemprop="datePublished">2018-07-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/07/09/20180709-Nginx常用方法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="Nginx常见用法" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nginx/">Nginx</a></p>
+                            <p class="item-title"><a href="/2018/07/09/20180709-Nginx常用方法/" class="title">Nginx常见用法</a></p>
+                            <p class="item-date"><time datetime="2018-07-09T15:47:44.000Z" itemprop="datePublished">2018-07-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/07/06/20180703-redis哨兵模式/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="redis高可用" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/redis/">redis</a></p>
+                            <p class="item-title"><a href="/2018/07/06/20180703-redis哨兵模式/" class="title">redis高可用</a></p>
+                            <p class="item-date"><time datetime="2018-07-06T15:47:44.000Z" itemprop="datePublished">2018-07-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/07/01/20180701-游戏开发技术/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="游戏开发期末考试 （答案整理：大哥）" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/07/01/20180701-游戏开发技术/" class="title">游戏开发期末考试 （答案整理：大哥）</a></p>
+                            <p class="item-date"><time datetime="2018-07-01T07:47:44.000Z" itemprop="datePublished">2018-07-01</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/优化/" style="font-size: 13.33px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://space.bilibili.com/7174608/#/">哦谢特谢特的b站主页</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fas fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            &copy; 2018 哦谢特谢特<br>
+           本站访客数<span id="busuanzi_value_site_pv" style="color:blue"></span>人次
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytAmj4KR"></script>
+    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    <script type="text/javascript">
+    window.changyan.api.config({
+    appid: 'cytAmj4KR',
+    conf: 'prod_24bdeb3bcd4899254a2c5ccb6e2c9338'
+    });
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
