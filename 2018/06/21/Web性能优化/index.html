@@ -14,7 +14,7 @@
 <meta property="og:description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
-<meta property="og:updated_time" content="2018-06-24T13:17:56.000Z">
+<meta property="og:updated_time" content="2018-08-30T08:01:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web性能优化">
 <meta name="twitter:description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
@@ -158,7 +158,7 @@
         <div class="base-info profile-block">
             <img id="avatar" src="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_6884%2820180528-071229%29.jpg" />
             <h2 id="name">哦谢特谢特</h2>
-            <h3 id="title">已被逐出月籍的地球人，喜欢学习新技术，然后搭完环境弃坑。擅长让微服务进入无服务状态，Docker只会用Kitematic，Git只会用SourceTree，不百度和Google就解决不了问题。梦想成为一名PPT架构师！</h3>
+            <h3 id="title">dota__??__王，喜欢学习新技术，然后搭完环境弃坑。擅长让微服务进入无服务状态，Git只会用SourceTree，不百度和Google就解决不了问题。梦想成为一名PPT架构师！</h3>
             <span id="location"><i class="fas fa-map-marker-alt" style="padding-right: 5px"></i>济南, 山东</span>
             <a id="follow" target="_blank" href="https://weibo.com/5646945304/profile?topnav=1&amp;wvr=6&amp;is_all=1">关注我</a>
         </div>
@@ -256,17 +256,21 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <script src="/assets/js/APlayer.min.js"> </script><h3 id="Web性能优化"><a href="#Web性能优化" class="headerlink" title="Web性能优化"></a>Web性能优化</h3><h5 id="1、-减少http请求"><a href="#1、-减少http请求" class="headerlink" title="1、 减少http请求"></a>1、 减少http请求</h5><p>a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间<br>b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快<br>c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片</p>
+            <script src="/assets/js/APlayer.min.js"> </script><h3 id="Web性能优化"><a href="#Web性能优化" class="headerlink" title="Web性能优化"></a>Web性能优化</h3><h4 id="1、-减少http请求"><a href="#1、-减少http请求" class="headerlink" title="1、 减少http请求"></a>1、 减少http请求</h4><p>a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间<br>b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快<br>c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片</p>
 <a id="more"></a>
-<h5 id="2、-使用浏览器缓存"><a href="#2、-使用浏览器缓存" class="headerlink" title="2、 使用浏览器缓存"></a>2、 使用浏览器缓存</h5><p>a)    一个网站中 css js logo 图标这些静态资源文件更新的频率都比较低 如果将这些文件缓存在浏览器中可以极好地改善型性能<br>b)    通过设置http头中的cache-control和expires属性 可以设定浏览器缓存<br>c)    在某些时候 静态资源文件变化需要及时应用到客户端浏览器 这种情况 可以通过改变文件名称实现 即更新js文件不是更新js文件内容<br>d)    使用浏览器缓存策略的网站在更新静态资源时 应采用分批次更新的方法 比如需要更新10个图标文件 不宜把10个文件一次全部更新 应该一个文件一个文件逐步更新 并有一定的间隔时间 以免浏览器突然大量缓存失效</p>
-<h5 id="3、-服务端启用压缩"><a href="#3、-服务端启用压缩" class="headerlink" title="3、 服务端启用压缩"></a>3、 服务端启用压缩</h5><h5 id="4、-css放在页面最上面-js放在页面最下面"><a href="#4、-css放在页面最上面-js放在页面最下面" class="headerlink" title="4、 css放在页面最上面 js放在页面最下面"></a>4、 css放在页面最上面 js放在页面最下面</h5><p>a)    浏览器会在下载完全部css之后才对整个页面进行渲染 因此最好的做法是将css放在页面最上面 让浏览器尽快下载css<br>b)    Js则相反 浏览器在加载js后立即执行 有可能会阻塞整个页面 造成页面显示缓慢 因此js最好放在页面最下面 但如果解析页面的时候就需要用到js 这里就不适合放在底部了</p>
-<h5 id="5、-精简css和js文件"><a href="#5、-精简css和js文件" class="headerlink" title="5、 精简css和js文件"></a>5、 精简css和js文件</h5><p>a)    css和js压缩 减少下载的文件体积 常用的方式是使用 yui compressor 它的特点是：移除注释 移除额外的空格 细微的优化 标识符替换<br>b)     压缩js</p>
+<h4 id="2、-使用浏览器缓存"><a href="#2、-使用浏览器缓存" class="headerlink" title="2、 使用浏览器缓存"></a>2、 使用浏览器缓存</h4><p>a)    一个网站中 css js logo 图标这些静态资源文件更新的频率都比较低 如果将这些文件缓存在浏览器中可以极好地改善型性能<br>b)    通过设置http头中的cache-control和expires属性 可以设定浏览器缓存<br>c)    在某些时候 静态资源文件变化需要及时应用到客户端浏览器 这种情况 可以通过改变文件名称实现 即更新js文件不是更新js文件内容<br>d)    使用浏览器缓存策略的网站在更新静态资源时 应采用分批次更新的方法 比如需要更新10个图标文件 不宜把10个文件一次全部更新 应该一个文件一个文件逐步更新 并有一定的间隔时间 以免浏览器突然大量缓存失效</p>
+<h4 id="3、-服务端启用压缩"><a href="#3、-服务端启用压缩" class="headerlink" title="3、 服务端启用压缩"></a>3、 服务端启用压缩</h4><h4 id="4、-css放在页面最上面-js放在页面最下面"><a href="#4、-css放在页面最上面-js放在页面最下面" class="headerlink" title="4、 css放在页面最上面 js放在页面最下面"></a>4、 css放在页面最上面 js放在页面最下面</h4><p>a)    浏览器会在下载完全部css之后才对整个页面进行渲染 因此最好的做法是将css放在页面最上面 让浏览器尽快下载css<br>b)    Js则相反 浏览器在加载js后立即执行 有可能会阻塞整个页面 造成页面显示缓慢 因此js最好放在页面最下面 但如果解析页面的时候就需要用到js 这里就不适合放在底部了</p>
+<h4 id="5、-精简css和js文件"><a href="#5、-精简css和js文件" class="headerlink" title="5、 精简css和js文件"></a>5、 精简css和js文件</h4><p>a)    css和js压缩 减少下载的文件体积 常用的方式是使用 yui compressor 它的特点是：移除注释 移除额外的空格 细微的优化 标识符替换<br>b)     压缩js</p>
 <pre><code>java -jar yuicompressor-2.4.2.jar api.js&gt;api.min.js
 </code></pre><p>   压缩css</p>
 <pre><code>java -jar yuicompressor-2.4.2.jar style.css&gt;style.min.css
-</code></pre><h5 id="6、-减少对dom的操作"><a href="#6、-减少对dom的操作" class="headerlink" title="6、 减少对dom的操作"></a>6、 减少对dom的操作</h5><p>a)    对dom操作的代价是高昂的<br>b)    修改和访问dom元素会造成页面的重绘和重排 造成重绘重排的原因<br>i.    修改dom<br>ii.    修改样式表<br>iii.    用户事件<br>c)    网页生成的过程大致可以分为五个步骤<br>i.    html转换成dom<br>ii.    css代码转换成cssom<br>iii.    结合dom和cssom 生成一棵渲染树<br>iv.    生成布局 即将所有渲染树的所有节点进行平面合成<br>v.    将布局绘制在屏幕上</p>
-<h5 id="7、-使用json格式进行数据交换"><a href="#7、-使用json格式进行数据交换" class="headerlink" title="7、 使用json格式进行数据交换"></a>7、 使用json格式进行数据交换</h5><h5 id="8、-减少cookie传输"><a href="#8、-减少cookie传输" class="headerlink" title="8、 减少cookie传输"></a>8、 减少cookie传输</h5><p>a)    因为cookie是本地的磁盘文件 每次浏览器都会去读取相应的cookie所以建议去除不必要的cookie 使cookie体积尽量小</p>
-<h5 id="9、-使用cdn加速"><a href="#9、-使用cdn加速" class="headerlink" title="9、 使用cdn加速"></a>9、 使用cdn加速</h5><p>a)    cdn全称是content delivery network 即内容分发网络<br>b)    cdn本质仍然是一个缓存 而且将数据缓存在离用户最近的地方 使用户最快的获取数据<br>c)    cdn能够缓存的一般般是静态资源 如图片 文件 css script脚本 静态网页<br>d)    实时性不好使cdn的缺陷</p>
+</code></pre><h4 id="6、-减少对dom的操作"><a href="#6、-减少对dom的操作" class="headerlink" title="6、 减少对dom的操作"></a>6、 减少对dom的操作</h4><p>a)    对dom操作的代价是高昂的<br>b)    修改和访问dom元素会造成页面的重绘和重排 造成重绘重排的原因<br>i.    修改dom<br>ii.    修改样式表<br>iii.    用户事件<br>c)    网页生成的过程大致可以分为五个步骤<br>i.    html转换成dom<br>ii.    css代码转换成cssom<br>iii.    结合dom和cssom 生成一棵渲染树<br>iv.    生成布局 即将所有渲染树的所有节点进行平面合成<br>v.    将布局绘制在屏幕上</p>
+<h4 id="7、-使用json格式进行数据交换"><a href="#7、-使用json格式进行数据交换" class="headerlink" title="7、 使用json格式进行数据交换"></a>7、 使用json格式进行数据交换</h4><h4 id="8、-减少cookie传输"><a href="#8、-减少cookie传输" class="headerlink" title="8、 减少cookie传输"></a>8、 减少cookie传输</h4><p>a)    因为cookie是本地的磁盘文件 每次浏览器都会去读取相应的cookie所以建议去除不必要的cookie 使cookie体积尽量小</p>
+<h4 id="9、-使用cdn加速"><a href="#9、-使用cdn加速" class="headerlink" title="9、 使用cdn加速"></a>9、 使用cdn加速</h4><p>a)    cdn全称是content delivery network 即内容分发网络<br>b)    cdn本质仍然是一个缓存 而且将数据缓存在离用户最近的地方 使用户最快的获取数据<br>c)    cdn能够缓存的一般般是静态资源 如图片 文件 css script脚本 静态网页<br>d)    实时性不好使cdn的缺陷</p>
+<h4 id="10、web服务器配置gzip压缩"><a href="#10、web服务器配置gzip压缩" class="headerlink" title="10、web服务器配置gzip压缩"></a>10、web服务器配置gzip压缩</h4><p>#####什么是gzip压缩?</p>
+<blockquote>
+<p>HTTP协议上的GZIP编码是一种用来改进WEB应用程序性能的技术。大流量的WEB站点常常使用GZIP压缩技术来让用户感受更快的速度。这一般是指WWW服务器中安装的一个功能，当有人来访问这个服务器中的网站时，服务器中的这个功能就将网页内容压缩后传输到来访的电脑浏览器中显示出来.一般对纯文本内容可压缩到原大小的40%.这样传输就快了，效果就是你点击网址后会很快的显示出来.当然这也会增加服务器的负载. 一般服务器中都安装有这个功能模块的。</p>
+</blockquote>
 
         
         <!--添加的打赏功能 -->
@@ -311,7 +315,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjkuldakh0013vxi3atisa47o" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjn8bn8fb00199ri3mv81w25c" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -585,7 +589,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-          <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
             &copy; 2018 哦谢特谢特<br>
            本站访客数<span id="busuanzi_value_site_pv" style="color:blue"></span>人次
         </div>
