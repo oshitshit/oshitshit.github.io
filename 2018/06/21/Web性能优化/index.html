@@ -5,19 +5,19 @@
     
     <title>web性能优化 | 哦谢特谢特</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
+    <meta name="description" content="Web性能优化">
 <meta name="keywords" content="前端,优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web性能优化">
 <meta property="og:url" content="http://yoursite.com/2018/06/21/Web性能优化/index.html">
 <meta property="og:site_name" content="哦谢特谢特">
-<meta property="og:description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
+<meta property="og:description" content="Web性能优化">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
-<meta property="og:updated_time" content="2018-08-30T08:01:25.000Z">
+<meta property="og:updated_time" content="2018-10-14T07:14:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web性能优化">
-<meta name="twitter:description" content="Web性能优化1、 减少http请求a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片">
+<meta name="twitter:description" content="Web性能优化">
 <meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
     
 
@@ -164,11 +164,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                19
+                20
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                16
+                17
                 <span>标签</span>
             </div>
         </div>
@@ -256,8 +256,8 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <script src="/assets/js/APlayer.min.js"> </script><h3 id="Web性能优化"><a href="#Web性能优化" class="headerlink" title="Web性能优化"></a>Web性能优化</h3><h4 id="1、-减少http请求"><a href="#1、-减少http请求" class="headerlink" title="1、 减少http请求"></a>1、 减少http请求</h4><p>a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间<br>b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快<br>c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片</p>
-<a id="more"></a>
+            <script src="/assets/js/APlayer.min.js"> </script><h3 id="Web性能优化"><a href="#Web性能优化" class="headerlink" title="Web性能优化"></a>Web性能优化</h3><a id="more"></a>
+<h4 id="1、-减少http请求"><a href="#1、-减少http请求" class="headerlink" title="1、 减少http请求"></a>1、 减少http请求</h4><p>a)    在浏览器和服务器发生通信的时候 就已经消耗了大量的时间<br>b)    网速相同的条件下 下载一个100kb的图片比下载两个50kb的图片要快<br>c)    减少http请求的主要手段是合并css 合并JavaScript 合并图片</p>
 <h4 id="2、-使用浏览器缓存"><a href="#2、-使用浏览器缓存" class="headerlink" title="2、 使用浏览器缓存"></a>2、 使用浏览器缓存</h4><p>a)    一个网站中 css js logo 图标这些静态资源文件更新的频率都比较低 如果将这些文件缓存在浏览器中可以极好地改善型性能<br>b)    通过设置http头中的cache-control和expires属性 可以设定浏览器缓存<br>c)    在某些时候 静态资源文件变化需要及时应用到客户端浏览器 这种情况 可以通过改变文件名称实现 即更新js文件不是更新js文件内容<br>d)    使用浏览器缓存策略的网站在更新静态资源时 应采用分批次更新的方法 比如需要更新10个图标文件 不宜把10个文件一次全部更新 应该一个文件一个文件逐步更新 并有一定的间隔时间 以免浏览器突然大量缓存失效</p>
 <h4 id="3、-服务端启用压缩"><a href="#3、-服务端启用压缩" class="headerlink" title="3、 服务端启用压缩"></a>3、 服务端启用压缩</h4><h4 id="4、-css放在页面最上面-js放在页面最下面"><a href="#4、-css放在页面最上面-js放在页面最下面" class="headerlink" title="4、 css放在页面最上面 js放在页面最下面"></a>4、 css放在页面最上面 js放在页面最下面</h4><p>a)    浏览器会在下载完全部css之后才对整个页面进行渲染 因此最好的做法是将css放在页面最上面 让浏览器尽快下载css<br>b)    Js则相反 浏览器在加载js后立即执行 有可能会阻塞整个页面 造成页面显示缓慢 因此js最好放在页面最下面 但如果解析页面的时候就需要用到js 这里就不适合放在底部了</p>
 <h4 id="5、-精简css和js文件"><a href="#5、-精简css和js文件" class="headerlink" title="5、 精简css和js文件"></a>5、 精简css和js文件</h4><p>a)    css和js压缩 减少下载的文件体积 常用的方式是使用 yui compressor 它的特点是：移除注释 移除额外的空格 细微的优化 标识符替换<br>b)     压缩js</p>
@@ -315,7 +315,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjn8bn8fb00199ri3mv81w25c" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjn8jg0bp0017zli3mfvigbtt" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -388,19 +388,19 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/06/21/20180625-ES6/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/06/22/20180623-前端跨域问题的解决方法/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    ES6这些就够了
+                    前端跨域问题的解决方案
                 
             </div>
         </a>
     
     
-        <a href="/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/06/21/20180625-ES6/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">linux中常见的指令</div>
+            <div class="article-nav-title">ES6这些就够了</div>
         </a>
     
 </nav>
@@ -445,6 +445,25 @@
                             <p class="item-category"></p>
                             <p class="item-title"><a href="/2022/11/06/hello-world/" class="title">欢迎来到我的Lab，助手呦！</a></p>
                             <p class="item-date"><time datetime="2022-11-06T07:47:44.000Z" itemprop="datePublished">2022-11-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/10/11/201810104-滴滴面筋/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="滴滴面筋" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2018/10/11/201810104-滴滴面筋/" class="title">滴滴面筋</a></p>
+                            <p class="item-date"><time datetime="2018-10-11T13:42:44.000Z" itemprop="datePublished">2018-10-11</time></p>
                         </div>
                     </li>
                 
@@ -505,25 +524,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/07/12/20180712-某厂面试总结/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="某厂前端面试" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/面试/">面试</a></p>
-                            <p class="item-title"><a href="/2018/07/12/20180712-某厂面试总结/" class="title">某厂前端面试</a></p>
-                            <p class="item-date"><time datetime="2018-07-12T13:47:44.000Z" itemprop="datePublished">2018-07-12</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -533,7 +533,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -542,7 +542,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">11</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">11</span></li></ul>
         </div>
     </div>
 
@@ -551,7 +551,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -560,7 +560,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/优化/" style="font-size: 13.33px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a>
+            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/优化/" style="font-size: 13.33px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 16.67px;">面试</a>
         </div>
     </div>
 

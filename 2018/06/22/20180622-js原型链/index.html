@@ -5,19 +5,19 @@
     
     <title>DOM事件流 事件代理  JS作用域和作用域链 | 哦谢特谢特</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="内马尔进球了 我，里奥·谢特，现在慌得一批（我才不是梅西黑粉）这次我们来看下dom事件流，事件代理和js中的作用域作用域链。  1.DOM事件流dom事件简单地说就是定义了一些JavaScript函数使他们能够响应页面元素发生的变化，如click事件。 事件的生命周期分为三个阶段 捕捉 目标 冒泡 a)捕捉阶段当某个事件被触发的时候，浏览器会找到涉及的元素，涉及的元素被称为目标，浏览器会先触发外">
+    <meta name="description" content="内马尔进球了 我，里奥·谢特，现在慌得一批（我才不是梅西黑粉）这次我们来看下dom事件流，事件代理和js中的作用域作用域链。">
 <meta name="keywords" content="前端,JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DOM事件流 事件代理  JS作用域和作用域链">
 <meta property="og:url" content="http://yoursite.com/2018/06/22/20180622-js原型链/index.html">
 <meta property="og:site_name" content="哦谢特谢特">
-<meta property="og:description" content="内马尔进球了 我，里奥·谢特，现在慌得一批（我才不是梅西黑粉）这次我们来看下dom事件流，事件代理和js中的作用域作用域链。  1.DOM事件流dom事件简单地说就是定义了一些JavaScript函数使他们能够响应页面元素发生的变化，如click事件。 事件的生命周期分为三个阶段 捕捉 目标 冒泡 a)捕捉阶段当某个事件被触发的时候，浏览器会找到涉及的元素，涉及的元素被称为目标，浏览器会先触发外">
+<meta property="og:description" content="内马尔进球了 我，里奥·谢特，现在慌得一批（我才不是梅西黑粉）这次我们来看下dom事件流，事件代理和js中的作用域作用域链。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG">
-<meta property="og:updated_time" content="2018-06-25T10:06:35.000Z">
+<meta property="og:updated_time" content="2018-10-14T06:55:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DOM事件流 事件代理  JS作用域和作用域链">
-<meta name="twitter:description" content="内马尔进球了 我，里奥·谢特，现在慌得一批（我才不是梅西黑粉）这次我们来看下dom事件流，事件代理和js中的作用域作用域链。  1.DOM事件流dom事件简单地说就是定义了一些JavaScript函数使他们能够响应页面元素发生的变化，如click事件。 事件的生命周期分为三个阶段 捕捉 目标 冒泡 a)捕捉阶段当某个事件被触发的时候，浏览器会找到涉及的元素，涉及的元素被称为目标，浏览器会先触发外">
+<meta name="twitter:description" content="内马尔进球了 我，里奥·谢特，现在慌得一批（我才不是梅西黑粉）这次我们来看下dom事件流，事件代理和js中的作用域作用域链。">
 <meta name="twitter:image" content="http://papzj8a9t.bkt.clouddn.com/20180622_re1.PNG">
     
 
@@ -164,11 +164,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                19
+                20
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                16
+                17
                 <span>标签</span>
             </div>
         </div>
@@ -257,12 +257,11 @@
         
             
             <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>内马尔进球了 我，里奥·谢特，现在慌得一批（我才不是梅西黑粉）<br>这次我们来看下dom事件流，事件代理和js中的作用域作用域链。</p>
+<p>内马尔进球了 我，里奥·谢特，现在慌得一批（我才不是梅西黑粉）<br>这次我们来看下dom事件流，事件代理和js中的作用域作用域链。<br><a id="more"></a></p>
 </blockquote>
 <h4 id="1-DOM事件流"><a href="#1-DOM事件流" class="headerlink" title="1.DOM事件流"></a>1.DOM事件流</h4><p>dom事件简单地说就是定义了一些JavaScript函数使他们能够响应页面元素发生的变化，如click事件。</p>
 <p>事件的生命周期分为三个阶段 捕捉 目标 冒泡</p>
 <p>a)捕捉阶段<br>当某个事件被触发的时候，浏览器会找到涉及的元素，涉及的元素被称为目标，浏览器会先触发外层事件的处理器，最后才会轮到目标事件处理器。</p>
-<a id="more"></a>
 <p>b)目标阶段<br>捕获阶段完成后，浏览器触发目标元素上任何已经添加的事件类型监听器。</p>
 <p>c)冒泡阶段<br>冒泡阶段与捕获阶段顺序正好相反，在这个阶段，浏览器会优先处理目标的事件处理器，然后一层层往外处理其余的事件处理器。</p>
 <p>总结来说就是：冒泡事件按照最特定的事件目标到最不特定的事件目标的顺序触发。捕获事件是从最不特定的开始触发到最特定的事件。</p>
@@ -352,7 +351,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/22/20180622-js原型链/" data-id="cjn8bn8dv00079ri3gukzvtxi" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180622-js原型链/" data-id="cjn8jg09m0003zli3sr5g2mx5" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -488,6 +487,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2018/10/11/201810104-滴滴面筋/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="滴滴面筋" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2018/10/11/201810104-滴滴面筋/" class="title">滴滴面筋</a></p>
+                            <p class="item-date"><time datetime="2018-10-11T13:42:44.000Z" itemprop="datePublished">2018-10-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2018/08/14/20180814-read/" class="thumbnail">
     
     
@@ -542,25 +560,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/07/12/20180712-某厂面试总结/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="某厂前端面试" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/面试/">面试</a></p>
-                            <p class="item-title"><a href="/2018/07/12/20180712-某厂面试总结/" class="title">某厂前端面试</a></p>
-                            <p class="item-date"><time datetime="2018-07-12T13:47:44.000Z" itemprop="datePublished">2018-07-12</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -570,7 +569,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -579,7 +578,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">11</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">11</span></li></ul>
         </div>
     </div>
 
@@ -588,7 +587,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -597,7 +596,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/优化/" style="font-size: 13.33px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a>
+            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/优化/" style="font-size: 13.33px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 16.67px;">面试</a>
         </div>
     </div>
 

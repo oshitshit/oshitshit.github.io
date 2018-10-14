@@ -157,11 +157,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                19
+                20
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                16
+                17
                 <span>标签</span>
             </div>
         </div>
@@ -231,11 +231,11 @@
         
 <div class="article-gallery">
     
-    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjn8bn8fd001d9ri3t0lp228y">
+    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjn8jg0by001hzli3hg3kwl5f">
         <img src="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" itemprop="image" />
     </a>
     
-    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjn8bn8fd001d9ri3t0lp228y">
+    <a class="gallery-item" href="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" rel="gallery_cjn8jg0by001hzli3hg3kwl5f">
         <img src="http://papzj8a9t.bkt.clouddn.com/20180622-time.jpg" itemprop="image" />
     </a>
     
@@ -262,7 +262,156 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2022/11/06/hello-world/" data-id="cjn8bn8fd001d9ri3t0lp228y" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2022/11/06/hello-world/" data-id="cjn8jg0by001hzli3hg3kwl5f" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-201810104-滴滴面筋" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2018/10/11/201810104-滴滴面筋/" itemprop="url">
+            <img src="http://papzj8a9t.bkt.clouddn.com/20181014-banner.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/10/11/201810104-滴滴面筋/">滴滴面筋</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/10/11/201810104-滴滴面筋/">
+            <time datetime="2018-10-11T13:42:44.000Z" itemprop="datePublished">2018-10-11</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/Java/">Java</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/">Java</a>, <a class="tag-link" href="/tags/面试/">面试</a>
+    </div>
+
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><blockquote>
+<p>滴滴面试总结  封面id67342794</p>
+</blockquote></p>
+            <p class="article-more-link">
+                <a href="/2018/10/11/201810104-滴滴面筋/#more">查看更多</a>
+            </p>
+        
+        <!--添加的打赏功能 -->
+          
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/10/11/201810104-滴滴面筋/" data-id="cjn8jg0bn0012zli3ysn83l4o" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -392,8 +541,7 @@
         
             <p><blockquote>
 <p>最近读书技巧总结 封面id70171811</p>
-</blockquote>
-<p>最近看了不少书，稍微总结了些小经验吧，主要就是用思维导图，这里推荐下<a href="https://www.baidu.com/link?url=9f2NtiWVEpqNRJFVGc9U6DJaUwjgjlDGWu3X0nTvn-lMR0oPn5eo-WAHntg6ilwy&amp;wd=&amp;eqid=e7ff248700039b39000000025b72bd31" target="_blank" rel="noopener">xmind</a>。</p></p>
+</blockquote></p>
             <p class="article-more-link">
                 <a href="/2018/08/14/20180814-read/#more">查看更多</a>
             </p>
@@ -412,7 +560,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/08/14/20180814-read/" data-id="cjn8bn8f900169ri3vjkmfyud" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/08/14/20180814-read/" data-id="cjn8jg0bl0010zli3a8unz60v" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -561,7 +709,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/08/09/20180809-区块链学习/" data-id="cjn8bn8f600129ri3atlyd9hb" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/08/09/20180809-区块链学习/" data-id="cjn8jg0bw001fzli3h1lf0swv" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -681,8 +829,7 @@
         
             <p><blockquote>
 <p>vue操作dom遇到的坑</p>
-</blockquote>
-<p>刚搞Vue没多久在使用mounted的时候遇到了类似这样的问题<br><img src="http://papzj8a9t.bkt.clouddn.com/20180802-a.jpg" alt=""><br><img src="http://papzj8a9t.bkt.clouddn.com/20180802-b.jpg" alt=""><br>具体的代码如下:<br></p>
+</blockquote></p>
             <p class="article-more-link">
                 <a href="/2018/08/02/20180802-vue操作dom出现的问题/#more">查看更多</a>
             </p>
@@ -701,7 +848,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/08/02/20180802-vue操作dom出现的问题/" data-id="cjn8bn8f400109ri34ig5483b" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/08/02/20180802-vue操作dom出现的问题/" data-id="cjn8jg0bg000vzli34k5ba5ci" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -831,8 +978,7 @@
         
             <p><blockquote>
 <p>面试完毕，经验+120%，level 2 ，多了两点sp点，准备点到vue上 封面id=69689727</p>
-</blockquote>
-<h3 id="1-jquery-ready原理、onload区别"><a href="#1-jquery-ready原理、onload区别" class="headerlink" title="1. jquery ready原理、onload区别"></a>1. jquery ready原理、onload区别</h3><h5 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h5><p>在jquery脚本加载的时候,会设置一个<code>isReady</code>的标记,监听<code>DOMContentLoaded</code>事件(这个不是什么浏览器都有的,不同浏览器,jquery运作方式不一样).当然遇到调用<code>ready</code>函数的时候,如果<code>isReady</code>未被设置,那就是说页面未加载完,就会把要执行的函数用一个数组缓存起来,当页面加载完后,再把缓存的函数一一执行。<br></p>
+</blockquote></p>
             <p class="article-more-link">
                 <a href="/2018/07/12/20180712-某厂面试总结/#more">查看更多</a>
             </p>
@@ -851,7 +997,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/07/12/20180712-某厂面试总结/" data-id="cjn8bn8f2000v9ri3pzazo581" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/07/12/20180712-某厂面试总结/" data-id="cjn8jg0bd000tzli30er8vb1j" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -981,8 +1127,7 @@
         
             <p><blockquote>
 <p>Nginx常见用法介绍以及简单配置</p>
-</blockquote>
-<h2 id="1、静态HTTP服务器"><a href="#1、静态HTTP服务器" class="headerlink" title="1、静态HTTP服务器"></a>1、静态HTTP服务器</h2><p>Nginx是一个HTTP服务器，可以将服务器上的静态文件（如HTML、图片）通过HTTP协议展现给客户端。<br>配置：<br></p>
+</blockquote></p>
             <p class="article-more-link">
                 <a href="/2018/07/09/20180709-Nginx常用方法/#more">查看更多</a>
             </p>
@@ -1001,7 +1146,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/07/09/20180709-Nginx常用方法/" data-id="cjn8bn8ez000s9ri3li4kgxct" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/07/09/20180709-Nginx常用方法/" data-id="cjn8jg0b9000pzli3gh0d9gsz" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1131,12 +1276,7 @@
         
             <p><blockquote>
 <p>redis高可用 哨兵模式 封面id=69531858</p>
-</blockquote>
-<h3 id="一-简介"><a href="#一-简介" class="headerlink" title="一.简介"></a>一.简介</h3><p>Redis Sentinel是Redis官方提供的集群管理工具，可以部署在其他与redis集群可通讯的机器中监控redis集群。</p>
-<h3 id="二-特性"><a href="#二-特性" class="headerlink" title="二.特性"></a>二.特性</h3><ul>
-<li><p>监控（Monitoring）： Sentinel 会不断地检查你的主服务器和从服务器是否运作正常。</p>
-</li>
-<li><p>提醒（Notification）： 当被监控的某个 Redis 服务器出现问题时， Sentinel 可以通过 API 向管理员或者其他应用程序发送通知。</p></p>
+</blockquote></p>
             <p class="article-more-link">
                 <a href="/2018/07/06/20180703-redis哨兵模式/#more">查看更多</a>
             </p>
@@ -1155,7 +1295,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/07/06/20180703-redis哨兵模式/" data-id="cjn8bn8ex000o9ri3o79pm5mv" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/07/06/20180703-redis哨兵模式/" data-id="cjn8jg0b7000nzli3z5fw1nx4" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1263,9 +1403,7 @@
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><h3 id="游戏开发技术"><a href="#游戏开发技术" class="headerlink" title="游戏开发技术"></a>游戏开发技术</h3><p>（试题构成：8个问答，1个设计题）</p>
-<h4 id="1-什么是Unity3D？"><a href="#1-什么是Unity3D？" class="headerlink" title="1. 什么是Unity3D？"></a>1. 什么是Unity3D？</h4><p>定义:Unity3D是由UnityTechnologies开发的一个让玩家轻松创建诸如三维视频游戏、建筑可视化、实时三维动画等类型互动内容的多平台的综合性游戏开发工具，是一个全面整合的专业游戏引擎。<br>特点：开发简单、高度封装、跨平台、费用便宜。</p>
-<h4 id="2-什么是游戏引擎？它分为几类，常用的是哪几类？"><a href="#2-什么是游戏引擎？它分为几类，常用的是哪几类？" class="headerlink" title="2. 什么是游戏引擎？它分为几类，常用的是哪几类？"></a>2. 什么是游戏引擎？它分为几类，常用的是哪几类？</h4><p>定义：游戏引擎是指一些已编写好的可编辑电脑游戏系统或者一些交互式实时图像应用程序的核心组件。<br>分类：按开发游戏的维度：2D引擎、3D引擎<br>      按引擎使用是否收费：开源引擎、商业引擎<br>常用游戏引擎：AndEngine、Cocos2d-x、OGRE、RAGE、CryEngine、UnrealEngine、Unity3D<br></p>
+            <p><h3 id="游戏开发技术"><a href="#游戏开发技术" class="headerlink" title="游戏开发技术"></a>游戏开发技术</h3><p>（试题构成：8个问答，1个设计题）</p></p>
             <p class="article-more-link">
                 <a href="/2018/07/01/20180701-游戏开发技术/#more">查看更多</a>
             </p>
@@ -1284,7 +1422,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/07/01/20180701-游戏开发技术/" data-id="cjn8bn8ev000n9ri3xkixqp3r" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/07/01/20180701-游戏开发技术/" data-id="cjn8jg0b0000izli33m6cibig" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1414,8 +1552,7 @@
         
             <p><blockquote>
 <p>Transactional注解讲解</p>
-</blockquote>
-<p>在需要事务管理的地方加<code>@Transactional</code> 注解。<br> <code>@Transactional</code> 注解只能应用到接口方法、类、还有public方法上。</p></p>
+</blockquote></p>
             <p class="article-more-link">
                 <a href="/2018/06/27/20180627-TransactionDefinition接口特性/#more">查看更多</a>
             </p>
@@ -1434,157 +1571,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/27/20180627-TransactionDefinition接口特性/" data-id="cjn8bn8et000i9ri3ip5y1fps" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-          
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-20180625-Spring Boot JWT Redis方式实现" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" itemprop="url">
-            <img src="http://papzj8a9t.bkt.clouddn.com/20180622_header.JPG" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/06/25/20180625-Spring Boot JWT Redis方式实现/">Spring Boot jwt redis方式实现登录存储</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/25/20180625-Spring Boot JWT Redis方式实现/">
-            <time datetime="2018-06-25T12:47:44.000Z" itemprop="datePublished">2018-06-25</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/Spring-Security/">Spring Security</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Spring/">Spring</a>, <a class="tag-link" href="/tags/Spring-Boot/">Spring Boot</a>, <a class="tag-link" href="/tags/Spring-Security/">Spring Security</a>
-    </div>
-
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><blockquote>
-<p>Spring Boot jwt redis方式实现登录存储</p>
-</blockquote>
-<h3 id="JWT-Redis方式实现"><a href="#JWT-Redis方式实现" class="headerlink" title="JWT Redis方式实现"></a>JWT Redis方式实现</h3><h4 id="1、Token-dto"><a href="#1、Token-dto" class="headerlink" title="1、Token dto"></a>1、Token dto</h4></p>
-            <p class="article-more-link">
-                <a href="/2018/06/25/20180625-Spring Boot JWT Redis方式实现/#more">查看更多</a>
-            </p>
-        
-        <!--添加的打赏功能 -->
-          
-          
-
-        </div>
-
-
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" data-id="cjn8bn8e1000b9ri3nicw98wu" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/27/20180627-TransactionDefinition接口特性/" data-id="cjn8jg0aw000gzli386d49yql" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1695,6 +1682,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2018/10/11/201810104-滴滴面筋/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="滴滴面筋" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2018/10/11/201810104-滴滴面筋/" class="title">滴滴面筋</a></p>
+                            <p class="item-date"><time datetime="2018-10-11T13:42:44.000Z" itemprop="datePublished">2018-10-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2018/08/14/20180814-read/" class="thumbnail">
     
     
@@ -1749,25 +1755,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/07/12/20180712-某厂面试总结/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG)" alt="某厂前端面试" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/面试/">面试</a></p>
-                            <p class="item-title"><a href="/2018/07/12/20180712-某厂面试总结/" class="title">某厂前端面试</a></p>
-                            <p class="item-date"><time datetime="2018-07-12T13:47:44.000Z" itemprop="datePublished">2018-07-12</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1777,7 +1764,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Security/">Spring Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常/">日常</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1786,7 +1773,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">11</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">11</span></li></ul>
         </div>
     </div>
 
@@ -1795,7 +1782,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/">Spring Security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -1804,7 +1791,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/优化/" style="font-size: 13.33px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a>
+            <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 13.33px;">Spring Security</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/优化/" style="font-size: 13.33px;">优化</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/面试/" style="font-size: 16.67px;">面试</a>
         </div>
     </div>
 

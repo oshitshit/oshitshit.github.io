@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 优化 | 哦谢特谢特</title>
+    <title>滴滴面筋 | 哦谢特谢特</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="哦谢特谢特">
-<meta property="og:url" content="http://yoursite.com/tags/优化/index.html">
+    <meta name="description" content="滴滴面试总结  封面id67342794">
+<meta name="keywords" content="Java,面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="滴滴面筋">
+<meta property="og:url" content="http://yoursite.com/2018/10/11/201810104-滴滴面筋/index.html">
 <meta property="og:site_name" content="哦谢特谢特">
+<meta property="og:description" content="滴滴面试总结  封面id67342794">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta property="og:updated_time" content="2018-10-14T07:16:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="哦谢特谢特">
+<meta name="twitter:title" content="滴滴面筋">
+<meta name="twitter:description" content="滴滴面试总结  封面id67342794">
+<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
     
 
     
@@ -197,86 +204,304 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fas fa-tag"></i></span>
-        <h1 class="title">#优化</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-201810104-滴滴面筋" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://papzj8a9t.bkt.clouddn.com/20181014-banner.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/07/06/20180703-redis哨兵模式/">redis高可用</a>
+        <h1 class="article-title" itemprop="name">
+            滴滴面筋
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/07/06/20180703-redis哨兵模式/">
-            <time datetime="2018-07-06T15:47:44.000Z" itemprop="datePublished">2018-07-06</time>
+        <a href="/2018/10/11/201810104-滴滴面筋/">
+            <time datetime="2018-10-11T13:42:44.000Z" itemprop="datePublished">2018-10-11</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/redis/">redis</a>
+        <a class="article-category-link" href="/categories/Java/">Java</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/redis/">redis</a>, <a class="tag-link" href="/tags/优化/">优化</a>
+        <a class="tag-link" href="/tags/Java/">Java</a>, <a class="tag-link" href="/tags/面试/">面试</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/06/21/Web性能优化/">web性能优化</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>滴滴面试总结  封面id67342794</p>
+</blockquote>
+<a id="more"></a>
+<p>滴滴一面：</p>
+<ul>
+<li><p>java面向对象优点</p>
+<blockquote>
+<p>1、易维护<br>采用面向对象的思想设计的结构，可读性高，由于继承的存在，即使改变需求，那么维护也只在局部模块，所以维护起来是非常方便和较低成本的。<br>2、质量高<br>在设计时，可重用现有的，在以前的项目的领域中已被测试过的类使系统满足业务需求，并具有较高的质量。<br>3、效率高<br>在软件开发时，根据设计的需要对现实世界的事务进行抽象，产生类。<br>4、易扩展<br>由于继承、封装、多态的特性，自然设计出高内聚、低耦合的系统结构，使得系统更灵活、更容易扩展，而且成本较低。</p>
+</blockquote>
+</li>
+<li><p>查看一个int占用空间</p>
+<blockquote>
+<p>System.out.println(Integer.SIZE);</p>
+</blockquote>
+</li>
+<li><p>ConcurrentHashMap jdk1.7和jdk1.8的实现区别 处理并发的能力有什么变化</p>
+<blockquote>
+<p>jdk1.7中采用Segment + HashEntry的方式进行实现，JDK1.8版本中synchronized+CAS+HashEntry+红黑树<br>1.7锁的Segment 1.8直接锁的HashEntry，jdk1.8中锁的粒度更细了所以并发也更高（类似数据库行锁和表级锁）。 jdk1.7中Segment是一个继承了ReentrantLock的分段锁，在每次put操作时，是将整个Segment分段里面的transient volatile HashEntry&lt;K,V&gt;[] table 整个锁住，而Segment的个数在初始的时候就确定了，即使Map进行扩容也不会增加Segment的个数，所以jdk1.7中ConcurrentHashMap 的concurrentLevel（并发数）基本上是固定的。<br>红-黑树的引入，对链表的优化使得hash冲突时的put和get效率更高<br>获得JVM的支持 ，ReentrantLock毕竟是API这个级别的，后续的性能优化空间很小。 synchronized则是JVM直接支持的，JVM能够在运行时作出相应的优化措施：锁粗化、锁消除、锁自旋等等。这就使得synchronized能够随着JDK版本的升级而不改动代码的前提下获得性能上的提升。</p>
+</blockquote>
+</li>
+<li><p>ThreadPoolExecutor Threadlocal实现</p>
+<blockquote>
+<p>ThreadPoolExecutor提供了四个构造函数</p>
+<ul>
+<li>int corePoolSize：该线程池中核心线程数最大值</li>
+<li>int maximumPoolSize： 该线程池中线程总数最大值</li>
+<li>long keepAliveTime：该线程池中非核心线程闲置超时时长</li>
+<li>TimeUnit unit：keepAliveTime的单位</li>
+<li>BlockingQueue workQueue：该线程池中的任务队列：维护着等待执行的Runnable对象<ul>
+<li>SynchronousQueue 不足 新建 maximumPoolSize 一般指定无限大</li>
+<li>LinkedBlockingQueue  不足 队列（无限）maximumPoolSize失效</li>
+<li>ArrayBlockingQueue  定长 不足 队列 又不足 新建非核心线程 又又不足 报错</li>
+<li>DelayQueue 队列内元素必须实现Delayed接口 延时执行</li>
+</ul>
+</li>
+<li>ThreadFactory threadFactory：创建线程的方式</li>
+<li>RejectedExecutionHandler handler：这玩意儿就是抛出异常专用的<br>ThreadPoolExecutor的策略<br>1.线程数量未达到corePoolSize，则新建一个线程(核心线程)执行任务<br>2.线程数量达到了corePools，则将任务移入队列等待<br>3.队列已满，新建线程(非核心线程)执行任务<br>4.队列已满，总线程数又达到了maximumPoolSize，就会由(RejectedExecutionHandler)抛出异常</li>
+</ul>
+<p>Threadlocal <a href="https://www.jianshu.com/p/98b68c97df9b" target="_blank" rel="noopener">深度解析</a></p>
+</blockquote>
+</li>
+<li><p>可重入锁 不可重入锁</p>
+<blockquote>
+<p>可重入锁，也叫做递归锁，指的是在同一线程内，外层函数获得锁之后，内层递归函数仍然可以获取到该锁。换一种说法：同一个线程再次进入同步代码时，可以使用自己已获取到的锁。<br>防止在同一线程中多次获取锁而导致死锁发生。<br>ReetrantLock和Synchronized都是可重入锁</p>
+</blockquote>
+</li>
+<li><p>volatile原理内存屏障</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/zhengbin/p/5654805.html" target="_blank" rel="noopener">Volatile关键字详解</a></p>
+</blockquote>
+</li>
+<li><p>CAS原理</p>
+<blockquote>
+<p>先进行操作，如果没有其它线程争用共享数据，那操作就成功了，否则采取补偿措施（不断地重试，直到成功为止）。这种乐观的并发策略的许多实现都不需要将线程阻塞，因此这种同步操作称为非阻塞同步。<br>CAS 指令需要有 3 个操作数，分别是内存地址 V、旧的预期值 A 和新值 B。当执行操作时，只有当 V 的值等于 A，才将 V 的值更新为 B。</p>
+</blockquote>
+</li>
+<li><p>TCP/UDP区别</p>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/deee6abf0b72" target="_blank" rel="noopener">面试常问之TCP与UDP</a></p>
+</blockquote>
+</li>
+<li><p>mysql什么情况下不会使用索引</p>
+<blockquote>
+<p><a href="https://zhidao.baidu.com/question/1866627639665472187.html" target="_blank" rel="noopener">mysql什么情况下不会使用索引</a></p>
+</blockquote>
+</li>
+<li><p>SpringMVC 处理请求过程</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/kobejayandy/article/details/12585745" target="_blank" rel="noopener">Spring MVC请求处理流程</a></p>
+</blockquote>
+</li>
+<li><p>Spring解决对象循环引用</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/u010853261/article/details/77940767" target="_blank" rel="noopener">Spring如何解决循环依赖</a></p>
+</blockquote>
+</li>
+<li><p>多个用户请求同一个Controller</p>
+<blockquote>
+<p>默认Controller是单例的，线程池概念 和 拒绝策略</p>
+</blockquote>
+</li>
+<li><p>linux查找java占用CPU过高的原因</p>
+<blockquote>
+<p>1.top查看java进程占用资源情况<br>2.使用top -H -p pid查看线程占用情况<br>3.将线程id转换成十六进制<br>然后再使用jstack查询线程的堆栈信息<br>语法：jstack <pid> | grep -a 线程id（十六进制）</pid></p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>Redis一致性哈希算法</p>
+<blockquote>
+<p><a href="http://www.zsythink.net/archives/1182" target="_blank" rel="noopener">一致性hash</a></p>
+</blockquote>
+</li>
+<li><p>项目balabalabala</p>
+</li>
+<li>怎么理解敏捷开发</li>
+<li>实习做了什么balabalabala</li>
+</ul>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/21/Web性能优化/">
-            <time datetime="2018-06-21T15:47:44.000Z" itemprop="datePublished">2018-06-21</time>
-        </a>
+        
+        <!--添加的打赏功能 -->
+          
+  	           <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   大佬给点吃的吧！
+        </span>
+        <br>
+      </div>
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
+    <!-- 微信打赏图案 -->
+
     </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/前端/">前端</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/优化/">优化</a>, <a class="tag-link" href="/tags/前端/">前端</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			$('#donate_board').addClass('hidden');
+			$('#donate_guide').removeClass('hidden');
+		}
+	</script>
 </div>
+<! -- 添加捐赠图标 -->
+
+          
+          
+              <div style="display:inline-block;float:right;margin-right:2rem"><span id="busuanzi_value_page_pv" style="color:blue;"></span>人阅读</div>
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/10/11/201810104-滴滴面筋/" data-id="cjn8jg0bn0012zli3ysn83l4o" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2022/11/06/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    欢迎来到我的Lab，助手呦！
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/08/14/20180814-read/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">读书读书读书</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2018/10/11/201810104-滴滴面筋/"></div>
+</section>
+    
+
+
 </section>
             
                 
