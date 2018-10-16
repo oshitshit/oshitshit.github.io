@@ -272,7 +272,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" data-id="cjn8jg0ai000czli3w6sjysbe" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" data-id="cjnb4nd41000ixqi3ukwtgwto" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -421,7 +421,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/24/20180624-omaye/" data-id="cjn8jg0bu001dzli3qmo17du6" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/24/20180624-omaye/" data-id="cjnb4nd3l0007xqi3zd722skq" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -570,7 +570,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/" data-id="cjn8jg0a40007zli3fl2ahzmq" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/23/20180623-spring security登录及实现原理/" data-id="cjnb4nd3q000bxqi3hgfbt4gu" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -699,7 +699,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/23/网络工程期末考试/" data-id="cjn8jg0bs0019zli3u0cdhsuz" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/23/网络工程期末考试/" data-id="cjnb4nd4s001gxqi3b02l5dtq" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -847,7 +847,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/22/20180622-js原型链/" data-id="cjn8jg09m0003zli3sr5g2mx5" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180622-js原型链/" data-id="cjnb4nd3a0003xqi3oplemcuw" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -996,7 +996,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/22/20180622-js闭包/" data-id="cjn8jg0a00006zli3tphrb7ww" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180622-js闭包/" data-id="cjnb4nd3h0006xqi3p2fv0lu8" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1145,154 +1145,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/22/20180623-前端跨域问题的解决方法/" data-id="cjn8jg0a90008zli3fnk1q4gs" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-          
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-Web性能优化" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/06/21/Web性能优化/" itemprop="url">
-            <img src="http://papzj8a9t.bkt.clouddn.com/20180622_header.JPG" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/06/21/Web性能优化/">web性能优化</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/21/Web性能优化/">
-            <time datetime="2018-06-21T15:47:44.000Z" itemprop="datePublished">2018-06-21</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/前端/">前端</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/优化/">优化</a>, <a class="tag-link" href="/tags/前端/">前端</a>
-    </div>
-
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><h3 id="Web性能优化"><a href="#Web性能优化" class="headerlink" title="Web性能优化"></a>Web性能优化</h3></p>
-            <p class="article-more-link">
-                <a href="/2018/06/21/Web性能优化/#more">查看更多</a>
-            </p>
-        
-        <!--添加的打赏功能 -->
-          
-          
-
-        </div>
-
-
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjn8jg0bp0017zli3mfvigbtt" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/22/20180623-前端跨域问题的解决方法/" data-id="cjnb4nd3o0008xqi3vgotryqf" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1442,7 +1295,154 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/21/20180625-ES6/" data-id="cjn8jg0af000bzli3dwyq0zz2" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/21/20180625-ES6/" data-id="cjnb4nd3s000cxqi3cxx9d506" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-Web性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2018/06/21/Web性能优化/" itemprop="url">
+            <img src="http://papzj8a9t.bkt.clouddn.com/20180622_header.JPG" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/06/21/Web性能优化/">web性能优化</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/06/21/Web性能优化/">
+            <time datetime="2018-06-21T15:47:44.000Z" itemprop="datePublished">2018-06-21</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/优化/">优化</a>, <a class="tag-link" href="/tags/前端/">前端</a>
+    </div>
+
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><h3 id="Web性能优化"><a href="#Web性能优化" class="headerlink" title="Web性能优化"></a>Web性能优化</h3></p>
+            <p class="article-more-link">
+                <a href="/2018/06/21/Web性能优化/#more">查看更多</a>
+            </p>
+        
+        <!--添加的打赏功能 -->
+          
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/06/21/Web性能优化/" data-id="cjnb4nd4l001axqi3xosh6b0n" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1579,7 +1579,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/" data-id="cjn8jg0980001zli34mhgtl0c" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/06/21/1. 怎么查看当前进程 负载情况？怎么执行退出？怎么查看当前路径？/" data-id="cjnb4nd350001xqi3bi4jlwj2" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

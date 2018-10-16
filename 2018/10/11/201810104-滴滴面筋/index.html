@@ -14,7 +14,7 @@
 <meta property="og:description" content="滴滴面试总结  封面id67342794">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
-<meta property="og:updated_time" content="2018-10-14T07:16:13.000Z">
+<meta property="og:updated_time" content="2018-10-16T02:45:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="滴滴面筋">
 <meta name="twitter:description" content="滴滴面试总结  封面id67342794">
@@ -260,8 +260,7 @@
 <p>滴滴面试总结  封面id67342794</p>
 </blockquote>
 <a id="more"></a>
-<p>滴滴一面：</p>
-<ul>
+<h3 id="滴滴一面："><a href="#滴滴一面：" class="headerlink" title="滴滴一面："></a>滴滴一面：</h3><ul>
 <li><p>java面向对象优点</p>
 <blockquote>
 <p>1、易维护<br>采用面向对象的思想设计的结构，可读性高，由于继承的存在，即使改变需求，那么维护也只在局部模块，所以维护起来是非常方便和较低成本的。<br>2、质量高<br>在设计时，可重用现有的，在以前的项目的领域中已被测试过的类使系统满足业务需求，并具有较高的质量。<br>3、效率高<br>在软件开发时，根据设计的需要对现实世界的事务进行抽象，产生类。<br>4、易扩展<br>由于继承、封装、多态的特性，自然设计出高内聚、低耦合的系统结构，使得系统更灵活、更容易扩展，而且成本较低。</p>
@@ -274,7 +273,12 @@
 </li>
 <li><p>ConcurrentHashMap jdk1.7和jdk1.8的实现区别 处理并发的能力有什么变化</p>
 <blockquote>
-<p>jdk1.7中采用Segment + HashEntry的方式进行实现，JDK1.8版本中synchronized+CAS+HashEntry+红黑树<br>1.7锁的Segment 1.8直接锁的HashEntry，jdk1.8中锁的粒度更细了所以并发也更高（类似数据库行锁和表级锁）。 jdk1.7中Segment是一个继承了ReentrantLock的分段锁，在每次put操作时，是将整个Segment分段里面的transient volatile HashEntry&lt;K,V&gt;[] table 整个锁住，而Segment的个数在初始的时候就确定了，即使Map进行扩容也不会增加Segment的个数，所以jdk1.7中ConcurrentHashMap 的concurrentLevel（并发数）基本上是固定的。<br>红-黑树的引入，对链表的优化使得hash冲突时的put和get效率更高<br>获得JVM的支持 ，ReentrantLock毕竟是API这个级别的，后续的性能优化空间很小。 synchronized则是JVM直接支持的，JVM能够在运行时作出相应的优化措施：锁粗化、锁消除、锁自旋等等。这就使得synchronized能够随着JDK版本的升级而不改动代码的前提下获得性能上的提升。</p>
+<ul>
+<li>jdk1.7中采用Segment + HashEntry的方式进行实现，JDK1.8版本中synchronized+CAS+HashEntry+红黑树</li>
+<li>1.7锁的Segment 1.8直接锁的HashEntry，jdk1.8中锁的粒度更细了所以并发也更高（类似数据库行锁和表级锁）。 jdk1.7中Segment是一个继承了ReentrantLock的分段锁，在每次put操作时，是将整个Segment分段里面的transient volatile HashEntry&lt;K,V&gt;[] table 整个锁住，而Segment的个数在初始的时候就确定了，即使Map进行扩容也不会增加Segment的个数，所以jdk1.7中ConcurrentHashMap 的concurrentLevel（并发数）基本上是固定的。</li>
+<li>红-黑树的引入，对链表的优化使得hash冲突时的put和get效率更高</li>
+<li>获得JVM的支持 ，ReentrantLock毕竟是API这个级别的，后续的性能优化空间很小。 synchronized则是JVM直接支持的，JVM能够在运行时作出相应的优化措施：锁粗化、锁消除、锁自旋等等。这就使得synchronized能够随着JDK版本的升级而不改动代码的前提下获得性能上的提升。</li>
+</ul>
 </blockquote>
 </li>
 <li><p>ThreadPoolExecutor Threadlocal实现</p>
@@ -355,6 +359,70 @@
 <li>怎么理解敏捷开发</li>
 <li>实习做了什么balabalabala</li>
 </ul>
+<h3 id="滴滴二面："><a href="#滴滴二面：" class="headerlink" title="滴滴二面："></a>滴滴二面：</h3><ul>
+<li>实习经历balabala</li>
+<li>介绍部门存储架构balabala</li>
+<li><p>SpringCloud 看过哪些源码</p>
+<blockquote>
+<ul>
+<li><a href="http://blog.didispace.com/springcloud-sourcecode-eureka/" target="_blank" rel="noopener">Eureka</a></li>
+<li><a href="http://blog.didispace.com/springcloud-sourcecode-ribbon/" target="_blank" rel="noopener">Ribbon</a></li>
+<li><a href="http://blog.didispace.com/spring-cloud-source-zuul/" target="_blank" rel="noopener">Zuul</a><br>讲一下Ribbon怎么实现负载均衡balabala</li>
+</ul>
+</blockquote>
+</li>
+<li><p>SpringBoot对比SpringMVC</p>
+<blockquote>
+<ul>
+<li>简化spring应用的初始搭建以及开发过程 使用特定的方式进行配置（properties或者yml文件）</li>
+<li>创建独立的spring应用程序，无需Servlet容器，main方法运行</li>
+<li>嵌入tomcat无需war文件</li>
+<li>简化maven配置<br>-自动配置spring添加对应功能starter自动化配置<br>-提高了开发部署效率</li>
+<li>提供运行时监控<br>自动化配置原理？</li>
+<li>spring程序main方法中添加@SpringBootApplication或者@EnableAutoConfiguration会自动去maven中读取每个starter中的spring.factories文件 该文件里配置了所有需要被创建spring容器中的bean<br>读取配置文件的方式？</li>
+<li>默认读取配置文件为application.properties或者是application.yml<br>解决自动重启 spring-boot-devtools</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Spring AOP和IOC</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/gloomy_114/article/details/68946881" target="_blank" rel="noopener">深入理解Spring的两大特征（IOC和AOP）</a></p>
+</blockquote>
+</li>
+<li><p>Redis 分布式部署</p>
+<blockquote>
+<p>就是数据库分片加哨兵模式<br><a href="https://blog.csdn.net/men_wen/article/details/72853078" target="_blank" rel="noopener"> Redis Cluster部署</a><br>可以参考我之前的博客<a href="https://oxietexiete.jnyczc.com/2018/07/06/20180703-redis%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">哨兵模式</a></p>
+</blockquote>
+</li>
+<li><p>用Redis做了什么？</p>
+<blockquote>
+<p>oauth2中对access_token进行缓存<br>只使用过K V形式吗？是的=。=</p>
+</blockquote>
+</li>
+<li><p>MySQL索引和什么时候不不会使用索引</p>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/e1dce41a6b2b" target="_blank" rel="noopener">MySQL 数据库索引原理</a><br>第二个问题一面也有问到↑</p>
+</blockquote>
+</li>
+<li><p>MySQL主从复制和读写分离</p>
+<blockquote>
+<ul>
+<li>主从复制<br>主要涉及三个线程：binlog 线程、I/O 线程和 SQL 线程。<br>binlog 线程 ：负责将主服务器上的数据更改写入二进制日志（Binary log）中。<br>I/O 线程 ：负责从主服务器上读取二进制日志，并写入从服务器的重放日志（Replay log）中。<br>SQL 线程 ：负责读取重放日志并重放其中的 SQL 语句。</li>
+<li>读写分离<br>主服务器处理写操作以及实时性要求比较高的读操作，而从服务器处理读操作。<br>读写分离能提高性能的原因在于：<br>主从服务器负责各自的读和写，极大程度缓解了锁的争用；<br>从服务器可以使用 MyISAM，提升查询性能以及节约系统开销；<br>增加冗余，提高可用性。<br>读写分离常用代理方式来实现，代理服务器接收应用层传来的读写请求，然后决定转发到哪个服务器。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Synchronized和ReentrantLock</p>
+<blockquote>
+<p>老生常谈就不多说了。</p>
+</blockquote>
+</li>
+<li><p>介绍部门，能去北京面吗？（莫得钱钱），你有什么想问我的？</p>
+</li>
+</ul>
+<blockquote>
+<p>等通知等通知等通知。。。。</p>
+</blockquote>
 
         
         <!--添加的打赏功能 -->
@@ -399,7 +467,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/10/11/201810104-滴滴面筋/" data-id="cjn8jg0bn0012zli3ysn83l4o" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/10/11/201810104-滴滴面筋/" data-id="cjnb4nd4d0010xqi3b6inplvo" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
