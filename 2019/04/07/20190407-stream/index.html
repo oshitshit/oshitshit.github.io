@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 优化 | 司机小张</title>
+    <title>流式处理 | 司机小张</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="司机小张">
-<meta property="og:url" content="http://yoursite.com/tags/优化/index.html">
+    <meta name="description" content="小张今天下班时间在软件园拉了两位程序猿小哥，一路上他们都在谈『大数据』『流处理』『实时计算』『Flink』，拉过这么多程序猿只听说过『离线处理』『Hadoop』『Hive』，还是头一次听说这个『流式处理』，于是跑完这一单小张赶紧回到家，打开电脑百度了起来。。。。">
+<meta name="keywords" content="流计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="流式处理">
+<meta property="og:url" content="http://yoursite.com/2019/04/07/20190407-stream/index.html">
 <meta property="og:site_name" content="司机小张">
+<meta property="og:description" content="小张今天下班时间在软件园拉了两位程序猿小哥，一路上他们都在谈『大数据』『流处理』『实时计算』『Flink』，拉过这么多程序猿只听说过『离线处理』『Hadoop』『Hive』，还是头一次听说这个『流式处理』，于是跑完这一单小张赶紧回到家，打开电脑百度了起来。。。。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta property="og:updated_time" content="2019-04-07T15:49:37.499Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="司机小张">
+<meta name="twitter:title" content="流式处理">
+<meta name="twitter:description" content="小张今天下班时间在软件园拉了两位程序猿小哥，一路上他们都在谈『大数据』『流处理』『实时计算』『Flink』，拉过这么多程序猿只听说过『离线处理』『Hadoop』『Hive』，还是头一次听说这个『流式处理』，于是跑完这一单小张赶紧回到家，打开电脑百度了起来。。。。">
+<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
     
 
     
@@ -197,86 +204,245 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fas fa-tag"></i></span>
-        <h1 class="title">#优化</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-20190407-stream" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/07/06/20180703-redis哨兵模式/">redis高可用</a>
+        <h1 class="article-title" itemprop="name">
+            流式处理
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/07/06/20180703-redis哨兵模式/">
-            <time datetime="2018-07-06T15:47:44.000Z" itemprop="datePublished">2018-07-06</time>
+        <a href="/2019/04/07/20190407-stream/">
+            <time datetime="2019-04-07T15:55:44.000Z" itemprop="datePublished">2019-04-07</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/redis/">redis</a>
+        <a class="article-category-link" href="/categories/流计算/">流计算</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/redis/">redis</a>, <a class="tag-link" href="/tags/优化/">优化</a>
+        <a class="tag-link" href="/tags/流计算/">流计算</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/06/21/Web性能优化/">web性能优化</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>小张今天下班时间在软件园拉了两位程序猿小哥，一路上他们都在谈『大数据』『流处理』『实时计算』『Flink』，拉过这么多程序猿只听说过『离线处理』『Hadoop』『Hive』，还是头一次听说这个『流式处理』，于是跑完这一单小张赶紧回到家，打开电脑百度了起来。。。。</p>
+</blockquote>
+<a id="more"></a>
+<p>[TOC]</p>
+<h2 id="传统的批次处理方法"><a href="#传统的批次处理方法" class="headerlink" title="传统的批次处理方法"></a>传统的批次处理方法</h2><p><img src="http://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/batch.gif" alt=""></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在介绍流式处理引擎之前我们先简单的说明一下传统的批次处理方法，一般传统的批处理离不开以下的三个概念：</p>
+<ul>
+<li>持续收集</li>
+<li>以时间作为划分数个批次的数据</li>
+<li>周期性执行批次运算</li>
+</ul>
+<p>但是批处理在某些场景还是不够优雅，例如：</p>
+<ul>
+<li>计算每小时特定事件转换的次数（如每小时 用户状态从 A-&gt;B 的次数）<br>这种情况如果我们是按一个小时来划分批次， 3:55 出现了用户状态 A ，但是到了 4:05 才出现了用户状态 B 。这时候必须把 A 状态作为中介状态带到 B 的这个批次。</li>
+</ul>
+<p>虽然 Spark 已经有了 Micro Batching 模式，实现连续不断的批进行计算来模拟流处理，当批能足够小就可以做到很低的延迟，可以在一定程度上满足实时计算的场景，但是这种攒批过程还是会存在延迟，无法做到真正的流处理。</p>
+<h2 id="流处理"><a href="#流处理" class="headerlink" title="流处理"></a>流处理</h2><p><img src="http://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/stream.gif" alt=""></p>
+<h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p><img src="http://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo0.png" alt=""><br>自然流数据都是一条，一条的流入，计算的形式是每条数据到来都进行计算，这种计算模式能自然地做到低延迟。所以流处理主要有两个概念：</p>
+<ul>
+<li>数据是无界的</li>
+<li>基于一条一条的数据驱动计算，没有人为的去触发</li>
+</ul>
+<h3 id="有状态流处理的挑战"><a href="#有状态流处理的挑战" class="headerlink" title="有状态流处理的挑战"></a>有状态流处理的挑战</h3><h4 id="有状态"><a href="#有状态" class="headerlink" title="有状态"></a>有状态</h4><ul>
+<li>是否有办法累积维护状态<ul>
+<li>在进行实时数据计算的时候可能存在许多的中间状态，例如我们想看用户选购商品的时候在下单前都浏览了哪些商品，这时我们就需要维护用户在下单前浏览的所有商品数据。</li>
+</ul>
+</li>
+<li>是否有办法支撑维护大量的状态<ul>
+<li>在实际的业务中可能存在大量中间状态的数据，当这些状态的数据大到单个机器内存无法支撑，能否有办法对这些数据进行合理的存储。</li>
+</ul>
+</li>
+<li>是否有办法判断该收集的数据都已经收集完了<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo1.png" alt=""><h4 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h4></li>
+<li>在分布式的情况下如何保证相同类型的数据被发送到同一个分区。例如：<br>统计用户行为，需要将同一个用户的数据放到同一个分区进行处理。<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo2.png" alt=""><h4 id="乱序"><a href="#乱序" class="headerlink" title="乱序"></a>乱序</h4></li>
+<li><p>在实际的流式计算中数据到来的顺序有时会对计算结果有很大的影响，例如：<br>我们对一个每 10s 的窗口进行计算这时有在 9s 时的数据延迟了，落在了下一个窗口，那么无疑是对计算的结果有影响的。<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo4.png" alt=""></p>
+<h4 id="容错"><a href="#容错" class="headerlink" title="容错"></a>容错</h4><p>在计算过程中因为机器或者网络的原因导致处理失败了</p>
+</li>
+<li><p>是否能做到快速的恢复正常</p>
+</li>
+<li>是否能保证数据的不丢失</li>
+<li>是否能保证数据不重复处理</li>
+</ul>
+<p>因为在流处理中，数据会源源不断的流入，每条数据都会触发计算，并且延迟基本都是毫秒级想做到快速恢复正常，和数据不出现错误处理，也就是保证  Exactly-Once，这时相当困难的。</p>
+<p><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo5.png" alt=""></p>
+<p>当然想要做成流处理引擎不止以上这几点挑战！</p>
+<blockquote>
+<p>百度完的小张挠了挠头，想着做到流处理也忒难了，这可咋整啊，纳闷时看了看时间已经十二点了，“算了，先睡觉”，小张合上了电脑躺在床上刷起了微博，感觉自己离成为程序猿又进了一步，躺在床上“对了今天那两小哥说的『实时计算』『Flink』是什么来着，算了算了，我先看看蔡徐坤的运球”</p>
+</blockquote>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/21/Web性能优化/">
-            <time datetime="2018-06-21T15:47:44.000Z" itemprop="datePublished">2018-06-21</time>
-        </a>
+        
+        <!--添加的打赏功能 -->
+          
+  	           <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   大佬给点吃的吧！
+        </span>
+        <br>
+      </div>
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
+    <!-- 微信打赏图案 -->
+
     </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/前端/">前端</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/优化/">优化</a>, <a class="tag-link" href="/tags/前端/">前端</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			$('#donate_board').addClass('hidden');
+			$('#donate_guide').removeClass('hidden');
+		}
+	</script>
 </div>
+<! -- 添加捐赠图标 -->
+
+          
+          
+              <div style="display:inline-block;float:right;margin-right:2rem"><span id="busuanzi_value_page_pv" style="color:blue;"></span>人阅读</div>
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2019/04/07/20190407-stream/" data-id="cju72noeq0000jgcrk95thqpa" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2022/11/06/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    想开大车住大房养大狗睡大床
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/08/14/20180814-read/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">读书读书读书</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2019/04/07/20190407-stream/"></div>
+</section>
+    
+
+
 </section>
             
                 
