@@ -14,7 +14,7 @@
 <meta property="og:description" content="小张今天下班时间在软件园拉了两位程序猿小哥，一路上他们都在谈『大数据』『流处理』『实时计算』『Flink』，拉过这么多程序猿只听说过『离线处理』『Hadoop』『Hive』，还是头一次听说这个『流式处理』，于是跑完这一单小张赶紧回到家，打开电脑百度了起来。。。。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
-<meta property="og:updated_time" content="2019-04-07T15:52:17.474Z">
+<meta property="og:updated_time" content="2019-04-08T01:24:34.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="流式处理">
 <meta name="twitter:description" content="小张今天下班时间在软件园拉了两位程序猿小哥，一路上他们都在谈『大数据』『流处理』『实时计算』『Flink』，拉过这么多程序猿只听说过『离线处理』『Hadoop』『Hive』，还是头一次听说这个『流式处理』，于是跑完这一单小张赶紧回到家，打开电脑百度了起来。。。。">
@@ -271,8 +271,10 @@
 </li>
 </ul>
 <!-- /TOC -->
-<h2 id="传统的批次处理方法"><a href="#传统的批次处理方法" class="headerlink" title="传统的批次处理方法"></a>传统的批次处理方法</h2><p><img src="http://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/batch.gif" alt=""></p>
-<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在介绍流式处理引擎之前我们先简单的说明一下传统的批次处理方法，一般传统的批处理离不开以下的三个概念：</p>
+<h2 id="传统的批次处理方法"><a href="#传统的批次处理方法" class="headerlink" title="传统的批次处理方法"></a>传统的批次处理方法</h2><hr>
+<p><img src="http://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/batch.gif" alt=""></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><hr>
+<p>在介绍流式处理引擎之前我们先简单的说明一下传统的批次处理方法，一般传统的批处理离不开以下的三个概念：</p>
 <ul>
 <li>持续收集</li>
 <li>以时间作为划分数个批次的数据</li>
@@ -283,13 +285,17 @@
 <li>计算每小时特定事件转换的次数（如每小时 用户状态从 A-&gt;B 的次数）<br>这种情况如果我们是按一个小时来划分批次， 3:55 出现了用户状态 A ，但是到了 4:05 才出现了用户状态 B 。这时候必须把 A 状态作为中介状态带到 B 的这个批次。</li>
 </ul>
 <p>虽然 Spark 已经有了 Micro Batching 模式，实现连续不断的批进行计算来模拟流处理，当批能足够小就可以做到很低的延迟，可以在一定程度上满足实时计算的场景，但是这种攒批过程还是会存在延迟，无法做到真正的流处理。</p>
-<h2 id="流处理"><a href="#流处理" class="headerlink" title="流处理"></a>流处理</h2><p><img src="http://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/stream.gif" alt=""></p>
-<h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p><img src="http://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo0.png" alt=""><br>自然流数据都是一条，一条的流入，计算的形式是每条数据到来都进行计算，这种计算模式能自然地做到低延迟。所以流处理主要有两个概念：</p>
+<h2 id="流处理"><a href="#流处理" class="headerlink" title="流处理"></a>流处理</h2><hr>
+<p><img src="http://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/stream.gif" alt=""></p>
+<h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><hr>
+<p><img src="http://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo0.png" alt=""><br>自然流数据都是一条，一条的流入，计算的形式是每条数据到来都进行计算，这种计算模式能自然地做到低延迟。所以流处理主要有两个概念：</p>
 <ul>
 <li>数据是无界的</li>
 <li>基于一条一条的数据驱动计算，没有人为的去触发</li>
 </ul>
-<h3 id="有状态流处理的挑战"><a href="#有状态流处理的挑战" class="headerlink" title="有状态流处理的挑战"></a>有状态流处理的挑战</h3><h4 id="有状态"><a href="#有状态" class="headerlink" title="有状态"></a>有状态</h4><ul>
+<h3 id="有状态流处理的挑战"><a href="#有状态流处理的挑战" class="headerlink" title="有状态流处理的挑战"></a>有状态流处理的挑战</h3><hr>
+<h4 id="有状态"><a href="#有状态" class="headerlink" title="有状态"></a>有状态</h4><hr>
+<ul>
 <li>是否有办法累积维护状态<ul>
 <li>在进行实时数据计算的时候可能存在许多的中间状态，例如我们想看用户选购商品的时候在下单前都浏览了哪些商品，这时我们就需要维护用户在下单前浏览的所有商品数据。</li>
 </ul>
@@ -298,13 +304,20 @@
 <li>在实际的业务中可能存在大量中间状态的数据，当这些状态的数据大到单个机器内存无法支撑，能否有办法对这些数据进行合理的存储。</li>
 </ul>
 </li>
-<li>是否有办法判断该收集的数据都已经收集完了<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo1.png" alt=""><h4 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h4></li>
-<li>在分布式的情况下如何保证相同类型的数据被发送到同一个分区。例如：<br>统计用户行为，需要将同一个用户的数据放到同一个分区进行处理。<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo2.png" alt=""><h4 id="乱序"><a href="#乱序" class="headerlink" title="乱序"></a>乱序</h4></li>
-<li><p>在实际的流式计算中数据到来的顺序有时会对计算结果有很大的影响，例如：<br>我们对一个每 10s 的窗口进行计算这时有在 9s 时的数据延迟了，落在了下一个窗口，那么无疑是对计算的结果有影响的。<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo4.png" alt=""></p>
-<h4 id="容错"><a href="#容错" class="headerlink" title="容错"></a>容错</h4><p>在计算过程中因为机器或者网络的原因导致处理失败了</p>
-</li>
-<li><p>是否能做到快速的恢复正常</p>
-</li>
+<li>是否有办法判断该收集的数据都已经收集完了<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo1.png" alt=""></li>
+</ul>
+<h4 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h4><hr>
+<ul>
+<li>在分布式的情况下如何保证相同类型的数据被发送到同一个分区。例如：<br>统计用户行为，需要将同一个用户的数据放到同一个分区进行处理。<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo2.png" alt=""></li>
+</ul>
+<h4 id="乱序"><a href="#乱序" class="headerlink" title="乱序"></a>乱序</h4><hr>
+<ul>
+<li>在实际的流式计算中数据到来的顺序有时会对计算结果有很大的影响，例如：<br>我们对一个每 10s 的窗口进行计算这时有在 9s 时的数据延迟了，落在了下一个窗口，那么无疑是对计算的结果有影响的。<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo4.png" alt=""></li>
+</ul>
+<h4 id="容错"><a href="#容错" class="headerlink" title="容错"></a>容错</h4><hr>
+<p>在计算过程中因为机器或者网络的原因导致处理失败了</p>
+<ul>
+<li>是否能做到快速的恢复正常</li>
 <li>是否能保证数据的不丢失</li>
 <li>是否能保证数据不重复处理</li>
 </ul>
@@ -312,7 +325,7 @@
 <p><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190407/photo5.png" alt=""></p>
 <p>当然想要做成流处理引擎不止以上这几点挑战！</p>
 <blockquote>
-<p>百度完的小张挠了挠头，想着做到流处理也忒难了，这可咋整啊，纳闷时看了看时间已经十二点了，“算了，先睡觉”，小张合上了电脑躺在床上刷起了微博，感觉自己离成为程序猿又进了一步，躺在床上“对了今天那两小哥说的『实时计算』『Flink』是什么来着，算了算了，我先看看蔡徐坤的运球”</p>
+<p>百度完的小张挠了挠头，想着做到流处理也忒难了，这可咋整啊，纳闷时看了看时间已经十二点了，“算了，先睡觉”，小张合上了电脑躺在床上刷起了微博，感觉自己离成为程序猿又进了一步，躺在床上“今天那两小哥说的『实时计算』『Flink』是什么来着，算了算了，先看会蔡徐坤运球”</p>
 </blockquote>
 
         
@@ -358,7 +371,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2019/04/07/20190407-stream/" data-id="cju73x4u1000nuccrxs07qtva" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/04/07/20190407-stream/" data-id="cju7o18vp000ojbcrko4jcwy5" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
