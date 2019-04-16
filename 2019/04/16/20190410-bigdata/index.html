@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 大数据 | 司机小张</title>
+    <title>大数据介绍-MapReduce（下） | 司机小张</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="司机小张">
-<meta property="og:url" content="http://yoursite.com/tags/大数据/index.html">
+    <meta name="description" content="书接上回">
+<meta name="keywords" content="大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据介绍-MapReduce（下）">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/20190410-bigdata/index.html">
 <meta property="og:site_name" content="司机小张">
+<meta property="og:description" content="书接上回">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta property="og:updated_time" content="2019-04-16T08:34:50.413Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="司机小张">
+<meta name="twitter:title" content="大数据介绍-MapReduce（下）">
+<meta name="twitter:description" content="书接上回">
+<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
     
 
     
@@ -197,50 +204,333 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fas fa-tag"></i></span>
-        <h1 class="title">#大数据</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-20190410-bigdata" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2019/04/07/20190407-stream/">流式处理</a>
+        <h1 class="article-title" itemprop="name">
+            大数据介绍-MapReduce（下）
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2019/04/07/20190407-stream/">
-            <time datetime="2019-04-07T15:55:44.000Z" itemprop="datePublished">2019-04-07</time>
+        <a href="/2019/04/16/20190410-bigdata/">
+            <time datetime="2019-04-16T08:52:44.000Z" itemprop="datePublished">2019-04-16</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/流计算/">流计算</a>
+        <a class="article-category-link" href="/categories/大数据/">大数据</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/大数据/">大数据</a>, <a class="tag-link" href="/tags/流计算/">流计算</a>
+        <a class="tag-link" href="/tags/MapReduce/">MapReduce</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>书接上回</p>
+</blockquote>
+<a id="more"></a>
+<p>#MapReduce系统架构<br><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190409/photo14.png" alt=""></p>
+<ul>
+<li>Master&amp;Worker</li>
+<li>Master Data Structure</li>
+<li>Map Tasks&amp;Worker</li>
+<li>Reduce Tasks&amp;Worker</li>
+</ul>
+<h2 id="Master-amp-Worker"><a href="#Master-amp-Worker" class="headerlink" title="Master&amp;Worker"></a>Master&amp;Worker</h2><p><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190416/photo1.png" alt=""></p>
+<ul>
+<li>用户提交任务到调度系统<ul>
+<li>实现 Map 和 Reduce 程序</li>
+<li>指定 Map Tasks 的数量 M</li>
+<li>指定 Reduce Tasks 的数量 R</li>
+</ul>
+</li>
+<li>Map 和 Reduce 被 copy 到集群机器上开始运行<ul>
+<li>其中一个配置特殊的程序为 Master，其他为 Worker</li>
+</ul>
+</li>
+<li>由 Master 分配 Map 或 Reduce Task 到空闲 Worker</li>
+<li>所有任务完成后，唤醒用户程序（比如客户端）</li>
+<li>输出结果包含 R 个文件，文件名由用户指定</li>
+</ul>
+<h2 id="Master-Data-Structure"><a href="#Master-Data-Structure" class="headerlink" title="Master Data Structure"></a>Master Data Structure</h2><p><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190416/photo2.png" alt=""></p>
+<ul>
+<li>对每个 Map 或 Reduce Task，存储了其状态和机器信息<ul>
+<li>状态包括：Idle，In-Progress，Complete</li>
+</ul>
+</li>
+<li>对每个已完成的 Map Task，存储其（R个）输出在 GFS 中的位置（Index）</li>
+</ul>
+<h2 id="Map-Tasks-amp-Worker"><a href="#Map-Tasks-amp-Worker" class="headerlink" title="Map Tasks&amp;Worker"></a>Map Tasks&amp;Worker</h2><p><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190416/photo3.png" alt=""></p>
+<ul>
+<li>将输入数据解析成键值对</li>
+<li>执行 Map 过程</li>
+<li>Map 的输出结果最开始被存在内存的 Buffer 中</li>
+<li>定时将 Buffer 中的键值对写入本地磁盘，并划分为 R 块 </li>
+<li>将 R 个输出文件的位置发给 Master</li>
+</ul>
+<h2 id="Reduce-Tasks-amp-Worker"><a href="#Reduce-Tasks-amp-Worker" class="headerlink" title="Reduce Tasks&amp;Worker"></a>Reduce Tasks&amp;Worker</h2><p><img src="https://oxieteblog.oss-cn-beijing.aliyuncs.com/article/20190416/photo4.png" alt=""></p>
+<ul>
+<li>被 Master 通知 Map 任务完成，并从 Master 那里得到了输出文件的位置后，通过 RPC 从 Map Task 执行的机器获取数据</li>
+<li>读入数据后，进行排序<ul>
+<li>多个 Map Task 结果回到一个 Reduce Task，大量的重复 Key 需要排序合并</li>
+<li>若数据过大无法全部读入内存，则使用外部排序</li>
+</ul>
+</li>
+<li>遍历数据，依次输入 Reduce 进行处理</li>
+<li>输出被 append 到最终的输出文件中（一般是一个文件）</li>
+</ul>
+<h1 id="技术细节"><a href="#技术细节" class="headerlink" title="技术细节"></a>技术细节</h1><ul>
+<li>选择 M 和 R</li>
+<li>容错机制</li>
+<li>充分利用本地存储</li>
+<li>确定性与非确定性</li>
+</ul>
+<h2 id="选择-M-和-R"><a href="#选择-M-和-R" class="headerlink" title="选择 M 和 R"></a>选择 M 和 R</h2><ul>
+<li>调度时间复杂度 O(M + R)</li>
+<li>状态存储空间复杂度 O(M x R)<ul>
+<li>每组 Map Task 输出对应 R 个 Reduce Task ，因此是 M x R </li>
+</ul>
+</li>
+<li>M: 远大于机器数量<ul>
+<li>细粒度意味着更好的 load balance</li>
+</ul>
+</li>
+<li>R: 机器数量的几倍<ul>
+<li>大块数据重计算不利于失败恢复</li>
+</ul>
+</li>
+</ul>
+<h2 id="容错机制"><a href="#容错机制" class="headerlink" title="容错机制"></a>容错机制</h2><ul>
+<li>Master Failure</li>
+<li>Worker Failure</li>
+<li>Stragglers &amp; Backup Tasks </li>
+<li>Crashes, etc</li>
+</ul>
+<h3 id="Master-Failure"><a href="#Master-Failure" class="headerlink" title="Master Failure"></a>Master Failure</h3><ul>
+<li>Master 定时写 checkpoints ，通过其数据结构保存运行状态</li>
+<li>Master 机器 down 掉之后就重启读 checkpoints </li>
+<li>由于 Master 机器一般会选性能好的，不容易 down 掉，所以 down 的任务就重新跑一边</li>
+</ul>
+<h3 id="Worker-Failure"><a href="#Worker-Failure" class="headerlink" title="Worker Failure"></a>Worker Failure</h3><ul>
+<li>Master 通过向 Worker 发送心跳信号来确认其状态<ul>
+<li>一定时间无回应 -&gt; 假设 Failure 发生了</li>
+</ul>
+</li>
+<li>Map Task 失败了<ul>
+<li>Completed 和 In-Progress 的 Map Task 会被设置成 idle 分配给其他 Worker 重执行，因为原机器 down 了，数据存在本地获取不到</li>
+</ul>
+</li>
+<li>Reduce Task 失败了<ul>
+<li>In-Progress 的 Reduce Task 置 idle 重执行</li>
+<li>Completed 的 Reduce Task 不重执行，因为不止存本地，还同步到了 GFS</li>
+</ul>
+</li>
+</ul>
+<h3 id="Stragglers-amp-Backup-Tasks"><a href="#Stragglers-amp-Backup-Tasks" class="headerlink" title="Stragglers &amp; Backup Tasks"></a>Stragglers &amp; Backup Tasks</h3><ul>
+<li>Stragglers：个别收尾任务的机器由于故障而变慢，拖慢整个任务完成<ul>
+<li>大量可恢复错误</li>
+<li>同时运行太多其他任务，资源紧缺</li>
+</ul>
+</li>
+<li>解决方案：Backup Tasks<ul>
+<li>在整个 MR 任务即将完成时，Master 备份运行中的任务到空闲 Worker</li>
+<li>只要其中一个完成了，就标记为 Completed</li>
+<li>会耗费额外的计算资源，但能显著减少运行时间</li>
+</ul>
+</li>
+</ul>
+<h3 id="Crashes-etc"><a href="#Crashes-etc" class="headerlink" title="Crashes, etc"></a>Crashes, etc</h3><ul>
+<li>数据格式错误</li>
+<li>第三方代码 bug</li>
+<li>解决方案：可以通过配置，跳过一定数量的 Segment fault 类会导致程序崩掉的数据</li>
+</ul>
+<h2 id="确定性与非确定性"><a href="#确定性与非确定性" class="headerlink" title="确定性与非确定性"></a>确定性与非确定性</h2><ul>
+<li>确定性：同一输入，多次运行，行为与结果不变</li>
+<li>非确定性：同一输入，多次运行，会有多种不同的行为或结果</li>
+</ul>
+<h3 id="确定性"><a href="#确定性" class="headerlink" title="确定性"></a>确定性</h3><ul>
+<li>分布式实现的过程和顺序执行的过程和产出的结果一样</li>
+<li>保证：一个特定的 Reduce Task 与一些特定的顺序操作等价</li>
+<li>但是：不同 Reduce Task 的输出会对应不同的操作顺序</li>
+<li>也就是说：无法用一个等价的顺序过程来代表所有 Reduce Task</li>
+</ul>
+<h1 id="Spark-VS-MapReduce"><a href="#Spark-VS-MapReduce" class="headerlink" title="Spark VS MapReduce"></a>Spark VS MapReduce</h1><p>前面也提到了 Spark 那这里做一下简单的比较吧</p>
+<ul>
+<li>Spark 把运算的中间数据存在内存，迭代计算效率更高，MapReduce 的中间结果需要落地要存到磁盘，性能会差很多</li>
+<li>Spark 有更加完善的容错机制，它通过弹性分布式数据集 RDD 来实现高效容错，RDD 是一组分布式的存储在节点内存中的只读性质的数据集，这些集合是弹性的，某一部分丢失或者出错，可以通过整个数据集的计算流程的血缘关系来实现重建，MapReduce 出现错误只能重新计算，成本较高</li>
+<li>Spark 更加通用，Spark 提供了 transformation 和 action 这两大类的多个功能 API ，另外还有流式处理，Spark Streaming 模块、图计算 Graph X 等，MapReduce 只提供了 Map 和 Reduce 两种操作，流计算以及其他模块的支持比较缺乏</li>
+<li>Spark 框架和生态更为复杂，首先有 RDD 、血缘 lineage、执行时的有向无环图 DAG、stage 划分等等，很多时候 Spark 任务需要根据不同业务场景的需要进行调优已达到性能要求，MapReduce 框架及其生态相对简单，对性能的要求也相对较弱，但运行稳定，适合长期后台运行   </li>
+</ul>
+
+        
+        <!--添加的打赏功能 -->
+          
+  	           <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   大佬给点吃的吧！
+        </span>
+        <br>
+      </div>
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
+    <!-- 微信打赏图案 -->
+
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			$('#donate_board').addClass('hidden');
+			$('#donate_guide').removeClass('hidden');
+		}
+	</script>
 </div>
+<! -- 添加捐赠图标 -->
+
+          
+          
+              <div style="display:inline-block;float:right;margin-right:2rem"><span id="busuanzi_value_page_pv" style="color:blue;"></span>人阅读</div>
+          
+
+        </div>
+
+
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2019/04/16/20190410-bigdata/" data-id="cjujj7oo8000owacr6oxnjtpe" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+          
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2022/11/06/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    想开大车住大房养大狗睡大床
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2019/04/10/20190409-bigdata/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">大数据介绍-MapReduce（上）</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2019/04/16/20190410-bigdata/"></div>
+</section>
+    
+
+
 </section>
             
                 
