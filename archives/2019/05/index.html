@@ -3,22 +3,15 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Transactional注解讲解 | 司机小张</title>
+    <title>归档: 2019/5 | 司机小张</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Transactional注解讲解">
-<meta name="keywords" content="Spring ,Spring Boot">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Transactional注解讲解">
-<meta property="og:url" content="http://yoursite.com/2018/06/27/20180627-TransactionDefinition接口特性/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="司机小张">
+<meta property="og:url" content="http://yoursite.com/archives/2019/05/index.html">
 <meta property="og:site_name" content="司机小张">
-<meta property="og:description" content="Transactional注解讲解">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
-<meta property="og:updated_time" content="2019-04-05T14:27:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Transactional注解讲解">
-<meta name="twitter:description" content="Transactional注解讲解">
-<meta name="twitter:image" content="https://9031654.oss-cn-qingdao.aliyuncs.com/IMG_1731.JPG">
+<meta name="twitter:title" content="司机小张">
     
 
     
@@ -204,277 +197,45 @@
 </aside>
 
             
-            <section id="main"><article id="post-20180627-TransactionDefinition接口特性" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
+            <section id="main"><div class="timeline timeline-wrap">
+    
+            <div class="timeline-row timeline-row-major">
+                <span class="node"><i class="fas fa-calendar-alt"></i></span>
+                <h1 class="title">2019</h1>
+            </div>
         
-        
-            <header class="article-header">
+        <div class="timeline-row">
+            <span class="node"></span>
+            <div class="content">
                 
     
-        <h1 class="article-title" itemprop="name">
-            Transactional注解讲解
+        <h1 itemprop="name">
+            <a class="timeline-article-title" href="/2019/05/07/20190507-Flink SQL-Client/">Flink SQL-Client探索</a>
         </h1>
     
 
-                
-                    <div class="article-meta">
-                        
+                <div class="article-meta">
+                    
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/27/20180627-TransactionDefinition接口特性/">
-            <time datetime="2018-06-27T12:47:44.000Z" itemprop="datePublished">2018-06-27</time>
+        <a href="/2019/05/07/20190507-Flink SQL-Client/">
+            <time datetime="2019-05-07T11:13:44.000Z" itemprop="datePublished">2019-05-07</time>
         </a>
     </div>
 
 
-                        
+                    
     <div class="article-category">
     	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/Spring/">Spring</a>
+        <a class="article-category-link" href="/categories/Flink/">Flink</a>
     </div>
 
-                        
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Spring/">Spring</a>, <a class="tag-link" href="/tags/Spring-Boot/">Spring Boot</a>
-    </div>
-
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>Transactional注解讲解</p>
-</blockquote>
- <a id="more"></a>
-<p>在需要事务管理的地方加<code>@Transactional</code> 注解。<br> <code>@Transactional</code> 注解只能应用到接口方法、类、还有public方法上。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Override</span></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> SysUser <span class="title">saveUser</span><span class="params">(UserDto userDto)</span> </span>&#123;</span><br><span class="line">    SysUser user = userDto;</span><br><span class="line">    user.setPassword(passwordEncoder.encode(user.getPassword()));</span><br><span class="line">    user.setStatus(SysUser.Status.VALID);</span><br><span class="line">    userDao.save(user);</span><br><span class="line">    saveUserRoles(user.getId(), userDto.getRoleIds());</span><br><span class="line"></span><br><span class="line">    log.debug(<span class="string">"新增用户"</span>, user.getUsername());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">属性</th>
-<th style="text-align:right">类型</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">value</td>
-<td style="text-align:right">String</td>
-<td style="text-align:center">可选的限定描述符，指定使用的事务管理器</td>
-</tr>
-<tr>
-<td style="text-align:left">propagation</td>
-<td style="text-align:right">enum: Propagation</td>
-<td style="text-align:center">可选的事务传播行为设置</td>
-</tr>
-<tr>
-<td style="text-align:left">isolation</td>
-<td style="text-align:right">enum: Isolation</td>
-<td style="text-align:center">可选的事务隔离级别设置</td>
-</tr>
-<tr>
-<td style="text-align:left">readOnly</td>
-<td style="text-align:right">boolean</td>
-<td style="text-align:center">读写或只读事务，默认读写</td>
-</tr>
-<tr>
-<td style="text-align:left">timeout</td>
-<td style="text-align:right">int (in seconds granularity)</td>
-<td style="text-align:center">事务超时时间设置</td>
-</tr>
-<tr>
-<td style="text-align:left">rollbackFor</td>
-<td style="text-align:right">Class对象数组，必须继承自Throwable</td>
-<td style="text-align:center">导致事务回滚的异常类数组</td>
-</tr>
-<tr>
-<td style="text-align:left">rollbackForClassName</td>
-<td style="text-align:right">类名数组，必须继承自Throwable</td>
-<td style="text-align:center">导致事务回滚的异常类名字数组</td>
-</tr>
-<tr>
-<td style="text-align:left">noRollbackFor</td>
-<td style="text-align:right">Class对象数组，必须继承自Throwable</td>
-<td style="text-align:center">不会导致事务回滚的异常类数组</td>
-</tr>
-<tr>
-<td style="text-align:left">noRollbackForClassName</td>
-<td style="text-align:right">类名数组，必须继承自Throwable</td>
-<td style="text-align:center">不会导致事务回滚的异常类名字数组</td>
-</tr>
-</tbody>
-</table>
-<h3 id="TransactionDefinition接口特性："><a href="#TransactionDefinition接口特性：" class="headerlink" title="TransactionDefinition接口特性："></a>TransactionDefinition接口特性：</h3><h4 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h4><p>隔离级别是指若干个并发的事务之间的隔离程度。TransactionDefinition 接口中定义了五个表示隔离级别的常量：</p>
-<ul>
-<li>TransactionDefinition.ISOLATION_DEFAULT：这是默认值，表示使用底层数据库的默认隔离级别。对大部分数据库而言，通常这值就是TransactionDefinition.ISOLATION_READ_COMMITTED。</li>
-<li>TransactionDefinition.ISOLATION_READ_UNCOMMITTED：该隔离级别表示一个事务可以读取另一个事务修改但还没有提交的数据。该级别不能防止脏读，不可重复读和幻读，因此很少使用该隔离级别。比如PostgreSQL实际上并没有此级别。</li>
-<li>TransactionDefinition.ISOLATION_READ_COMMITTED：该隔离级别表示一个事务只能读取另一个事务已经提交的数据。该级别可以防止脏读，这也是大多数情况下的推荐值。</li>
-<li>TransactionDefinition.ISOLATION_REPEATABLE_READ：该隔离级别表示一个事务在整个过程中可以多次重复执行某个查询，并且每次返回的记录都相同。该级别可以防止脏读和不可重复读。</li>
-<li>TransactionDefinition.ISOLATION_SERIALIZABLE：所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。但是这将严重影响程序的性能。通常情况下也不会用到该级别。</li>
-</ul>
-<h4 id="事务传播行为"><a href="#事务传播行为" class="headerlink" title="事务传播行为"></a>事务传播行为</h4><p>所谓事务的传播行为是指，如果在开始当前事务之前，一个事务上下文已经存在，此时有若干选项可以指定一个事务性方法的执行行为。在TransactionDefinition定义中包括了如下几个表示传播行为的常量：</p>
-<ul>
-<li>TransactionDefinition.PROPAGATION_REQUIRED：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。这是默认值。</li>
-<li>TransactionDefinition.PROPAGATION_REQUIRES_NEW：创建一个新的事务，如果当前存在事务，则把当前事务挂起。</li>
-<li>TransactionDefinition.PROPAGATION_SUPPORTS：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。</li>
-<li>TransactionDefinition.PROPAGATION_NOT_SUPPORTED：以非事务方式运行，如果当前存在事务，则把当前事务挂起。</li>
-<li>TransactionDefinition.PROPAGATION_NEVER：以非事务方式运行，如果当前存在事务，则抛出异常。</li>
-<li>TransactionDefinition.PROPAGATION_MANDATORY：如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。</li>
-<li>TransactionDefinition.PROPAGATION_NESTED：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于TransactionDefinition.PROPAGATION_REQUIRED。</li>
-</ul>
-
-        
-        <!--添加的打赏功能 -->
-          
-  	           <! -- 添加捐赠图标 -->
-<div class ="post-donate">
-    <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
-        <span class="donate_txt">
-           &uarr;<br>
-		   大佬给点吃的吧！
-        </span>
-        <br>
-      </div>
-	<div id="donate_guide" class="donate_bar center hidden" >
-		<!-- 支付宝打赏图案 -->
-    <img src="https://9031654.oss-cn-qingdao.aliyuncs.com/oxiete/zfb.png" alt="支付宝打赏">
-    <!-- 微信打赏图案 -->
-
-    </div>
-	<script type="text/javascript">
-		document.getElementById('btn_donate').onclick = function(){
-			$('#donate_board').addClass('hidden');
-			$('#donate_guide').removeClass('hidden');
-		}
-	</script>
-</div>
-<! -- 添加捐赠图标 -->
-
-          
-          
-              <div style="display:inline-block;float:right;margin-right:2rem"><span id="busuanzi_value_page_pv" style="color:blue;"></span>人阅读</div>
-          
-
-        </div>
-
-
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2018/06/27/20180627-TransactionDefinition接口特性/" data-id="cjvdp4v390005po1i521vn3av" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-          
-        </footer>
-    </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2018/07/06/20180703-redis哨兵模式/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    redis高可用
-                
+                    
+                </div>
             </div>
-        </a>
+        </div>
     
-    
-        <a href="/2018/06/25/20180625-Spring Boot JWT Redis方式实现/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Spring Boot jwt redis方式实现登录存储</div>
-        </a>
-    
-</nav>
-
-
-    
-</article>
-
-
-    
-    
-        <section id="comments">
-    <div id="SOHUCS" sid="2018/06/27/20180627-TransactionDefinition接口特性/"></div>
-</section>
-    
-
-
+</div>
 </section>
             
                 
